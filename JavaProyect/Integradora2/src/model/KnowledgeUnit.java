@@ -1,21 +1,24 @@
 package model;
 
+
 public class KnowledgeUnit {
 
 	private String id;
 	private String description;
-	private String type;
+	private Type type;
 	private String learnedLessons;
-	private boolean approved;
+	private Status status;
 
-	public KnowledgeUnit(String id, String description, String type, String learnedLessons) {
+	public KnowledgeUnit(String id, String description, Type type, String learnedLessons) {
 
 		this.id = id;
 		this.description = description;
 		this.type = type;
 		this.learnedLessons = learnedLessons;
-		this.approved = false;
+		this.status = Status.POR_DEFINIR;
 	}
+
+//||||||||||||||||||GETTERS Y SETTERS|||||||||||||||||||||
 
 	public String getId() {
 		return id;
@@ -33,11 +36,11 @@ public class KnowledgeUnit {
 		this.description = description;
 	}
 
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
@@ -49,30 +52,25 @@ public class KnowledgeUnit {
 		this.learnedLessons = learnedLessons;
 	}
 	
-	public boolean getApproved() {
-		return approved;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setApproved(boolean approved) {
-		this.approved = approved;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
+
+//|||||||||||||||||||TOSTRINGS||||||||||||||||||||||
 
 	public String toString(){
 		String msg ="";
-		String approvedshow="";
-		if(approved==true){
-			approvedshow+="Verdadero";
-		}
-		else{
-			approvedshow+="Falso";
-		}
-		msg = "\nID: " + id +"\nDescripcion: "+ description+"\nTipo: "+type+"\nLeccion Aprendida: "+learnedLessons+"\nAprovada: "+approvedshow;
+		msg = "\nID: " + id +"\nDescripcion: "+ description+"\nTipo: "+type+"\nLeccion Aprendida: "+learnedLessons+"\nAprovada: "+status;
 		return msg;
 	}
 	
 	public String toStringUnaproved(int i){
 		String msg ="";
-		if(approved==false){ 
+		if(status==Status.POR_DEFINIR){ 
 		msg = "\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
 		}
 		return msg;
