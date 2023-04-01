@@ -10,6 +10,7 @@ import java.text.ParseException;
 public class Project{
 	
 	private String name;
+	private TypeProject type;
 	private String clientName;
 	private Calendar initialDate;
 	private Calendar finalDate;
@@ -17,11 +18,12 @@ public class Project{
 
 	private DateFormat formatter;
 
-	public Project(String name, String clientName, Calendar initialDate, Calendar finalDate, double budget){
+	public Project(String name, TypeProject type, String clientName, Calendar initialDate, Calendar finalDate, double budget){
 		
 		this.formatter = new SimpleDateFormat("dd/M/yy");
 
-		this.name = name;	
+		this.name = name;
+		this.type = type;
 		this.clientName = clientName;
 		this.initialDate = initialDate;
 		this.finalDate = finalDate;
@@ -60,7 +62,7 @@ public class Project{
 	}
 
 	public String getProjectInfo() throws ParseException{
-		return "\nName: " + name + "\nClient: " + clientName + "\nInitial Date: " + getInitialDateFormated() + 
+		return "\nName: " + name + "\n Type: "+type+"\nClient: " + clientName + "\nInitial Date: " + getInitialDateFormated() + 
 		"\nFinal Date: " + getFinalDateFormated() + "\nTotalBudget: " + budget + ".\n";
 	}
 }

@@ -2,22 +2,16 @@ package ui;
 
 import java.util.Scanner;
 import model.Controller;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+
 
 public class Executable {
 	public int idcount=0;
 	private Scanner input;
 	private Controller controller;
-	private static Calendar calendar;
-	private static DateFormat formatter;
 	public Executable() {
 
 		input = new Scanner(System.in);
 		controller = new Controller();
-		formatter = new SimpleDateFormat("dd mm yyyy");
 		
 	}
 
@@ -27,13 +21,6 @@ public class Executable {
 		exe.menu();
 
 	}
-
-	
-//||||||||||||||||||||||||||||||||||||CALENDARIO||||||||||||||||||||||||||||||||||||||
-public static Calendar createGregorianCalendar(int day, int month,int year){
-	Calendar calendar = new GregorianCalendar(day,month,year);
-	return calendar;
-}
 
 	
 	public void menu() {
@@ -52,7 +39,6 @@ public static Calendar createGregorianCalendar(int day, int month,int year){
 				break;
 
 				case 3:
-				
 				registerKnowledgeUnit();
 				break;
 
@@ -84,8 +70,11 @@ public static Calendar createGregorianCalendar(int day, int month,int year){
 
 	//Incomplete
 	public void registerProject() {
-		String name; String clientName; Calendar initialDate; Calendar finalDate; double budget;
-		int day;int month;int year;
+		String name; String clientName;
+		double budget;
+		int projType;
+		int iday;int imonth;int iyear;
+		int fday;int fmonth;int fyear;
 	
 		//limpiezabuffer
 		input.nextLine();
@@ -94,38 +83,43 @@ public static Calendar createGregorianCalendar(int day, int month,int year){
         System.out.println("Digite el nombre del proyecto");
         name= input.nextLine();
 
+		System.out.println("Digite el tipo de proyecto\n1: Desarrollo\n2:Matenimiento\n3:Despliegue");
+        projType= input.nextInt();
+
 		System.out.println("Digite el nombre del cliente");
         clientName= input.nextLine();
 
 		//fecha inicial
 		System.out.println("Digite la fecha de inicio del proyecto");
 		System.out.println("Dia");
-		day=input.nextInt();
+		iday=input.nextInt();
 		System.out.println("Mes");
-		month=input.nextInt();
+		imonth=input.nextInt();
 		System.out.println("Año");
-		year=input.nextInt();
-		initialDate=createGregorianCalendar(day, month, year);
+		iyear=input.nextInt();
+		
 
 		//fecha final
 		System.out.println("Digite la fecha de final del proyecto");
 		System.out.println("Dia");
-		day=input.nextInt();
+		fday=input.nextInt();
 		System.out.println("Mes");
-		month=input.nextInt();
+		fmonth=input.nextInt();
 		System.out.println("Año");
-		year=input.nextInt();
-		finalDate=createGregorianCalendar(day, month, year);
+		fyear=input.nextInt();
+		
 
 		System.out.println("Presupuesto");
         budget= input.nextDouble();
 
-        if(controller.registerProject(name,clientName,initialDate,finalDate,budget)){
+
+         if(controller.registerProject(name,projType,clientName,iday,imonth,iyear,fday,fmonth,fyear,budget)){
             System.out.println("Proyecto registrado exitosamente");
         }
         else{
             System.out.println("Memoria llena, no se pudo registrar el proyecto");
         }
+		
 	}
 
 	public void menuByDate(){
@@ -147,13 +141,42 @@ public static Calendar createGregorianCalendar(int day, int month,int year){
 			}
 		}
 	}
-	//Incomplete
+
 	public void searchProjectsAfterDate() {
 		
+		System.out.println("Ingrese la fecha");
+		System.out.println("dia ");
+		int eday = input.nextInt();
+
+		System.out.println("mes ");
+		int emonth = input.nextInt();
+
+		System.out.println("anio");
+		int eyear = input.nextInt();
+
+		String information = controller.searchProjectsAfterDate(eday, emonth, eyear);
+
+       
+
+    	System.out.println(information);
 	}
-	//Incomplete
+	
 	public void searchProjectsBeforeDate() {
-		
+		System.out.println("Ingrese la fecha");
+		System.out.println("dia ");
+		int eday = input.nextInt();
+
+		System.out.println("mes ");
+		int emonth = input.nextInt();
+
+		System.out.println("anio");
+		int eyear = input.nextInt();
+
+		String information = controller.searchProjectsBeforeDate(eday, emonth, eyear);
+
+       
+
+    	System.out.println(information);
 	}
 	
 //||||||||||||||||||||||||||||||||KNOWLEDGEUNIT|||||||||||||||||||||||||||||
