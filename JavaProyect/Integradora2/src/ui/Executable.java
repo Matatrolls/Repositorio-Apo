@@ -24,6 +24,7 @@ public class Executable {
 
 	public void testing(){
 		controller.testCases();
+		System.out.println("Casos de testeo creados");
 	}
 
 //||||||||||||||||||||||||||||Menus||||||||||||||||||||||||||||||||||||
