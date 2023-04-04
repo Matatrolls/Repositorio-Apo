@@ -36,6 +36,7 @@ public class Project{
 public boolean registerKnowledgeUnit(String id, String description,String collaboratorName ,int temporal, String learnedLessons) {
 	CapsType type;
 	description="#"+description+"#";
+
 	switch(temporal){
 		case 1:
 		type=CapsType.TECNICO;
@@ -47,7 +48,7 @@ public boolean registerKnowledgeUnit(String id, String description,String collab
 		type=CapsType.TECNICO;
 		break;
 	}
-	KnowledgeUnit capsUnit = new KnowledgeUnit(id,description,collaboratorName, type, learnedLessons);
+	KnowledgeUnit capsUnit = new KnowledgeUnit(name,stage,id,description,collaboratorName, type, learnedLessons);
 	boolean indicador =false;
 	for(int i=0;i<units.length;i++){
 		if(units[i]==null && !indicador){
@@ -73,7 +74,7 @@ public String showKnowlegdeUnitList(){
 		if(units[i]==null){
 		}
 		else{
-			msg+=units[i].toStringUnaproved(i);
+			msg+="Proyecto "+(i+1)+units[i].toStringUnaproved(i);
 		}
 	}
 	return msg;
@@ -92,18 +93,18 @@ public String getAllKnowledgeUnits() {
 }
 
 	public void testCases() {	
-		units[0] = new KnowledgeUnit("A001", "Gestion de repositorios", "Juan",CapsType.TECNICO, "#GitHub# es una herramienta util");
-		units[1] = new KnowledgeUnit("A002", "Gestion de equipos","Pepito", CapsType.TECNICO, "Es importante #definir responsabilidades# claras");
+		units[0] = new KnowledgeUnit(name,stage,"A001","Gestion de repositorios", "Juan",CapsType.TECNICO, "#GitHub# es una herramienta util");
+		units[1] = new KnowledgeUnit(name,stage,"A002","Gestion de equipos","Pepito", CapsType.TECNICO, "Es importante #definir responsabilidades# claras");
 	}
 
 //||||||||||||||||||||||||INFO||||||||||||||||||||||||||||||
-	public String getProjectInfo(){
-		return "\nName: " + name + "\n Type: "+type+"\nClient: " + clientName + "\nInitial Date: " + getInitialDateFormated() + 
-		"\nFinal Date: " + getFinalDateFormated() + "\nTotalBudget: " + budget + ".\n";
+	public String getProjectInfo(int i){
+		return "\n\nProyecto "+(i+1)+":\nNombre: " + name + "\n  Tipo: "+type+"\n  Etapa: "+stage+"\n  Cliente: " + clientName + "\n  Fecha Inicial: " + getInitialDateFormated() + 
+		"\n  Fecha Final: " + getFinalDateFormated() + "\n  Presupuesto: " + budget + "\n  Nombre del Gerente: "+gerentName+"\n  Numero del Gerente: "+gerentCellphone;
 	}
 
 	public String getProjectInfoList(int i){
-		return "\n"+(i+1)+"\n:Name: " + name + "\n Type: "+type;
+		return "\n\nProyecto "+(i+1)+":\n Nombre: " + name + "\n Tipo: "+type;
 	}
 //||||||||||||||||||||||||ETAPAS|||||||||||||||||||||||
 	public void changeStage(){

@@ -44,10 +44,9 @@ public class Controller {
 		Project newProject = new Project(name ,type,clientName, initialDate, finalDate, budget,gerentName,gerentCellphone);
 		
 		for (int i = 0; i < projects.length; i++) {
-            if (projects[i] == null) {
+            if (projects[i] == null && !indicator ) {
                 projects[i] = newProject;
 				indicator=true;
-            
             }
         }
 		return indicator;
@@ -71,14 +70,14 @@ public class Controller {
 			if(projects[i]==null){
 			}
 			else{
-				msg+=projects[i].getProjectInfo();
+				msg+=projects[i].getProjectInfo(i);
 			}
 		}
 		return msg;
 	}
 
 	public boolean changeStage(int choice) {
-		boolean indicador=true;
+		boolean indicador=false;
 		projects[choice-1].changeStage();
 		
 		return indicador;
@@ -114,7 +113,7 @@ public class Controller {
 //|||||||||||||||||||kNOWLEGDEUNITS||||||||||||||||||||||||||||||
 public boolean registerKnowledgeUnit(int choice,String id, String description, String collaboratorName,int temporal, String learnedLessons){
 	boolean indicator=false;
-	if(projects[choice].registerKnowledgeUnit(id, description, collaboratorName, temporal, learnedLessons)){
+	if(projects[choice-1].registerKnowledgeUnit(id, description, collaboratorName, temporal, learnedLessons)){
 		indicator=true;
 	}
 	return indicator;
@@ -122,10 +121,10 @@ public boolean registerKnowledgeUnit(int choice,String id, String description, S
 	
 public String showKnowlegdeUnitList(int choiceProject){
 	String msg="";
-	if(projects[choiceProject]==null){
+	if(projects[choiceProject-1]==null){
 	}
 	else{
-		msg+=projects[choiceProject].showKnowlegdeUnitList();
+		msg+=projects[choiceProject-1].showKnowlegdeUnitList();
 	}
 	return msg;
 }
@@ -144,7 +143,9 @@ public String getAllKnowledgeUnits() {
 
 public boolean approveKnowledgeUnit(int choiceProject,int choice){
 	boolean indicador=false;
-	projects[choiceProject].approveKnowledgeUnit(choice);
+	if(projects[choiceProject-1].approveKnowledgeUnit(choice)){
+		indicador=true;
+	}
 	return indicador;
 }
 

@@ -71,7 +71,7 @@ public class Executable {
 			break;
 
 			case 2:
-				menuByDate();
+				menuProjectConsult();
 			break;
 
 			case 3:
@@ -91,11 +91,11 @@ public class Executable {
 		opcion=input.nextInt();
 		switch(opcion){
 			case 1:
-				controller.projectList();
+				System.out.println(controller.projectList());
 			break;
 
 			case 2:
-				controller.projectInfo();
+			System.out.println(controller.projectInfo());
 			break;
 
 			case 3:
@@ -110,7 +110,7 @@ public class Executable {
 
 	public void menuCapsule(){
 		int opcion=0;
-		System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar una capsula\n2:Aprobar una capsula \n3:Consultar una capsula");
+		System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar una capsula\n2:Aprobar una capsula \n3:Consultar todas las capsulas");
 		opcion=input.nextInt();
 			switch(opcion){
 				case 1:
@@ -240,9 +240,7 @@ public class Executable {
 		System.out.println("anio");
 		int eyear=input.nextInt();
 
-		String information = controller.searchProjectsAfterDate(eday, emonth, eyear);
-
-    	System.out.println(information);
+    	System.out.println(controller.searchProjectsAfterDate(eday, emonth, eyear));
 	}
 	
 	public void searchProjectsBeforeDate() {
@@ -256,11 +254,7 @@ public class Executable {
 		System.out.println("anio");
 		int eyear = input.nextInt();
 
-		String information = controller.searchProjectsBeforeDate(eday, emonth, eyear);
-
-       
-
-    	System.out.println(information);
+    	System.out.println(controller.searchProjectsBeforeDate(eday, emonth, eyear));
 	}
 	
 //||||||||||||||||||||||||||||||||KNOWLEDGEUNIT|||||||||||||||||||||||||||||
@@ -271,7 +265,7 @@ public class Executable {
 		System.out.println("Ingrese la informacion");
 		
 		System.out.println("Escoja en que proyecto creara la capsula");
-		controller.projectList();
+		System.out.println(controller.projectList());
 		choice=input.nextInt();
 
 		//limpiezabuffer
@@ -305,8 +299,8 @@ public class Executable {
     }
 	
 	public void approveKnowledgeUnit() {
-		System.out.println("Escoja en que proyecto creara la capsula");
-		controller.projectList();
+		System.out.println("Escoja en que proyecto aprobara la capsula");
+		System.out.println(controller.projectList());
 		int choiceProject=input.nextInt();
 		System.out.println("Por favor, escoja cual de las capsulas desea aprobar");
 		System.out.println(controller.showKnowlegdeUnitList(choiceProject));

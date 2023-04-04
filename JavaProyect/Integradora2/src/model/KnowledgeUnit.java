@@ -2,7 +2,8 @@ package model;
 
 
 public class KnowledgeUnit {
-
+	private String nameProject;
+	private Stage stageProject;
 	private String id;
 	private String description;
 	private String collaboratorName;
@@ -11,8 +12,9 @@ public class KnowledgeUnit {
 	private Status status;
 	
 
-	public KnowledgeUnit(String id, String description,String collaboratorName, CapsType type, String learnedLessons) {
-
+	public KnowledgeUnit(String nameProject,Stage stage,String id, String description,String collaboratorName, CapsType type, String learnedLessons) {
+		this.nameProject= nameProject;
+		this.stageProject= stage;
 		this.id = id;
 		this.description = description;
 		this.collaboratorName= collaboratorName;
@@ -75,14 +77,14 @@ public class KnowledgeUnit {
 
 	public String toString(){
 		String msg ="";
-		msg = "\nID: " + id +"\nDescripcion: "+ description+"\nNombre del colaborador"+collaboratorName+"\nTipo: "+type+"\nLeccion Aprendida: "+learnedLessons+"\nAprovada: "+status;
+		msg = "\n\nNombre del proyecto: "+nameProject+"\nEtapa: "+stageProject+"\nID: " + id +"\nDescripcion: "+ description+"\nNombre del colaborador: "+collaboratorName+"\nTipo: "+type+"\nLeccion Aprendida: "+learnedLessons+"\nAprovada: "+status;
 		return msg;
 	}
 	
 	public String toStringUnaproved(int i){
 		String msg ="";
 		if(status==Status.POR_DEFINIR){ 
-		msg = "\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
+		msg = "\n\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
 		}
 		return msg;
 	}
