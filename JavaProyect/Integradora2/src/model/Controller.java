@@ -5,28 +5,23 @@ import java.util.GregorianCalendar;
 
 public class Controller {
 
-	private KnowledgeUnit[] units;
 	private Project[] projects;
 
-	public Controller() {
-
-		units = new KnowledgeUnit[25];
+	public Controller() {		
 		projects = new Project[10];
-		testCases();
-		
 	}
 	
-	public void testCases() {
-		
-		units[0] = new KnowledgeUnit("A001", "Gestion de repositorios", Type.TECNICO, "GitHub es una herramienta util");
-		units[1] = new KnowledgeUnit("A002", "Gestion de equipos", Type.TECNICO, "Es importante definir responsabilidades claras");
-		
+	public void testCases(){
+		Calendar initialDate = new GregorianCalendar(2000,2,3); 
+		Calendar finalDate = new GregorianCalendar(2000,6,5);
+		projects[0] = new Project("Proyecto Base", TypeProject.DESARROLLO,"Juan", initialDate, finalDate, 3000000, "Alberto", "555-2368");
+		projects[0].testCases();
 	}
 //|||||||||||||||||||||||||PROJECTS|||||||||||||||||||||||||||
-	public boolean registerProject(String name,int projtype, String clientName, int iday,int imonth, int iyear,int fday,int fmonth,int fyear, double budget){
+	public boolean registerProject(String name,int projtype, String clientName, int iday,int imonth, int iyear,int fday,int fmonth,int fyear, double budget,String gerentName,String gerentCellphone){
 		boolean indicator=false;
-		Calendar initialDate = new GregorianCalendar(iday,imonth,iyear); 
-		Calendar finalDate = new GregorianCalendar(fday,fmonth,fyear);
+		Calendar initialDate = new GregorianCalendar(iyear,imonth,iday); 
+		Calendar finalDate = new GregorianCalendar(fyear,fmonth,fday);
 		TypeProject type;
 		switch(projtype){
 			case 1:
@@ -46,7 +41,7 @@ public class Controller {
 			break;
 		}
 		
-		Project newProject = new Project(name ,type, clientName, initialDate, finalDate, budget);
+		Project newProject = new Project(name ,type,clientName, initialDate, finalDate, budget,gerentName,gerentCellphone);
 		
 		for (int i = 0; i < projects.length; i++) {
             if (projects[i] == null) {
@@ -58,8 +53,39 @@ public class Controller {
 		return indicator;
 	}
 
+	public String projectList(){
+		String msg="";
+		for(int i=0;i<projects.length;i++){
+			if(projects[i]==null){
+			}
+			else{
+				msg+=projects[i].getProjectInfoList(i);
+			}
+		}
+		return msg;
+	}
+
+	public String projectInfo(){
+		String msg="";
+		for(int i=0;i<projects.length;i++){
+			if(projects[i]==null){
+			}
+			else{
+				msg+=projects[i].getProjectInfo();
+			}
+		}
+		return msg;
+	}
+
+	public boolean changeStage(int choice) {
+		boolean indicador=true;
+		projects[choice-1].changeStage();
+		
+		return indicador;
+	}
+
 	public String searchProjectsAfterDate(int eday, int emonth, int eyear) {
-		Calendar estimatedDate = new GregorianCalendar(eday,emonth,eyear);
+		Calendar estimatedDate = new GregorianCalendar(eyear,emonth,eday);
 		String msg = "";
 		for (int i = 0; i < projects.length; i++) {
             if (projects[i] != null) {
@@ -73,7 +99,7 @@ public class Controller {
 	}
 
 	public String searchProjectsBeforeDate(int eday, int emonth, int eyear) {
-		Calendar estimatedDate = new GregorianCalendar(eday,emonth,eyear);
+		Calendar estimatedDate = new GregorianCalendar(eyear,emonth,eday);
 		String msg = "";
 		for (int i = 0; i < projects.length; i++) {
             if (projects[i] != null) {
@@ -86,62 +112,40 @@ public class Controller {
 		return msg;
 	}
 //|||||||||||||||||||kNOWLEGDEUNITS||||||||||||||||||||||||||||||
-
-	public boolean registerKnowledgeUnit(String id, String description, int temporal, String learnedLessons) {
-		Type type;
-		switch(temporal){
-			case 1:
-			type=Type.TECNICO;
-			break;
-			case 2:
-			type=Type.EXPERIENCIAS;
-			break;
-			default:
-			type=Type.TECNICO;
-			break;
-		}
-		KnowledgeUnit capsUnit = new KnowledgeUnit(id,description, type, learnedLessons);
-		boolean indicador =false;
-		for(int i=0;i<units.length;i++){
-			if(units[i]==null && !indicador){
-				units[i]= capsUnit;
-				indicador =true;
-			}
-				
-		}
-		
-		return indicador;
+public boolean registerKnowledgeUnit(int choice,String id, String description, String collaboratorName,int temporal, String learnedLessons){
+	boolean indicator=false;
+	if(projects[choice].registerKnowledgeUnit(id, description, collaboratorName, temporal, learnedLessons)){
+		indicator=true;
 	}
-
-	public boolean approveKnowledgeUnit(int choice) {
-		boolean indicador=true;
-		units[choice-1].setStatus(Status.APROBADA);
-		
-		return indicador;
+	return indicator;
+}
+	
+public String showKnowlegdeUnitList(int choiceProject){
+	String msg="";
+	if(projects[choiceProject]==null){
 	}
+	else{
+		msg+=projects[choiceProject].showKnowlegdeUnitList();
+	}
+	return msg;
+}
 
-	public String showKnowlegdeUnitList(){
-		String msg="";
-		for(int i=0;i<units.length;i++){
-			if(units[i]==null){
-			}
-			else{
-				msg+=units[i].toStringUnaproved(i);
-			}
+public String getAllKnowledgeUnits() {
+	String msg="";
+	for(int i=0;i<projects.length;i++){
+		if(projects[i]==null){
 		}
-		return msg;
-	}
-
-	public String getAllKnowledgeUnits() {
-		String msg="";
-		for(int i=0;i<units.length;i++){
-			if(units[i]==null){
-			}
-			else{
-				msg+=units[i].toString();
-			}
+		else{
+			msg+=projects[i].getAllKnowledgeUnits();
 		}
-		return msg;
 	}
+	return msg;
+}
+
+public boolean approveKnowledgeUnit(int choiceProject,int choice){
+	boolean indicador=false;
+	projects[choiceProject].approveKnowledgeUnit(choice);
+	return indicador;
+}
 
 }

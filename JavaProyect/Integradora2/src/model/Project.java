@@ -4,65 +4,176 @@ import java.util.Calendar;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import java.text.ParseException;
-
-
 public class Project{
 	
 	private String name;
 	private TypeProject type;
+	private Stage stage;
 	private String clientName;
 	private Calendar initialDate;
 	private Calendar finalDate;
 	private double budget;
-
+	private String gerentName;
+	private String gerentCellphone;
 	private DateFormat formatter;
+	private KnowledgeUnit[] units;
 
-	public Project(String name, TypeProject type, String clientName, Calendar initialDate, Calendar finalDate, double budget){
+	public Project(String name, TypeProject type,String clientName, Calendar initialDate, Calendar finalDate, double budget,String gerentName,String gerentCellphone){
 		
 		this.formatter = new SimpleDateFormat("dd/M/yy");
-
 		this.name = name;
 		this.type = type;
+		this.stage = Stage.INICIO;
 		this.clientName = clientName;
 		this.initialDate = initialDate;
 		this.finalDate = finalDate;
 		this.budget = budget;
+		this.gerentName= gerentName;
+		this.gerentCellphone=gerentCellphone;
+		units = new KnowledgeUnit[50];
 	}
-
-
-//||||||||||||||||||||||||GETTERS Y SETTERS||||||||||||||||||||||||||||||||||||||
-
-	public String getName(){
-		return name;
+//||||||||||||||||||||||KNOWLEGDEUNITS||||||||||||||||||||||||||||||||||||||
+public boolean registerKnowledgeUnit(String id, String description,String collaboratorName ,int temporal, String learnedLessons) {
+	CapsType type;
+	description="#"+description+"#";
+	switch(temporal){
+		case 1:
+		type=CapsType.TECNICO;
+		break;
+		case 2:
+		type=CapsType.EXPERIENCIAS;
+		break;
+		default:
+		type=CapsType.TECNICO;
+		break;
+	}
+	KnowledgeUnit capsUnit = new KnowledgeUnit(id,description,collaboratorName, type, learnedLessons);
+	boolean indicador =false;
+	for(int i=0;i<units.length;i++){
+		if(units[i]==null && !indicador){
+			units[i]= capsUnit;
+			indicador =true;
+		}
+			
 	}
 	
-	public String getClientName(){
-		return clientName;
-	}
+	return indicador;
+}
 
-	public Calendar getInitialDate(){
-		return initialDate;
-	}
+public boolean approveKnowledgeUnit(int choice) {
+	boolean indicador=true;
+	units[choice-1].setStatus(Status.APROBADA);
 	
-	public String getInitialDateFormated() throws ParseException{
-		return formatter.format(this.initialDate.getTime());
+	return indicador;
+}
+
+public String showKnowlegdeUnitList(){
+	String msg="";
+	for(int i=0;i<units.length;i++){
+		if(units[i]==null){
+		}
+		else{
+			msg+=units[i].toStringUnaproved(i);
+		}
+	}
+	return msg;
+}
+
+public String getAllKnowledgeUnits() {
+	String msg="";
+	for(int i=0;i<units.length;i++){
+		if(units[i]==null){
+		}
+		else{
+			msg+=units[i].toString();
+		}
+	}
+	return msg;
+}
+
+	public void testCases() {	
+		units[0] = new KnowledgeUnit("A001", "Gestion de repositorios", "Juan",CapsType.TECNICO, "#GitHub# es una herramienta util");
+		units[1] = new KnowledgeUnit("A002", "Gestion de equipos","Pepito", CapsType.TECNICO, "Es importante #definir responsabilidades# claras");
 	}
 
-	public Calendar getFinalDate(){
-		return finalDate;
-	}
-
-	public String getFinalDateFormated() throws ParseException{
-		return formatter.format(this.finalDate.getTime());
-	}		
-
-	public double getBudget(){
-		return budget;
-	}
-
-	public String getProjectInfo() throws ParseException{
+//||||||||||||||||||||||||INFO||||||||||||||||||||||||||||||
+	public String getProjectInfo(){
 		return "\nName: " + name + "\n Type: "+type+"\nClient: " + clientName + "\nInitial Date: " + getInitialDateFormated() + 
 		"\nFinal Date: " + getFinalDateFormated() + "\nTotalBudget: " + budget + ".\n";
 	}
+
+	public String getProjectInfoList(int i){
+		return "\n"+(i+1)+"\n:Name: " + name + "\n Type: "+type;
+	}
+//||||||||||||||||||||||||ETAPAS|||||||||||||||||||||||
+	public void changeStage(){
+		switch(stage){
+			case INICIO:
+				this.stage=Stage.ANALISIS;
+			break;
+
+			case ANALISIS:
+				this.stage=Stage.DISENO;
+			break;
+
+			case DISENO:
+				this.stage=Stage.EJECUCION;
+			break;
+
+			case EJECUCION:
+				this.stage=Stage.CIERRE;
+			break;
+
+			case CIERRE:
+				this.stage=Stage.SEGUIMIENTO_Y_CONTROL;
+			break;
+
+			case SEGUIMIENTO_Y_CONTROL:
+			break;
+		}
+
+	}
+
+//||||||||||||||||||||||||GETTERS Y SETTERS||||||||||||||||||||||||||||||||||||||
+
+public String getName(){
+	return name;
+}
+
+public String getClientName(){
+	return clientName;
+}
+
+public Stage getStage(){
+	return stage;
+}
+
+public Calendar getInitialDate(){
+	return initialDate;
+}
+
+public String getInitialDateFormated(){
+	return formatter.format(this.initialDate.getTime());
+}
+
+public Calendar getFinalDate(){
+	return finalDate;
+}
+
+public String getFinalDateFormated(){
+	return formatter.format(this.finalDate.getTime());
+}		
+
+public double getBudget(){
+	return budget;
+}
+
+public String getGerentName(){
+	return gerentName;
+}
+
+public String getGerentCellphone(){
+	return gerentCellphone;
+}
+
 }

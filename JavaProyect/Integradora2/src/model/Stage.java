@@ -1,0 +1,5 @@
+package model;
+
+public enum Stage {
+    INICIO,ANALISIS,DISENO,EJECUCION,CIERRE,SEGUIMIENTO_Y_CONTROL
+}

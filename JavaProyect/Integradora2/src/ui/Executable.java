@@ -18,43 +18,36 @@ public class Executable {
 	public static void main(String[] args) {
 
 		Executable exe = new Executable();
-		exe.menu();
+		exe.menuPrincipal();
 
 	}
 
-	
-	public void menu() {
+	public void testing(){
+		controller.testCases();
+	}
+
+//||||||||||||||||||||||||||||Menus||||||||||||||||||||||||||||||||||||
+
+	public void menuPrincipal() {
 		int opcion=0;
 		System.out.println("Buenos dias");
-		while(opcion!=7){
-			System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar un proyecto\n2:Consultar proyectos por fecha\n3:Registrar una capsula\n4:Aprobar una capsula \n5:Consultar una capsula\n7:Cerrar programa");
+		while(opcion!=4){
+			System.out.println("\nPor favor escoja que quiere hacer\n1:Abrir menu de proyectos\n2:Abrir menu de capsulas\n3:Testeo\n4:Cerrar programa");
 			opcion=input.nextInt();
 			switch(opcion){
 				case 1:
-				registerProject();
+					menuProject();
 				break;
 
 				case 2:
-				menuByDate();
+					menuCapsule();
 				break;
 
 				case 3:
-				registerKnowledgeUnit();
+					testing();
 				break;
 
 				case 4:
-				approveKnowledgeUnit();
-				break;
-
-				case 5:
-				showAllKnowledgeUnits();
-				break;
-
-				case 6:
-
-				break;
-
-				case 7:
 				System.out.println("Hasta luego, tenga buena tarde");
 				break;
 
@@ -66,60 +59,75 @@ public class Executable {
 		}
 	}
 
-	//||||||||||||||||||||||||||||||PROYECT||||||||||||||||||||||||||||||||||||||||
+	public void menuProject(){
+		int opcion=0;
 
-	//Incomplete
-	public void registerProject() {
-		String name; String clientName;
-		double budget;
-		int projType;
-		int iday;int imonth;int iyear;
-		int fday;int fmonth;int fyear;
-	
-		//limpiezabuffer
-		input.nextLine();
-		
+		System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar un proyecto\n2:Consultar proyectos\n3:Cambiar etapa");
+		opcion=input.nextInt();
+		switch(opcion){
+			case 1:
+				registerProject();
+			break;
 
-        System.out.println("Digite el nombre del proyecto");
-        name= input.nextLine();
+			case 2:
+				menuByDate();
+			break;
 
-		System.out.println("Digite el tipo de proyecto\n1: Desarrollo\n2:Matenimiento\n3:Despliegue");
-        projType= input.nextInt();
+			case 3:
+				changeStage();
+			break;
 
-		System.out.println("Digite el nombre del cliente");
-        clientName= input.nextLine();
+			default:
+			System.out.println("Esa no es una opcion valida!, por favor escoja otra");
+			break;
+		}
+	}
 
-		//fecha inicial
-		System.out.println("Digite la fecha de inicio del proyecto");
-		System.out.println("Dia");
-		iday=input.nextInt();
-		System.out.println("Mes");
-		imonth=input.nextInt();
-		System.out.println("Año");
-		iyear=input.nextInt();
-		
+	public void menuProjectConsult(){  
+		int opcion=0;
 
-		//fecha final
-		System.out.println("Digite la fecha de final del proyecto");
-		System.out.println("Dia");
-		fday=input.nextInt();
-		System.out.println("Mes");
-		fmonth=input.nextInt();
-		System.out.println("Año");
-		fyear=input.nextInt();
-		
+		System.out.println("\nPor favor escoja que quiere hacer\n1:Ver lista de todos los proyectos\n2:Consultar todos los proyectos\n3:Consultar proyectos por fecha");
+		opcion=input.nextInt();
+		switch(opcion){
+			case 1:
+				controller.projectList();
+			break;
 
-		System.out.println("Presupuesto");
-        budget= input.nextDouble();
+			case 2:
+				controller.projectInfo();
+			break;
 
+			case 3:
+				menuByDate();
+			break;
 
-         if(controller.registerProject(name,projType,clientName,iday,imonth,iyear,fday,fmonth,fyear,budget)){
-            System.out.println("Proyecto registrado exitosamente");
-        }
-        else{
-            System.out.println("Memoria llena, no se pudo registrar el proyecto");
-        }
-		
+			default:
+			System.out.println("Esa no es una opcion valida!, por favor escoja otra");
+			break;
+		}
+	}
+
+	public void menuCapsule(){
+		int opcion=0;
+		System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar una capsula\n2:Aprobar una capsula \n3:Consultar una capsula");
+		opcion=input.nextInt();
+			switch(opcion){
+				case 1:
+				registerKnowledgeUnit();
+				break;
+
+				case 2:
+				approveKnowledgeUnit();
+				break;
+
+				case 3:
+				showAllKnowledgeUnits();
+				break;
+
+				default:
+				System.out.println("Esa no es una opcion valida!, por favor escoja otra");
+				break;
+			}
 	}
 
 	public void menuByDate(){
@@ -142,21 +150,96 @@ public class Executable {
 		}
 	}
 
+	//||||||||||||||||||||||||||||||PROYECT||||||||||||||||||||||||||||||||||||||||
+
+	public void registerProject() {
+		String name; String clientName;String gerentName; String gerentCellphone;
+		double budget;
+		int projType;
+		int iday;int imonth;int iyear;
+		int fday;int fmonth;int fyear;
+	
+		//limpiezabuffer
+		input.nextLine();
+
+        System.out.println("Digite el nombre del proyecto");
+        name= input.nextLine();
+
+		System.out.println("Digite el tipo de proyecto\n1:Desarrollo\n2:Matenimiento\n3:Despliegue");
+        projType= input.nextInt();
+
+		//limpiezabuffer
+		input.nextLine();
+
+		System.out.println("Digite el nombre del cliente");
+        clientName= input.nextLine();
+
+		//fecha inicial
+		System.out.println("Digite la fecha de inicio del proyecto");
+		System.out.println("Dia");
+		iday=input.nextInt();
+		System.out.println("Mes");
+		imonth=(input.nextInt()+1);
+		System.out.println("Año");
+		iyear=input.nextInt();
+		
+
+		//fecha final
+		System.out.println("Digite la fecha de final del proyecto");
+		System.out.println("Dia");
+		fday=input.nextInt();
+		System.out.println("Mes");
+		fmonth=(input.nextInt()+1);
+		System.out.println("Año");
+		fyear=input.nextInt();
+		
+
+		System.out.println("Presupuesto");
+        budget= input.nextDouble();
+
+		//limpiezabuffer
+		input.nextLine();
+
+		System.out.println("Digite el nombre del gerente");
+        gerentName= input.nextLine();
+
+		System.out.println("Digite el numero de telefono del gerente");
+        gerentCellphone= input.nextLine();
+
+        if(controller.registerProject(name,projType,clientName,iday,imonth,iyear,fday,fmonth,fyear,budget,gerentName,gerentCellphone)){
+            System.out.println("Proyecto registrado exitosamente");
+        }
+        else{
+            System.out.println("Memoria llena, no se pudo registrar el proyecto");
+        }
+		
+	}
+
+	public void changeStage(){
+		System.out.println("Por favor, escoja cual de los proyectos desea avanzar de etapa");
+		System.out.println(controller.projectList());
+		int choice=input.nextInt();
+		if(controller.changeStage(choice)){
+            System.out.println("Capsula aprobada exitosamente");
+        }
+        else{
+            System.out.println("Error, no se pudo aprobar la capsula");
+        }
+	}
+
 	public void searchProjectsAfterDate() {
 		
 		System.out.println("Ingrese la fecha");
-		System.out.println("dia ");
-		int eday = input.nextInt();
+		System.out.println("dia");
+		int eday=input.nextInt();
 
-		System.out.println("mes ");
-		int emonth = input.nextInt();
+		System.out.println("mes");
+		int emonth=(input.nextInt()+1);
 
 		System.out.println("anio");
-		int eyear = input.nextInt();
+		int eyear=input.nextInt();
 
 		String information = controller.searchProjectsAfterDate(eday, emonth, eyear);
-
-       
 
     	System.out.println(information);
 	}
@@ -167,7 +250,7 @@ public class Executable {
 		int eday = input.nextInt();
 
 		System.out.println("mes ");
-		int emonth = input.nextInt();
+		int emonth = (input.nextInt()+1);
 
 		System.out.println("anio");
 		int eyear = input.nextInt();
@@ -182,8 +265,14 @@ public class Executable {
 //||||||||||||||||||||||||||||||||KNOWLEDGEUNIT|||||||||||||||||||||||||||||
 
 	public void registerKnowledgeUnit() {
-		String id; String description; String learnedLessons;
+		String id; String description; String learnedLessons;String collaboratorName;
+		int choice;
 		System.out.println("Ingrese la informacion");
+		
+		System.out.println("Escoja en que proyecto creara la capsula");
+		controller.projectList();
+		choice=input.nextInt();
+
 		//limpiezabuffer
 		input.nextLine();
 		
@@ -192,6 +281,9 @@ public class Executable {
 
         System.out.println("Digite Una breve descripcion de la capsula: ej:Gestion de repositorios");
         description= input.nextLine();
+
+		System.out.println("Digite El nombre del colaborador");
+        collaboratorName= input.nextLine();
 
 		System.out.println("Digite el tipo de la capsula:\n1:Tecnico\n2:Experiencias");
 		int temporal=input.nextInt();
@@ -203,7 +295,7 @@ public class Executable {
 		System.out.println("Digite La leccion aprendida de la capsula: ej:GitHub es una herramienta util");
         learnedLessons= input.nextLine();
 
-        if(controller.registerKnowledgeUnit(id,description, temporal, learnedLessons)){
+        if(controller.registerKnowledgeUnit(choice,id,description, collaboratorName,temporal, learnedLessons)){
             System.out.println("Capsula registrada exitosamente");
         }
         else{
@@ -212,10 +304,13 @@ public class Executable {
     }
 	
 	public void approveKnowledgeUnit() {
+		System.out.println("Escoja en que proyecto creara la capsula");
+		controller.projectList();
+		int choiceProject=input.nextInt();
 		System.out.println("Por favor, escoja cual de las capsulas desea aprobar");
-		System.out.println(controller.showKnowlegdeUnitList());
+		System.out.println(controller.showKnowlegdeUnitList(choiceProject));
 		int choice=input.nextInt();
-		if(controller.approveKnowledgeUnit(choice)){
+		if(controller.approveKnowledgeUnit(choiceProject,choice)){
             System.out.println("Capsula aprobada exitosamente");
         }
         else{
@@ -226,5 +321,4 @@ public class Executable {
 	public void showAllKnowledgeUnits() {
 		System.out.println(controller.getAllKnowledgeUnits());
 	}
-
 }

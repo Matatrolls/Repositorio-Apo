@@ -5,14 +5,17 @@ public class KnowledgeUnit {
 
 	private String id;
 	private String description;
-	private Type type;
+	private String collaboratorName;
+	private CapsType type;
 	private String learnedLessons;
 	private Status status;
+	
 
-	public KnowledgeUnit(String id, String description, Type type, String learnedLessons) {
+	public KnowledgeUnit(String id, String description,String collaboratorName, CapsType type, String learnedLessons) {
 
 		this.id = id;
 		this.description = description;
+		this.collaboratorName= collaboratorName;
 		this.type = type;
 		this.learnedLessons = learnedLessons;
 		this.status = Status.POR_DEFINIR;
@@ -36,11 +39,11 @@ public class KnowledgeUnit {
 		this.description = description;
 	}
 
-	public Type getType() {
+	public CapsType getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(CapsType type) {
 		this.type = type;
 	}
 
@@ -60,11 +63,19 @@ public class KnowledgeUnit {
 		this.status = status;
 	}
 
+	public String getCollaboratorName(){
+		return collaboratorName;
+	}
+
+	public void setCollaboratorName(String collaboratorName){
+		this.collaboratorName=collaboratorName;
+	}
+
 //|||||||||||||||||||TOSTRINGS||||||||||||||||||||||
 
 	public String toString(){
 		String msg ="";
-		msg = "\nID: " + id +"\nDescripcion: "+ description+"\nTipo: "+type+"\nLeccion Aprendida: "+learnedLessons+"\nAprovada: "+status;
+		msg = "\nID: " + id +"\nDescripcion: "+ description+"\nNombre del colaborador"+collaboratorName+"\nTipo: "+type+"\nLeccion Aprendida: "+learnedLessons+"\nAprovada: "+status;
 		return msg;
 	}
 	
