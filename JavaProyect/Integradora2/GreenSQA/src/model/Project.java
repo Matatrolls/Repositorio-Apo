@@ -33,7 +33,7 @@ public class Project{
 		units = new KnowledgeUnit[50];
 	}
 //||||||||||||||||||||||KNOWLEGDEUNITS||||||||||||||||||||||||||||||||||||||
-public boolean registerKnowledgeUnit(String id, String description,String collaboratorName ,int temporal, String learnedLessons) {
+	public boolean registerKnowledgeUnit(String id, String description,String collaboratorName ,int temporal, String learnedLessons) {
 	CapsType type;
 	description="#"+description+"#";
 
@@ -71,36 +71,36 @@ public boolean registerKnowledgeUnit(String id, String description,String collab
 	return indicador;
 }
 
-public boolean approveKnowledgeUnit(int choice) {
-	boolean indicador=true;
-	units[choice-1].setStatus(Status.APROBADA);
-	
-	return indicador;
-}
-
-public String showKnowlegdeUnitList(){
-	String msg="";
-	for(int i=0;i<units.length;i++){
-		if(units[i]==null){
-		}
-		else{
-			msg+="Proyecto "+(i+1)+units[i].toStringUnaproved(i);
-		}
+	public boolean approveKnowledgeUnit(int choice) {
+		boolean indicador=true;
+		units[choice-1].setStatus(Status.APROBADA);
+		
+		return indicador;
 	}
-	return msg;
-}
 
-public String getAllKnowledgeUnits() {
-	String msg="";
-	for(int i=0;i<units.length;i++){
-		if(units[i]==null){
+	public String showKnowlegdeUnitList(){
+		String msg="";
+		for(int i=0;i<units.length;i++){
+			if(units[i]==null){
+			}
+			else{
+				msg+="Proyecto "+(i+1)+units[i].toStringUnaproved(i);
+			}
 		}
-		else{
-			msg+=units[i].toString();
-		}
+		return msg;
 	}
-	return msg;
-}
+
+	public String getAllKnowledgeUnits() {
+		String msg="";
+		for(int i=0;i<units.length;i++){
+			if(units[i]==null){
+			}
+			else{
+				msg+=units[i].toString();
+			}
+		}
+		return msg;
+	}
 
 	public void testCases() {	
 		units[0] = new KnowledgeUnit(name,stage,"A001","Gestion de repositorios", "Juan",CapsType.TECNICO, "#GitHub# es una herramienta util");
@@ -147,44 +147,44 @@ public String getAllKnowledgeUnits() {
 
 //||||||||||||||||||||||||GETTERS Y SETTERS||||||||||||||||||||||||||||||||||||||
 
-public String getName(){
-	return name;
-}
+	public String getName(){
+		return name;
+	}
 
-public String getClientName(){
-	return clientName;
-}
+	public String getClientName(){
+		return clientName;
+	}
 
-public Stage getStage(){
-	return stage;
-}
+	public Stage getStage(){
+		return stage;
+	}
 
-public Calendar getInitialDate(){
-	return initialDate;
-}
+	public Calendar getInitialDate(){
+		return initialDate;
+	}
 
-public String getInitialDateFormated(){
-	return formatter.format(this.initialDate.getTime());
-}
+	public String getInitialDateFormated(){
+		return formatter.format(this.initialDate.getTime());
+	}
 
-public Calendar getFinalDate(){
-	return finalDate;
-}
+	public Calendar getFinalDate(){
+		return finalDate;
+	}
 
-public String getFinalDateFormated(){
-	return formatter.format(this.finalDate.getTime());
-}		
+	public String getFinalDateFormated(){
+		return formatter.format(this.finalDate.getTime());
+	}		
 
-public double getBudget(){
-	return budget;
-}
+	public double getBudget(){
+		return budget;
+	}
 
-public String getGerentName(){
-	return gerentName;
-}
+	public String getGerentName(){
+		return gerentName;
+	}
 
-public String getGerentCellphone(){
-	return gerentCellphone;
-}
+	public String getGerentCellphone(){
+		return gerentCellphone;
+	}
 
 }

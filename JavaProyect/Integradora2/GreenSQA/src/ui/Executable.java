@@ -8,6 +8,7 @@ public class Executable {
 	public int idcount=0;
 	private Scanner input;
 	private Controller controller;
+	
 	public Executable() {
 
 		input = new Scanner(System.in);
