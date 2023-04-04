@@ -280,7 +280,7 @@ public class Executable {
 		System.out.println("Digite El nombre del colaborador");
         collaboratorName= input.nextLine();
 
-		System.out.println("Digite el tipo de la capsula:\n1:Tecnico\n2:Experiencias");
+		System.out.println("Digite el tipo de la capsula:\n1:Tecnico\n2:Gestion\n3:Dominio\n4:Experiencias");
 		int temporal=input.nextInt();
 	
     

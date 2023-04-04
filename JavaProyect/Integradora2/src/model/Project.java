@@ -39,13 +39,23 @@ public boolean registerKnowledgeUnit(String id, String description,String collab
 
 	switch(temporal){
 		case 1:
-		type=CapsType.TECNICO;
+			type=CapsType.TECNICO;
 		break;
+
 		case 2:
-		type=CapsType.EXPERIENCIAS;
+			type=CapsType.GESTION;
 		break;
+
+		case 3:
+			type=CapsType.DOMINIO;
+		break;
+
+		case 4:
+			type=CapsType.EXPERIENCIAS;
+		break;
+
 		default:
-		type=CapsType.TECNICO;
+			type=CapsType.TECNICO;
 		break;
 	}
 	KnowledgeUnit capsUnit = new KnowledgeUnit(name,stage,id,description,collaboratorName, type, learnedLessons);

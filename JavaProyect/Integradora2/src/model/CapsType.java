@@ -1,5 +1,5 @@
 package model;
 
 public enum CapsType {
-    TECNICO,EXPERIENCIAS
+    TECNICO,GESTION,DOMINIO,EXPERIENCIAS
 }
