@@ -3,12 +3,19 @@ package ui;
 import java.util.Scanner;
 import model.Controller;
 
-
+/**
+ * This class its the executable of the GREENSQA PROJECT
+ * @author: Rodolfo Moreno
+ * @version: 04/05/2023
+ */
 public class Executable {
+//||||||||||||||||VARIABLES OF THE CLASS||||||||||||||
 	public int idcount=0;
 	private Scanner input;
 	private Controller controller;
-	
+/*
+ * Creator of the class executable
+ */
 	public Executable() {
 
 		input = new Scanner(System.in);
@@ -16,6 +23,9 @@ public class Executable {
 		
 	}
 
+/*
+ * Main method, this executes the principal menu to start all the program
+ */
 	public static void main(String[] args) {
 
 		Executable exe = new Executable();
@@ -23,13 +33,19 @@ public class Executable {
 
 	}
 
+	/*
+	 * This method is used to call a method in the class controller to create testing cases
+	 */
 	public void testing(){
 		controller.testCases();
 		System.out.println("Casos de testeo creados");
 	}
 
-//||||||||||||||||||||||||||||Menus||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||MENUS||||||||||||||||||||||||||||||||||||
 
+/*
+ * This method is the main menu, which lead to more menus more especific for the user needs
+ */
 	public void menuPrincipal() {
 		int opcion=0;
 		System.out.println("Buenos dias");
@@ -42,7 +58,7 @@ public class Executable {
 				break;
 
 				case 2:
-					menuCapsule();
+					menuKnowledgeUnit();
 				break;
 
 				case 3:
@@ -61,6 +77,9 @@ public class Executable {
 		}
 	}
 
+/*
+ * This method is a menu used for the project options that the program allow
+ */
 	public void menuProject(){
 		int opcion=0;
 
@@ -85,6 +104,10 @@ public class Executable {
 		}
 	}
 
+/*
+ * This method its a sub menu for the menuProject() option consult, it shows the list of created projects
+ *  and lead to another menu
+ */
 	public void menuProjectConsult(){  
 		int opcion=0;
 
@@ -109,7 +132,10 @@ public class Executable {
 		}
 	}
 
-	public void menuCapsule(){
+/*
+ * This method is a menu used for the KnowledgeUnits options that the program allow
+ */
+	public void menuKnowledgeUnit(){
 		int opcion=0;
 		System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar una capsula\n2:Aprobar una capsula \n3:Consultar todas las capsulas");
 		opcion=input.nextInt();
@@ -132,6 +158,10 @@ public class Executable {
 			}
 	}
 
+/*
+ * This method its a sub menu from menuProjectConsult(), this method allow the user to choose between 
+ * searchProjectsBeforeDate() and searchProjectsAfterDate()
+ */
 	public void menuByDate(){
 		int temporal=0;
 		while (temporal==0){
@@ -152,12 +182,14 @@ public class Executable {
 		}
 	}
 
-	//||||||||||||||||||||||||||||||PROYECT||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||PROYECT||||||||||||||||||||||||||||||||||||||||
 
+/*
+ * This method allow the user to send params to create a project and send them to the controller 
+ */
 	public void registerProject() {
 		String name; String clientName;String gerentName; String gerentCellphone;
 		double budget;
-		int projType;
 		int iday;int imonth;int iyear;
 		int fday;int fmonth;int fyear;
 	
@@ -166,9 +198,6 @@ public class Executable {
 
         System.out.println("Digite el nombre del proyecto");
         name= input.nextLine();
-
-		System.out.println("Digite el tipo de proyecto\n1:Desarrollo\n2:Matenimiento\n3:Despliegue");
-        projType= input.nextInt();
 
 		//limpiezabuffer
 		input.nextLine();
@@ -208,7 +237,7 @@ public class Executable {
 		System.out.println("Digite el numero de telefono del gerente");
         gerentCellphone= input.nextLine();
 
-        if(controller.registerProject(name,projType,clientName,iday,imonth,iyear,fday,fmonth,fyear,budget,gerentName,gerentCellphone)){
+        if(controller.registerProject(name,clientName,iday,imonth,iyear,fday,fmonth,fyear,budget,gerentName,gerentCellphone)){
             System.out.println("Proyecto registrado exitosamente");
         }
         else{
@@ -217,18 +246,24 @@ public class Executable {
 		
 	}
 
+/*
+ * This method allow the user to change the stage of a previusly created project
+ */
 	public void changeStage(){
 		System.out.println("Por favor, escoja cual de los proyectos desea avanzar de etapa");
 		System.out.println(controller.projectList());
 		int choice=input.nextInt();
 		if(controller.changeStage(choice)){
-            System.out.println("Capsula aprobada exitosamente");
+            System.out.println("Etapa avanzada exitosamente");
         }
         else{
-            System.out.println("Error, no se pudo aprobar la capsula");
+            System.out.println("Error, no se pudo avanzar de etapa");
         }
 	}
 
+/*
+ * This method allow the user to search Projects created after X date
+ */
 	public void searchProjectsAfterDate() {
 		
 		System.out.println("Ingrese la fecha");
@@ -244,6 +279,9 @@ public class Executable {
     	System.out.println(controller.searchProjectsAfterDate(eday, emonth, eyear));
 	}
 	
+/*
+ * This method allow the user to search Projects created before X date
+ */
 	public void searchProjectsBeforeDate() {
 		System.out.println("Ingrese la fecha");
 		System.out.println("dia ");
@@ -260,6 +298,9 @@ public class Executable {
 	
 //||||||||||||||||||||||||||||||||KNOWLEDGEUNIT|||||||||||||||||||||||||||||
 
+/*
+ * This method allow the user to send params to create a KnowledgeUnit and send them to the controller 
+ */
 	public void registerKnowledgeUnit() {
 		String id; String description; String learnedLessons;String collaboratorName;
 		int choice;
@@ -299,6 +340,10 @@ public class Executable {
         }
     }
 	
+/*
+ * This method allow the user to change the state of a KnowledgeUnit from POR_DEFINIR to APROBADA of a 
+ * previously created Knowledgeunit
+ */
 	public void approveKnowledgeUnit() {
 		System.out.println("Escoja en que proyecto aprobara la capsula");
 		System.out.println(controller.projectList());
@@ -314,6 +359,9 @@ public class Executable {
         }
 	}
 
+/*
+ * This method allow the user to see all the created KnowledgeUnits
+ */
 	public void showAllKnowledgeUnits() {
 		System.out.println(controller.getAllKnowledgeUnits());
 	}

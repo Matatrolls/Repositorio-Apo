@@ -7,41 +7,45 @@ public class Controller {
 
 	private Project[] projects;
 
-	public Controller() {		
+	public Controller() {
 		projects = new Project[10];
 	}
-	
+
+/*
+ * This method create a base Project in the first position of the array and it calls a method to create two
+ * testcases of KnowledgeUnits in the base projects
+ */
 	public void testCases(){
 		Calendar initialDate = new GregorianCalendar(2000,2,3); 
 		Calendar finalDate = new GregorianCalendar(2000,6,5);
-		projects[0] = new Project("Proyecto Base", TypeProject.DESARROLLO,"Juan", initialDate, finalDate, 3000000, "Alberto", "555-2368");
+		projects[0] = new Project("Proyecto Base","Juan", initialDate, finalDate, 3000000, "Alberto", "555-2368");
 		projects[0].testCases();
 	}
+
 //|||||||||||||||||||||||||PROJECTS|||||||||||||||||||||||||||
-	public boolean registerProject(String name,int projtype, String clientName, int iday,int imonth, int iyear,int fday,int fmonth,int fyear, double budget,String gerentName,String gerentCellphone){
+
+/*
+ * This method allow the controller to create a new project with the params that the user
+ * entered
+ * @param name This its the name that the user wants to call the new project
+ * @param clientName This its the client name 
+ * @param iday This its the day of the creation of the project
+ * @param imonth This its the month of the creation of the project
+ * @param iyear This its the year of the creation of the project
+ * @param fday This its the day of the end of the project
+ * @param fmonth This its the month of the end of the project
+ * @param fyear This its the year of the end of the project
+ * @param budget This its the budget that the project have
+ * @param gerentName This its the name of the gerent of the project
+ * @param gerentCellphone This its the cellphone of the genert of the project
+ * @return indicator This indicates if a new project was created or not
+ */
+	public boolean registerProject(String name, String clientName, int iday,int imonth, int iyear,int fday,int fmonth,int fyear, double budget,String gerentName,String gerentCellphone){
 		boolean indicator=false;
 		Calendar initialDate = new GregorianCalendar(iyear,imonth,iday); 
 		Calendar finalDate = new GregorianCalendar(fyear,fmonth,fday);
-		TypeProject type;
-		switch(projtype){
-			case 1:
-			type= TypeProject.DESARROLLO;
-			break;
-
-			case 2:
-			type=TypeProject.MANTENIMIENTO;
-			break;
-
-			case 3:
-			type=TypeProject.DESPLIEGUE;
-			break;
-
-			default:
-			type= TypeProject.DESARROLLO;
-			break;
-		}
 		
-		Project newProject = new Project(name ,type,clientName, initialDate, finalDate, budget,gerentName,gerentCellphone);
+		Project newProject = new Project(name ,clientName, initialDate, finalDate, budget,gerentName,gerentCellphone);
 		
 		for (int i = 0; i < projects.length; i++) {
             if (projects[i] == null && !indicator ) {
@@ -52,6 +56,11 @@ public class Controller {
 		return indicator;
 	}
 
+/*
+ * This method evaluate the projects array and calls the method form the class Project getProjectInfoList()
+ * if it is different from null, it shows a reduced verison of the Projects
+ * @return msg this variable its the concatenation of all the created projects that the method retrieve 
+ */
 	public String projectList(){
 		String msg="";
 		for(int i=0;i<projects.length;i++){
@@ -64,6 +73,11 @@ public class Controller {
 		return msg;
 	}
 
+/*
+ * This method evaluate the projects array and calls the method form the class Project getProjectInfoList()
+ * if it is different from null, it shows a full verison of the Projects
+ * @return msg this variable its the concatenation of all the created projects that the method retrieve 
+ */
 	public String projectInfo(){
 		String msg="";
 		for(int i=0;i<projects.length;i++){
@@ -76,41 +90,73 @@ public class Controller {
 		return msg;
 	}
 
+/*
+ * This method call the method from Project changeStage()
+ * @param choice its the option that the user introduced after being asked to choice between the created projects
+ * @return indicator tells the user if the method was aplied correctly
+ */
 	public boolean changeStage(int choice) {
 		boolean indicador=false;
-		projects[choice-1].changeStage();
-		
+		if(projects[choice-1].changeStage()){
+			indicador=true;
+		}
 		return indicador;
 	}
 
+/*
+ * This method creates a date to compare and search projects created before X date
+ * @param eday	its the day of the new date
+ * @param emonth its the month of the new date
+ * @param eyear its the year of the new date
+ * @return msg	this its the concatenation of all the projects created before X date
+ */
+	public String searchProjectsBeforeDate(int eday, int emonth, int eyear) {
+		Calendar estimatedDate = new GregorianCalendar(eyear,emonth,eday);
+		String msg = "";
+		for (int i = 0; i < projects.length; i++) {
+            if (projects[i] != null) {
+				int var= projects[i].getInitialDate().compareTo(estimatedDate);
+				if(var<0){
+					msg += "\n"+projects[i].getName();
+				}
+            }
+        }
+		return msg;
+	}
+
+/*
+ * This method creates a date to compare and search projects created after X date
+ * @param eday	its the day of the new date
+ * @param emonth its the month of the new date
+ * @param eyear its the year of the new date
+ * @return msg	this its the concatenation of all the projects created after X date
+ */
 	public String searchProjectsAfterDate(int eday, int emonth, int eyear) {
 		Calendar estimatedDate = new GregorianCalendar(eyear,emonth,eday);
 		String msg = "";
 		for (int i = 0; i < projects.length; i++) {
             if (projects[i] != null) {
 				int var= projects[i].getInitialDate().compareTo(estimatedDate);
-				if(var==1){
-					msg += projects[i].getName() + "\n"+ projects[i].getClientName();
+				if(var>0){
+					msg += "\n"+projects[i].getName();
 				}
             }
         }
 		return msg;
 	}
 
-	public String searchProjectsBeforeDate(int eday, int emonth, int eyear) {
-		Calendar estimatedDate = new GregorianCalendar(eyear,emonth,eday);
-		String msg = "";
-		for (int i = 0; i < projects.length; i++) {
-            if (projects[i] != null) {
-				int var= projects[i].getFinalDate().compareTo(estimatedDate);
-				if(var==-1){
-					msg += projects[i].getName() + "\n"+ projects[i].getClientName();
-				}
-            }
-        }
-		return msg;
-	}
 //|||||||||||||||||||kNOWLEGDEUNITS||||||||||||||||||||||||||||||
+
+/*
+ * This method evocates the method registerKnowledgeUnit froma the class Project, to create a new KnowledgeUnit
+ * @param choice this its the project in which the new KnowledgeUnit will be created
+ * @param id this its the unique id for the KnowledgeUnit
+ * @param description this its the description of the KnowledgeUnit
+ * @param collaboratorName this its the name of the creator of the KnowledgeUnit 
+ * @param temporal this its to pick a type from the enum CapsType
+ * @param learnedLessons this its th learned lesson from the KnowledgeUnit
+ * @return indicator tells the user if the method was aplied correctly
+ */
 public boolean registerKnowledgeUnit(int choice,String id, String description, String collaboratorName,int temporal, String learnedLessons){
 	boolean indicator=false;
 	if(projects[choice-1].registerKnowledgeUnit(id, description, collaboratorName, temporal, learnedLessons)){
@@ -118,7 +164,13 @@ public boolean registerKnowledgeUnit(int choice,String id, String description, S
 	}
 	return indicator;
 }
-	
+
+/*
+ * This method evaluate if the project choosed by the user its empty, and if isnt the case calls the method 
+ * showKnowledgeUnitList from the class Project to show a reduced List of the KnowledgeUnits
+ * @param choiceProject it its the Project tath the user choosed to see its KnowledgeUnits
+ * @return msg it is the concatenation of the KnowledgeUnits
+ */
 public String showKnowlegdeUnitList(int choiceProject){
 	String msg="";
 	if(projects[choiceProject-1]==null){
@@ -129,6 +181,11 @@ public String showKnowlegdeUnitList(int choiceProject){
 	return msg;
 }
 
+/*
+ * This method evaluates every project and if its space isnt null calls the method
+ * getAllKnowledgeUnits() of the class Project to show all the KnowledgeUnits created
+ * @return msg it is the concatenation of every KnowledgeUnits created
+ */
 public String getAllKnowledgeUnits() {
 	String msg="";
 	for(int i=0;i<projects.length;i++){
@@ -141,6 +198,12 @@ public String getAllKnowledgeUnits() {
 	return msg;
 }
 
+/*
+ * This method calls the method approveKnowledgeUnit from the class Project
+ * @param choiceProject this its the project that the user choosed to aprove a KnowledgeUnit from
+ * @param choice this its the KnowledgeUnit that the user choosed to approve
+ * @return indicator tells the user if the method was aplied correctly
+ */
 public boolean approveKnowledgeUnit(int choiceProject,int choice){
 	boolean indicador=false;
 	if(projects[choiceProject-1].approveKnowledgeUnit(choice)){
