@@ -3,7 +3,7 @@ package model;
 
 public class KnowledgeUnit {
 	private String nameProject;
-	private Stage stageProject;
+	private String stageProject;
 	private String id;
 	private String description;
 	private String collaboratorName;
@@ -21,7 +21,7 @@ public class KnowledgeUnit {
  * @param type This its the type of the KnowledgeUnit
  * @param learnedLessons This its the learned lesson of the KnowledgeUnit
  */
-	public KnowledgeUnit(String nameProject,Stage stage,String id, String description,String collaboratorName, CapsType type, String learnedLessons) {
+	public KnowledgeUnit(String nameProject,String stage,String id, String description,String collaboratorName, CapsType type, String learnedLessons) {
 		this.nameProject= nameProject;
 		this.stageProject= stage;
 		this.id = id;
@@ -67,11 +67,11 @@ public String toStringUnaproved(int i){
 		this.nameProject = nameProject;
 	}
 
-	public Stage getStage() {
+	public String getStage() {
 		return stageProject;
 	}
 
-	public void setStage(Stage stage) {
+	public void setStage(String stage) {
 		this.stageProject = stage;
 	}
 

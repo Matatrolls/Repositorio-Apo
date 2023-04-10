@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 public class Project{
 	
 	private String name;
-	private Stage stage;
 	private String clientName;
 	private Calendar initialDate;
 	private Calendar finalDate;
@@ -16,6 +15,7 @@ public class Project{
 	private String gerentCellphone;
 	private DateFormat formatter;
 	private KnowledgeUnit[] units;
+	private Stage[] stages;
 
 /*
  * This method create a new Project with the info that the user provides
@@ -31,7 +31,6 @@ public class Project{
 		
 		this.formatter = new SimpleDateFormat("dd/M/yy");
 		this.name = name;
-		this.stage = Stage.INICIO;
 		this.clientName = clientName;
 		this.initialDate = initialDate;
 		this.finalDate = finalDate;
@@ -39,6 +38,8 @@ public class Project{
 		this.gerentName= gerentName;
 		this.gerentCellphone=gerentCellphone;
 		units = new KnowledgeUnit[50];
+		stages = new Stage[6];
+		Stage();
 	}
 
 //||||||||||||||||||||||KNOWLEGDEUNITS||||||||||||||||||||||||||||||||||||||
@@ -76,6 +77,13 @@ public class Project{
 		default:
 			type=CapsType.TECNICO;
 		break;
+	}
+
+	String stage="";
+	for(int i2=0;i2==5;i2++){
+		if(stages[i2].getActive()==true){
+			stage=stages[i2].getStageType();
+		}
 	}
 	KnowledgeUnit capsUnit = new KnowledgeUnit(name,stage,id,description,collaboratorName, type, learnedLessons);
 	boolean indicador =false;
@@ -137,7 +145,13 @@ public class Project{
 /*
  * This method creates two test cases in the base Project
  */
-	public void testCases() {	
+	public void testCases() {
+		String stage="";
+		for(int i2=0;i2==5;i2++){
+			if(stages[i2].getActive()==true){
+				stage=stages[i2].getStageType();
+			}
+		}
 		units[0] = new KnowledgeUnit(name,stage,"A001","Gestion de repositorios", "Juan",CapsType.TECNICO, "#GitHub# es una herramienta util");
 		units[1] = new KnowledgeUnit(name,stage,"A002","Gestion de equipos","Pepito", CapsType.TECNICO, "Es importante #definir responsabilidades# claras");
 	}
@@ -150,7 +164,13 @@ public class Project{
  */
 	public String getProjectInfo(int i){
 		String msg;
-		msg="\n\nProyecto "+(i+1)+":\nNombre: " + name + "\n  Etapa: "+stage+"\n  Cliente: " + clientName + "\n  Fecha Inicial: " + getInitialDateFormated() + 
+		String state="";
+		for(int i2=0;i2==5;i2++){
+			if(stages[i2].getActive()==true){
+				state=stages[i2].getStageType();
+			}
+		}
+		msg="\n\nProyecto "+(i+1)+":\nNombre: " + name + "\n  Etapa: "+state+"\n  Cliente: " + clientName + "\n  Fecha Inicial: " + getInitialDateFormated() + 
 		"\n  Fecha Final: " + getFinalDateFormated() + "\n  Presupuesto: " + budget + "\n  Nombre del Gerente: "+gerentName+"\n  Numero del Gerente: "+gerentCellphone;
 		return msg;
 	}
@@ -168,40 +188,31 @@ public class Project{
 //||||||||||||||||||||||||ETAPAS|||||||||||||||||||||||
 
 /*
+ * 
+ */
+	public void Stage(){
+		//INICIO,ANALISIS,DISENO,EJECUCION,CIERRE,SEGUIMIENTO_Y_CONTROL
+		stages[0] = new Stage("INICIO",true,initialDate,null);
+		stages[1] = new Stage("ANALISIS",false,null,null);
+		stages[2] = new Stage("DISENO",false,null,null);
+		stages[3] = new Stage("EJECUCION",false,null,null);
+		stages[4] = new Stage("CIERRE",false,null,null);
+		stages[5] = new Stage("SEGUIMIENTO_Y_CONTROL",false,null,null);
+	}
+
+/*
  * This method change the stage of the project 
  * @return indicator tells the user if the method was aplied correctly
  */
 	public boolean changeStage(){
 		boolean indicator=false;
-		switch(stage){
-			case INICIO:
-				this.stage=Stage.ANALISIS;
+		for(int i=0;i==5;i++){
+			if(stages[i].getActive()==true){
+				stages[i].setActive(false);
+				stages[i+1].setActive(true);
+				i=5;
 				indicator=true;
-			break;
-
-			case ANALISIS:
-				this.stage=Stage.DISENO;
-				indicator=true;
-			break;
-
-			case DISENO:
-				this.stage=Stage.EJECUCION;
-				indicator=true;
-			break;
-
-			case EJECUCION:
-				this.stage=Stage.CIERRE;
-				indicator=true;
-			break;
-
-			case CIERRE:
-				this.stage=Stage.SEGUIMIENTO_Y_CONTROL;
-				indicator=true;
-			break;
-
-			case SEGUIMIENTO_Y_CONTROL:
-			break;
-			
+			}
 		}
 		return indicator;
 	}
@@ -214,10 +225,6 @@ public class Project{
 
 	public String getClientName(){
 		return clientName;
-	}
-
-	public Stage getStage(){
-		return stage;
 	}
 
 	public Calendar getInitialDate(){
