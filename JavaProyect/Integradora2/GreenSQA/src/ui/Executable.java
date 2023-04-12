@@ -253,7 +253,29 @@ public class Executable {
 		System.out.println("Por favor, escoja cual de los proyectos desea avanzar de etapa");
 		System.out.println(controller.projectList());
 		int choice=input.nextInt();
-		if(controller.changeStage(choice)){
+			
+		System.out.println("Ingrese la fecha de finalizacion de la etapa actual ");
+		System.out.println("dia");
+		int fday=input.nextInt();
+
+		System.out.println("mes");
+		int fmonth=(input.nextInt()+1);
+
+		System.out.println("anio");
+		int fyear=input.nextInt();
+
+				
+		System.out.println("Ingrese la fecha de inicion de la siguiente etapa ");
+		System.out.println("dia");
+		int iday=input.nextInt();
+
+		System.out.println("mes");
+		int imonth=(input.nextInt()+1);
+
+		System.out.println("anio");
+		int iyear=input.nextInt();
+
+		if(controller.changeStage(choice,fyear,fmonth,fday,iyear,imonth,iday)){
             System.out.println("Etapa avanzada exitosamente");
         }
         else{

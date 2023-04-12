@@ -204,12 +204,14 @@ public class Project{
  * This method change the stage of the project 
  * @return indicator tells the user if the method was aplied correctly
  */
-	public boolean changeStage(){
+	public boolean changeStage(Calendar initialDate, Calendar finalDate){
 		boolean indicator=false;
 		for(int i=0;i==5;i++){
 			if(stages[i].getActive()==true){
 				stages[i].setActive(false);
 				stages[i+1].setActive(true);
+				stages[i].setRealEndDate(finalDate);
+				stages[i+1].setRealStartDate(initialDate);
 				i=5;
 				indicator=true;
 			}

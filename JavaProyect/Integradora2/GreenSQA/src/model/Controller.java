@@ -95,9 +95,11 @@ public class Controller {
  * @param choice its the option that the user introduced after being asked to choice between the created projects
  * @return indicator tells the user if the method was aplied correctly
  */
-	public boolean changeStage(int choice) {
+	public boolean changeStage(int choice,int fyear, int fmonth, int fday, int iyear, int imonth, int iday) {
 		boolean indicador=false;
-		if(projects[choice-1].changeStage()){
+		Calendar initialDate = new GregorianCalendar(iyear,imonth,iday); 
+		Calendar finalDate = new GregorianCalendar(fyear,fmonth,fday);
+		if(projects[choice-1].changeStage(initialDate,finalDate)){
 			indicador=true;
 		}
 		return indicador;
