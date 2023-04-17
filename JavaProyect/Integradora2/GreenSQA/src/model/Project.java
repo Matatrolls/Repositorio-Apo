@@ -219,6 +219,7 @@ public class Project{
 				stages[i+1].setRealStartDate(initialDate);
 				i=5;
 				indicator=true;
+				return indicator;
 			}
 		}
 		return indicator;
