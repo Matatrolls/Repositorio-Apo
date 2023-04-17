@@ -192,12 +192,35 @@ public class Executable {
 		double budget;
 		int iday;int imonth;int iyear;
 		int fday;int fmonth;int fyear;
+		int durationStage1;int durationStage2;int durationStage3;int durationStage4;int durationStage5;int durationStage6;
 	
 		//limpiezabuffer
 		input.nextLine();
 
         System.out.println("Digite el nombre del proyecto");
         name= input.nextLine();
+
+		System.out.println("Digite la duracion en meses de la etapa: 1 del proyecto");
+		durationStage1= input.nextInt();
+
+		
+		System.out.println("Digite la duracion en meses de la etapa: 2 del proyecto");
+		durationStage2= input.nextInt();
+
+		
+		System.out.println("Digite la duracion en meses de la etapa: 3 del proyecto");
+		durationStage3= input.nextInt();
+
+		
+		System.out.println("Digite la duracion en meses de la etapa: 4 del proyecto");
+		durationStage4= input.nextInt();
+		
+		System.out.println("Digite la duracion en meses de la etapa: 5 del proyecto");
+		durationStage5= input.nextInt();
+
+		
+		System.out.println("Digite la duracion en meses de la etapa: 6 del proyecto");
+		durationStage6= input.nextInt();
 
 		//limpiezabuffer
 		input.nextLine();
@@ -237,7 +260,7 @@ public class Executable {
 		System.out.println("Digite el numero de telefono del gerente");
         gerentCellphone= input.nextLine();
 
-        if(controller.registerProject(name,clientName,iday,imonth,iyear,fday,fmonth,fyear,budget,gerentName,gerentCellphone)){
+        if(controller.registerProject(name,durationStage1,durationStage2,durationStage3,durationStage4,durationStage5,durationStage6,clientName,iday,imonth,iyear,fday,fmonth,fyear,budget,gerentName,gerentCellphone)){
             System.out.println("Proyecto registrado exitosamente");
         }
         else{

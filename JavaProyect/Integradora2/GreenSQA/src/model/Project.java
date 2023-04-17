@@ -152,6 +152,7 @@ public class Project{
 				stage=stages[i2].getStageType();
 			}
 		}
+		Stage();
 		units[0] = new KnowledgeUnit(name,stage,"A001","Gestion de repositorios", "Juan",CapsType.TECNICO, "#GitHub# es una herramienta util");
 		units[1] = new KnowledgeUnit(name,stage,"A002","Gestion de equipos","Pepito", CapsType.TECNICO, "Es importante #definir responsabilidades# claras");
 	}
@@ -160,6 +161,7 @@ public class Project{
 
 /*
  * This method collect all the info from the project
+ * @param i this its the project that the user choose
  * @return msg this its the concatenation of all the info from the project
  */
 	public String getProjectInfo(int i){
@@ -177,6 +179,7 @@ public class Project{
 
 /*
  * This method collect the name of the project
+ * @param i this its the project that the user chooseS
  * @return msg this its the concatenation of the name and position of the project
  */
 	public String getProjectInfoList(int i){
@@ -188,20 +191,22 @@ public class Project{
 //||||||||||||||||||||||||ETAPAS|||||||||||||||||||||||
 
 /*
- * 
+ * this method create the default stages for evwry project 
  */
 	public void Stage(){
 		//INICIO,ANALISIS,DISENO,EJECUCION,CIERRE,SEGUIMIENTO_Y_CONTROL
-		stages[0] = new Stage("INICIO",true,initialDate,null);
-		stages[1] = new Stage("ANALISIS",false,null,null);
-		stages[2] = new Stage("DISENO",false,null,null);
-		stages[3] = new Stage("EJECUCION",false,null,null);
-		stages[4] = new Stage("CIERRE",false,null,null);
-		stages[5] = new Stage("SEGUIMIENTO_Y_CONTROL",false,null,null);
+		stages[0] = new Stage("INICIO",1,true,initialDate,null);
+		stages[1] = new Stage("ANALISIS",1,false,null,null);
+		stages[2] = new Stage("DISENO",1,false,null,null);
+		stages[3] = new Stage("EJECUCION",1,false,null,null);
+		stages[4] = new Stage("CIERRE",1,false,null,null);
+		stages[5] = new Stage("SEGUIMIENTO_Y_CONTROL",1,false,null,null);
 	}
 
 /*
  * This method change the stage of the project 
+ * @param initialDate its the real date of start of the next stage
+ * @param finalDate its the real date of end of the current stage
  * @return indicator tells the user if the method was aplied correctly
  */
 	public boolean changeStage(Calendar initialDate, Calendar finalDate){
@@ -217,6 +222,15 @@ public class Project{
 			}
 		}
 		return indicator;
+	}
+
+	public boolean duration(int duration){
+		boolean indicador=false;
+		for(int i=0;i==5;i++){
+			stages[i].setDuration(duration);
+		}
+		
+		return indicador;
 	}
 
 //||||||||||||||||||||||||GETTERS Y SETTERS||||||||||||||||||||||||||||||||||||||

@@ -5,12 +5,14 @@ import java.util.Calendar;
 public class Stage {
     //INICIO,ANALISIS,DISENO,EJECUCION,CIERRE,SEGUIMIENTO_Y_CONTROL
     private String stageType;
+    private int duration;
     private boolean active;
     private Calendar realStartDate;
     private Calendar realEndDate;
 
-    public Stage(String stageType,boolean active,Calendar realStartDate,Calendar realEndDate){
+    public Stage(String stageType,int duration,boolean active,Calendar realStartDate,Calendar realEndDate){
         this.stageType=stageType;
+        this.duration=duration;
         this.active=active;
         this.realStartDate=realStartDate;
         this.realEndDate=realEndDate;
@@ -44,5 +46,12 @@ public class Stage {
         this.active=active;
     }
 
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
     
 }

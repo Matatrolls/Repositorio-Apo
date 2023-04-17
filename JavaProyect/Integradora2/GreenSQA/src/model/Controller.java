@@ -40,7 +40,7 @@ public class Controller {
  * @param gerentCellphone This its the cellphone of the genert of the project
  * @return indicator This indicates if a new project was created or not
  */
-	public boolean registerProject(String name, String clientName, int iday,int imonth, int iyear,int fday,int fmonth,int fyear, double budget,String gerentName,String gerentCellphone){
+	public boolean registerProject(String name,int durationStage1,int durationStage2,int durationStage3,int durationStage4,int durationStage5,int durationStage6, String clientName, int iday,int imonth, int iyear,int fday,int fmonth,int fyear, double budget,String gerentName,String gerentCellphone){
 		boolean indicator=false;
 		Calendar initialDate = new GregorianCalendar(iyear,imonth,iday); 
 		Calendar finalDate = new GregorianCalendar(fyear,fmonth,fday);
@@ -50,7 +50,16 @@ public class Controller {
 		for (int i = 0; i < projects.length; i++) {
             if (projects[i] == null && !indicator ) {
                 projects[i] = newProject;
+				
+				projects[i].duration(durationStage1);
+				projects[i].duration(durationStage2);
+				projects[i].duration(durationStage3);
+				projects[i].duration(durationStage1);
+				projects[i].duration(durationStage1);
+				projects[i].duration(durationStage1);
+
 				indicator=true;
+				
             }
         }
 		return indicator;
