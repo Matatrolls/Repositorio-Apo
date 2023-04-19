@@ -39,7 +39,7 @@ public class Project{
 		this.gerentCellphone=gerentCellphone;
 		units = new KnowledgeUnit[50];
 		stages = new Stage[6];
-		Stage();
+		initStages();
 	}
 
 //||||||||||||||||||||||KNOWLEGDEUNITS||||||||||||||||||||||||||||||||||||||
@@ -80,7 +80,7 @@ public class Project{
 	}
 
 	String stage="";
-	for(int i2=0;i2==5;i2++){
+	for(int i2=0;i2<5;i2++){
 		if(stages[i2].getActive()==true){
 			stage=stages[i2].getStageType();
 		}
@@ -126,7 +126,20 @@ public class Project{
 		return msg;
 	}
 
-	/*
+	public String showPublishedKnowlegdeUnitList(){
+		String msg="";
+		for(int i=0;i<units.length;i++){
+			if(units[i]==null){
+			}
+			else{
+				msg+="Proyecto "+(i+1)+units[i].toStringPublished(i);
+			}
+		}
+		return msg;
+	}
+
+
+/*
  * This method evaluate the KnowledgeUnits array and in the not null spaces uses the method toString 
  * @return msg this variable its the concatenation of all the KnowledgeUnits that the method returns 
  */
@@ -147,12 +160,13 @@ public class Project{
  */
 	public void testCases() {
 		String stage="";
-		for(int i2=0;i2==5;i2++){
+		initStages();
+		for(int i2=0;i2<5;i2++){
 			if(stages[i2].getActive()==true){
-				stage=stages[i2].getStageType();
+				stage+=stages[i2].getStageType();
 			}
 		}
-		Stage();
+		
 		units[0] = new KnowledgeUnit(name,stage,"A001","Gestion de repositorios", "Juan",CapsType.TECNICO, "#GitHub# es una herramienta util");
 		units[1] = new KnowledgeUnit(name,stage,"A002","Gestion de equipos","Pepito", CapsType.TECNICO, "Es importante #definir responsabilidades# claras");
 	}
@@ -167,12 +181,21 @@ public class Project{
 	public String getProjectInfo(int i){
 		String msg;
 		String state="";
-		for(int i2=0;i2==5;i2++){
+		int stage1=stages[0].getDuration();
+		int stage2=stages[1].getDuration();
+		int stage3=stages[2].getDuration();
+		int stage4=stages[3].getDuration();
+		int stage5=stages[4].getDuration();
+		int stage6=stages[5].getDuration();
+		for(int i2=0;i2<5;i2++){
 			if(stages[i2].getActive()==true){
-				state=stages[i2].getStageType();
+				state+=stages[i2].getStageType();
 			}
 		}
-		msg="\n\nProyecto "+(i+1)+":\nNombre: " + name + "\n  Etapa: "+state+"\n  Cliente: " + clientName + "\n  Fecha Inicial: " + getInitialDateFormated() + 
+		//INICIO,ANALISIS,DISENO,EJECUCION,CIERRE,SEGUIMIENTO_Y_CONTROL
+		msg="\n\nProyecto "+(i+1)+":\nNombre: " + name + "\n  Etapa: "+state+"\nDuracion en meses etapa INICIO: "+stage1+"\nDuracion  en meses etapa ANALISIS: "+stage2+
+		"\nDuracion en meses etapa DISENO: "+stage3+"\nDuracion en meses etapa EJECUCION: "+stage4+"\nDuracion etapa CIERRE: "+stage5+
+		"\nDuracion en meses etapa SEGUIMIENTO_Y_CONTROL: "+stage6+"\n  Cliente: " + clientName + "\n  Fecha Inicial: " + getInitialDateFormated() + 
 		"\n  Fecha Final: " + getFinalDateFormated() + "\n  Presupuesto: " + budget + "\n  Nombre del Gerente: "+gerentName+"\n  Numero del Gerente: "+gerentCellphone;
 		return msg;
 	}
@@ -193,7 +216,7 @@ public class Project{
 /*
  * this method create the default stages for evwry project 
  */
-	public void Stage(){
+	public void initStages(){
 		//INICIO,ANALISIS,DISENO,EJECUCION,CIERRE,SEGUIMIENTO_Y_CONTROL
 		stages[0] = new Stage("INICIO",1,true,initialDate,null);
 		stages[1] = new Stage("ANALISIS",1,false,null,null);
@@ -211,7 +234,7 @@ public class Project{
  */
 	public boolean changeStage(Calendar initialDate, Calendar finalDate){
 		boolean indicator=false;
-		for(int i=0;i==5;i++){
+		for(int i=0;i<5;i++){
 			if(stages[i].getActive()==true){
 				stages[i].setActive(false);
 				stages[i+1].setActive(true);
@@ -225,9 +248,35 @@ public class Project{
 		return indicator;
 	}
 
-	public boolean duration(int duration){
+	public boolean duration(int durationStage1,int durationStage2,int durationStage3,int durationStage4,int durationStage5,int durationStage6){
 		boolean indicador=false;
-		for(int i=0;i==5;i++){
+		int duration=0;
+		for(int i=0;i<5;i++){
+			switch(i){
+				case 0:
+					duration=durationStage1;
+				break;
+
+				case 1:
+					duration=durationStage2;
+				break;
+
+				case 2:
+					duration=durationStage3;
+				break;
+
+				case 3:
+					duration=durationStage4;
+				break;
+
+				case 4:
+					duration=durationStage5;
+				break;
+
+				case 5:
+					duration=durationStage6;
+				break;
+			}
 			stages[i].setDuration(duration);
 		}
 		

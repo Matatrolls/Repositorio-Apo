@@ -51,13 +51,7 @@ public class Controller {
             if (projects[i] == null && !indicator ) {
                 projects[i] = newProject;
 				
-				projects[i].duration(durationStage1);
-				projects[i].duration(durationStage2);
-				projects[i].duration(durationStage3);
-				projects[i].duration(durationStage1);
-				projects[i].duration(durationStage1);
-				projects[i].duration(durationStage1);
-
+				projects[i].duration(durationStage1,durationStage2,durationStage3,durationStage4,durationStage5,durationStage6);
 				indicator=true;
 				
             }
@@ -209,6 +203,18 @@ public String getAllKnowledgeUnits() {
 	return msg;
 }
 
+public String showPublishedKnowlegdeUnitList() {
+	String msg="";
+	for(int i=0;i<projects.length;i++){
+		if(projects[i]==null){
+		}
+		else{
+			msg+=projects[i].showPublishedKnowlegdeUnitList();
+		}
+	}
+	return msg;
+}
+
 /*
  * This method calls the method approveKnowledgeUnit from the class Project
  * @param choiceProject this its the project that the user choosed to aprove a KnowledgeUnit from
@@ -223,4 +229,11 @@ public boolean approveKnowledgeUnit(int choiceProject,int choice){
 	return indicador;
 }
 
+public boolean publishKnowledgeUnit(int choice){
+	boolean indicador=false;
+	if(Project.approveKnowledgeUnit(choice)){
+		indicador=true;
+	}
+	return indicador;
+}
 }

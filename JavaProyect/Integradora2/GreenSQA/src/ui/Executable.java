@@ -137,19 +137,26 @@ public class Executable {
  */
 	public void menuKnowledgeUnit(){
 		int opcion=0;
-		System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar una capsula\n2:Aprobar una capsula \n3:Consultar todas las capsulas");
+		System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar una capsula\n2:Aprobar una capsula \n3:Publicar capsulas aprovadas\n4:Consultar todas las capsulas\n5:Consultar las capsulas publicadas");
 		opcion=input.nextInt();
 			switch(opcion){
 				case 1:
-				registerKnowledgeUnit();
+					registerKnowledgeUnit();
 				break;
 
 				case 2:
-				approveKnowledgeUnit();
+					approveKnowledgeUnit();
 				break;
 
 				case 3:
-				showAllKnowledgeUnits();
+					publishKnowledgeUnit();
+				break;
+
+				case 4:
+					showAllKnowledgeUnits();
+				break;
+
+				case 5:
 				break;
 
 				default:
@@ -402,6 +409,20 @@ public class Executable {
         else{
             System.out.println("Error, no se pudo aprobar la capsula");
         }
+	}
+
+	public void publishKnowledgeUnit(){
+		System.out.println("Por favor, escoja cual de las capsulas desea aprobar");
+		System.out.println(controller.showPublishedKnowlegdeUnitList());
+		int choice=input.nextInt();
+		if(controller.publishKnowledgeUnit(choice)){
+            System.out.println("Capsula aprobada exitosamente");
+        }
+        else{
+            System.out.println("Error, no se pudo aprobar la capsula");
+        }
+
+	
 	}
 
 /*

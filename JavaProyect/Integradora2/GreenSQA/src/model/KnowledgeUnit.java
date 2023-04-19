@@ -57,6 +57,14 @@ public String toStringUnaproved(int i){
 	return msg;
 }
 
+public String toStringPublished(int i){
+	String msg ="";
+	if(status==Status.PUBLICADA){ 
+	msg = "\n\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
+	}
+	return msg;
+}
+
 //||||||||||||||||||GETTERS Y SETTERS|||||||||||||||||||||
 
 	public String getNameProject() {
