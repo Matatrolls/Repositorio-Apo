@@ -110,6 +110,13 @@ public class Project{
 		return indicador;
 	}
 
+	public boolean publishKnowledgeUnit(int choice) {
+		boolean indicador=true;
+		units[choice-1].setStatus(Status.PUBLICADA);
+		
+		return indicador;
+	}
+
 /*
  * This method evaluate the KnowledgeUnits array and in the not null spaces uses the method toStringUnapproved 
  * @return msg this variable its the concatenation of all the not approved KnowledgeUnits that the method returns 
@@ -126,13 +133,24 @@ public class Project{
 		return msg;
 	}
 
+	public String showApprovedKnowlegdeUnitList(int projtChoice){
+		String msg="";
+			if(units[projtChoice]==null){
+			}
+			else{
+				msg+="Proyecto "+projtChoice+units[projtChoice-1].toStringApproved(projtChoice-1);
+			}
+		
+		return msg;
+	}
+
 	public String showPublishedKnowlegdeUnitList(){
 		String msg="";
 		for(int i=0;i<units.length;i++){
 			if(units[i]==null){
 			}
 			else{
-				msg+="Proyecto "+(i+1)+units[i].toStringPublished(i);
+				msg+=units[i].toStringPublished(i);
 			}
 		}
 		return msg;
@@ -214,7 +232,7 @@ public class Project{
 //||||||||||||||||||||||||ETAPAS|||||||||||||||||||||||
 
 /*
- * this method create the default stages for evwry project 
+ * this method create the default stages for every project 
  */
 	public void initStages(){
 		//INICIO,ANALISIS,DISENO,EJECUCION,CIERRE,SEGUIMIENTO_Y_CONTROL

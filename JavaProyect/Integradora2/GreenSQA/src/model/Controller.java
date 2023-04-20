@@ -203,6 +203,18 @@ public String getAllKnowledgeUnits() {
 	return msg;
 }
 
+public String showApprovedKnowlegdeUnitList(int projtChoice) {
+	String msg="";
+	
+	if(projects[projtChoice-1]==null){
+		msg+="Ese proyecto no existe!";
+	}
+	else{
+		msg+=projects[projtChoice-1].showApprovedKnowlegdeUnitList(projtChoice);
+	}
+	return msg;
+}
+
 public String showPublishedKnowlegdeUnitList() {
 	String msg="";
 	for(int i=0;i<projects.length;i++){
@@ -229,9 +241,9 @@ public boolean approveKnowledgeUnit(int choiceProject,int choice){
 	return indicador;
 }
 
-public boolean publishKnowledgeUnit(int choice){
+public boolean publishKnowledgeUnit(int choiceProject,int choice){
 	boolean indicador=false;
-	if(Project.approveKnowledgeUnit(choice)){
+	if(projects[choiceProject-1].publishKnowledgeUnit(choice)){
 		indicador=true;
 	}
 	return indicador;

@@ -52,7 +52,15 @@ public String toString(){
 public String toStringUnaproved(int i){
 	String msg ="";
 	if(status==Status.POR_DEFINIR){ 
-	msg = "\n\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
+		msg = "\n\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
+	}
+	return msg;
+}
+
+public String toStringApproved(int i){
+	String msg ="";
+	if(status==Status.APROBADA){ 
+		msg = "\n\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
 	}
 	return msg;
 }
@@ -60,7 +68,7 @@ public String toStringUnaproved(int i){
 public String toStringPublished(int i){
 	String msg ="";
 	if(status==Status.PUBLICADA){ 
-	msg = "\n\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
+		msg = "\n\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
 	}
 	return msg;
 }

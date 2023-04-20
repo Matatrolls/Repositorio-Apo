@@ -137,7 +137,7 @@ public class Executable {
  */
 	public void menuKnowledgeUnit(){
 		int opcion=0;
-		System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar una capsula\n2:Aprobar una capsula \n3:Publicar capsulas aprovadas\n4:Consultar todas las capsulas\n5:Consultar las capsulas publicadas");
+		System.out.println("\nPor favor escoja que quiere hacer\n1:Registrar una capsula\n2:Aprobar una capsula \n3:Publicar capsulas aprobadas\n4:Consultar todas las capsulas\n5:Consultar las capsulas publicadas");
 		opcion=input.nextInt();
 			switch(opcion){
 				case 1:
@@ -157,6 +157,7 @@ public class Executable {
 				break;
 
 				case 5:
+				showAllPublishedKnowledgeUnits();
 				break;
 
 				default:
@@ -165,7 +166,9 @@ public class Executable {
 			}
 	}
 
-/*
+
+
+	/*
  * This method its a sub menu from menuProjectConsult(), this method allow the user to choose between 
  * searchProjectsBeforeDate() and searchProjectsAfterDate()
  */
@@ -412,14 +415,17 @@ public class Executable {
 	}
 
 	public void publishKnowledgeUnit(){
-		System.out.println("Por favor, escoja cual de las capsulas desea aprobar");
-		System.out.println(controller.showPublishedKnowlegdeUnitList());
+		System.out.println("Por favor, escoja en cual de los siguientes proyectos desea publicar");
+		System.out.println(controller.projectList());
+		int projtChoice=input.nextInt();
+		System.out.println("Por favor, escoja cual de las capsulas desea publicar");
+		System.out.println(controller.showApprovedKnowlegdeUnitList(projtChoice));
 		int choice=input.nextInt();
-		if(controller.publishKnowledgeUnit(choice)){
-            System.out.println("Capsula aprobada exitosamente");
+		if(controller.publishKnowledgeUnit(projtChoice,choice)){
+            System.out.println("Capsula publicada exitosamente");
         }
         else{
-            System.out.println("Error, no se pudo aprobar la capsula");
+            System.out.println("Error, no se pudo publicar la capsula, recuerde que para publicarse debe estar aprovaba antesd");
         }
 
 	
@@ -430,5 +436,9 @@ public class Executable {
  */
 	public void showAllKnowledgeUnits() {
 		System.out.println(controller.getAllKnowledgeUnits());
+	}
+
+	public void showAllPublishedKnowledgeUnits() {
+		System.out.println(controller.showPublishedKnowlegdeUnitList());
 	}
 }
