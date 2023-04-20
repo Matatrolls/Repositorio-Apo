@@ -17,7 +17,7 @@ public class Project{
 	private KnowledgeUnit[] units;
 	private Stage[] stages;
 
-/*
+/**
  * This method create a new Project with the info that the user provides
  * @param name This its the name that the user wants to call the new project
  * @param clientName This its the client name 
@@ -44,7 +44,7 @@ public class Project{
 
 //||||||||||||||||||||||KNOWLEGDEUNITS||||||||||||||||||||||||||||||||||||||
 
-/*
+/**
  * This method creates a new KnowledgeUnit in the project
  * @param id its the unique id of the KnowledgeUnit
  * @param description it the description of the KnowledgeUnit
@@ -98,7 +98,7 @@ public class Project{
 	return indicador;
 }
 
-/*
+/**
  * This method change the Status from the KnowledgeUnit from POR_DEFINIR to APROBADA
  * @param choice this its the choosed KnowledgeUnit to approve
  * @return indicator This indicates if a new project was created or not
@@ -117,7 +117,7 @@ public class Project{
 		return indicador;
 	}
 
-/*
+/**
  * This method evaluate the KnowledgeUnits array and in the not null spaces uses the method toStringUnapproved 
  * @return msg this variable its the concatenation of all the not approved KnowledgeUnits that the method returns 
  */
@@ -157,7 +157,7 @@ public class Project{
 	}
 
 
-/*
+/**
  * This method evaluate the KnowledgeUnits array and in the not null spaces uses the method toString 
  * @return msg this variable its the concatenation of all the KnowledgeUnits that the method returns 
  */
@@ -173,7 +173,7 @@ public class Project{
 		return msg;
 	}
 
-/*
+/**
  * This method creates two test cases in the base Project
  */
 	public void testCases() {
@@ -191,7 +191,7 @@ public class Project{
 
 //||||||||||||||||||||||||INFO||||||||||||||||||||||||||||||
 
-/*
+/**
  * This method collect all the info from the project
  * @param i this its the project that the user choose
  * @return msg this its the concatenation of all the info from the project
@@ -218,7 +218,7 @@ public class Project{
 		return msg;
 	}
 
-/*
+/**
  * This method collect the name of the project
  * @param i this its the project that the user chooseS
  * @return msg this its the concatenation of the name and position of the project
@@ -231,7 +231,7 @@ public class Project{
 
 //||||||||||||||||||||||||ETAPAS|||||||||||||||||||||||
 
-/*
+/**
  * this method create the default stages for every project 
  */
 	public void initStages(){
@@ -244,7 +244,7 @@ public class Project{
 		stages[5] = new Stage("SEGUIMIENTO_Y_CONTROL",1,false,null,null);
 	}
 
-/*
+/**
  * This method change the stage of the project 
  * @param initialDate its the real date of start of the next stage
  * @param finalDate its the real date of end of the current stage

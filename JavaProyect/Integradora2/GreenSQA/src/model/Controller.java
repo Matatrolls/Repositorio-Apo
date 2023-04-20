@@ -11,7 +11,7 @@ public class Controller {
 		projects = new Project[10];
 	}
 
-/*
+/**
  * This method create a base Project in the first position of the array and it calls a method to create two
  * testcases of KnowledgeUnits in the base projects
  */
@@ -24,7 +24,7 @@ public class Controller {
 
 //|||||||||||||||||||||||||PROJECTS|||||||||||||||||||||||||||
 
-/*
+/**
  * This method allow the controller to create a new project with the params that the user
  * entered
  * @param name This its the name that the user wants to call the new project
@@ -59,7 +59,7 @@ public class Controller {
 		return indicator;
 	}
 
-/*
+/**
  * This method evaluate the projects array and calls the method form the class Project getProjectInfoList()
  * if it is different from null, it shows a reduced verison of the Projects
  * @return msg this variable its the concatenation of all the created projects that the method retrieve 
@@ -76,7 +76,7 @@ public class Controller {
 		return msg;
 	}
 
-/*
+/**
  * This method evaluate the projects array and calls the method form the class Project getProjectInfoList()
  * if it is different from null, it shows a full verison of the Projects
  * @return msg this variable its the concatenation of all the created projects that the method retrieve 
@@ -93,7 +93,7 @@ public class Controller {
 		return msg;
 	}
 
-/*
+/**
  * This method call the method from Project changeStage()
  * @param choice its the option that the user introduced after being asked to choice between the created projects
  * @return indicator tells the user if the method was aplied correctly
@@ -108,7 +108,7 @@ public class Controller {
 		return indicador;
 	}
 
-/*
+/**
  * This method creates a date to compare and search projects created before X date
  * @param eday	its the day of the new date
  * @param emonth its the month of the new date
@@ -129,7 +129,7 @@ public class Controller {
 		return msg;
 	}
 
-/*
+/**
  * This method creates a date to compare and search projects created after X date
  * @param eday	its the day of the new date
  * @param emonth its the month of the new date
@@ -152,7 +152,7 @@ public class Controller {
 
 //|||||||||||||||||||kNOWLEGDEUNITS||||||||||||||||||||||||||||||
 
-/*
+/**
  * This method evocates the method registerKnowledgeUnit froma the class Project, to create a new KnowledgeUnit
  * @param choice this its the project in which the new KnowledgeUnit will be created
  * @param id this its the unique id for the KnowledgeUnit
@@ -170,7 +170,7 @@ public boolean registerKnowledgeUnit(int choice,String id, String description, S
 	return indicator;
 }
 
-/*
+/**
  * This method evaluate if the project choosed by the user its empty, and if isnt the case calls the method 
  * showKnowledgeUnitList from the class Project to show a reduced List of the KnowledgeUnits
  * @param choiceProject it its the Project tath the user choosed to see its KnowledgeUnits
@@ -186,7 +186,7 @@ public String showKnowlegdeUnitList(int choiceProject){
 	return msg;
 }
 
-/*
+/**
  * This method evaluates every project and if its space isnt null calls the method
  * getAllKnowledgeUnits() of the class Project to show all the KnowledgeUnits created
  * @return msg it is the concatenation of every KnowledgeUnits created
@@ -227,7 +227,7 @@ public String showPublishedKnowlegdeUnitList() {
 	return msg;
 }
 
-/*
+/**
  * This method calls the method approveKnowledgeUnit from the class Project
  * @param choiceProject this its the project that the user choosed to aprove a KnowledgeUnit from
  * @param choice this its the KnowledgeUnit that the user choosed to approve

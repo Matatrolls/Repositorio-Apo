@@ -13,7 +13,7 @@ public class Executable {
 	public int idcount=0;
 	private Scanner input;
 	private Controller controller;
-/*
+/**
  * Creator of the class executable
  */
 	public Executable() {
@@ -23,7 +23,7 @@ public class Executable {
 		
 	}
 
-/*
+/**
  * Main method, this executes the principal menu to start all the program
  */
 	public static void main(String[] args) {
@@ -33,7 +33,7 @@ public class Executable {
 
 	}
 
-	/*
+	/**
 	 * This method is used to call a method in the class controller to create testing cases
 	 */
 	public void testing(){
@@ -43,7 +43,7 @@ public class Executable {
 
 //||||||||||||||||||||||||||||MENUS||||||||||||||||||||||||||||||||||||
 
-/*
+/**
  * This method is the main menu, which lead to more menus more especific for the user needs
  */
 	public void menuPrincipal() {
@@ -77,7 +77,7 @@ public class Executable {
 		}
 	}
 
-/*
+/**
  * This method is a menu used for the project options that the program allow
  */
 	public void menuProject(){
@@ -104,7 +104,7 @@ public class Executable {
 		}
 	}
 
-/*
+/**
  * This method its a sub menu for the menuProject() option consult, it shows the list of created projects
  *  and lead to another menu
  */
@@ -132,7 +132,7 @@ public class Executable {
 		}
 	}
 
-/*
+/**
  * This method is a menu used for the KnowledgeUnits options that the program allow
  */
 	public void menuKnowledgeUnit(){
@@ -166,9 +166,7 @@ public class Executable {
 			}
 	}
 
-
-
-	/*
+/**
  * This method its a sub menu from menuProjectConsult(), this method allow the user to choose between 
  * searchProjectsBeforeDate() and searchProjectsAfterDate()
  */
@@ -194,7 +192,7 @@ public class Executable {
 
 //||||||||||||||||||||||||||||||PROYECT||||||||||||||||||||||||||||||||||||||||
 
-/*
+/**
  * This method allow the user to send params to create a project and send them to the controller 
  */
 	public void registerProject() {
@@ -279,7 +277,7 @@ public class Executable {
 		
 	}
 
-/*
+/**
  * This method allow the user to change the stage of a previusly created project
  */
 	public void changeStage(){
@@ -316,7 +314,7 @@ public class Executable {
         }
 	}
 
-/*
+/**
  * This method allow the user to search Projects created after X date
  */
 	public void searchProjectsAfterDate() {
@@ -334,7 +332,7 @@ public class Executable {
     	System.out.println(controller.searchProjectsAfterDate(eday, emonth, eyear));
 	}
 	
-/*
+/**
  * This method allow the user to search Projects created before X date
  */
 	public void searchProjectsBeforeDate() {
@@ -353,7 +351,7 @@ public class Executable {
 	
 //||||||||||||||||||||||||||||||||KNOWLEDGEUNIT|||||||||||||||||||||||||||||
 
-/*
+/**
  * This method allow the user to send params to create a KnowledgeUnit and send them to the controller 
  */
 	public void registerKnowledgeUnit() {
@@ -395,7 +393,7 @@ public class Executable {
         }
     }
 	
-/*
+/**
  * This method allow the user to change the state of a KnowledgeUnit from POR_DEFINIR to APROBADA of a 
  * previously created Knowledgeunit
  */
@@ -431,7 +429,7 @@ public class Executable {
 	
 	}
 
-/*
+/**
  * This method allow the user to see all the created KnowledgeUnits
  */
 	public void showAllKnowledgeUnits() {

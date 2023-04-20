@@ -11,7 +11,7 @@ public class KnowledgeUnit {
 	private String learnedLessons;
 	private Status status;
 	
-/*
+/**
  * This method its used to create a new KnowledgeUnit
  * @param nameProject This its the name of the project in which the KnowledgeUnit its being created
  * @param stage This its the stage of the project in which the KnowledgeUnit its being created
@@ -34,7 +34,7 @@ public class KnowledgeUnit {
 
 //|||||||||||||||||||TOSTRINGS||||||||||||||||||||||
 
-/*
+/**
  * This method recollect all the info of the KnowledgeUnit
  * @return msg this its the concatenation of all the info of the KnowledgeUnit
  */
@@ -44,7 +44,7 @@ public String toString(){
 	return msg;
 }
 
-/*
+/**
  * This method recollect all the info of the unapproved KnowledgeUnits 
  * @param i this its the posicion in the array that the KnowledgeUnit ocuppies
  * @return msg this its the concatenation of the info requested
