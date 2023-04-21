@@ -4,15 +4,25 @@ public class Book {
 
 	private String id;
 	private String name;
+	private Genre genre;
 	private double price;
 	private int unitsSold;
 
-	public Book(String id, String name, double price) {
+	public Book(String id, String name,  Genre genre, double price) {
 
 		this.id = id;
+		this.genre = genre;
 		this.name = name;
 		this.price = price;
 		this.unitsSold = 0;
+	}
+
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
 	}
 
 	public String getId() {
@@ -43,8 +53,9 @@ public class Book {
 		return unitsSold;
 	}
 
-	public void setUnitsSold(int unitsSold) {
+	public boolean setUnitsSold(int unitsSold) {
 		this.unitsSold = unitsSold;
+		return true;
 	}
 
 }
