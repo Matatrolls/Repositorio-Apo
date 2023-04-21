@@ -49,8 +49,8 @@ public class Executable {
 	public void menuPrincipal() {
 		int opcion=0;
 		System.out.println("Buenos dias");
-		while(opcion!=4){
-			System.out.println("\nPor favor escoja que quiere hacer\n1:Abrir menu de proyectos\n2:Abrir menu de capsulas\n3:Testeo\n4:Cerrar programa");
+		while(opcion!=5){
+			System.out.println("\nPor favor escoja que quiere hacer\n1:Abrir menu de proyectos\n2:Abrir menu de capsulas\n3:Testeo\n4:Abrir menu de informes\n5:Cerrar programa");
 			opcion=input.nextInt();
 			switch(opcion){
 				case 1:
@@ -66,6 +66,10 @@ public class Executable {
 				break;
 
 				case 4:
+					menuInform();
+				break;
+
+				case 5:
 				System.out.println("Hasta luego, tenga buena tarde");
 				break;
 
@@ -190,6 +194,39 @@ public class Executable {
 		}
 	}
 
+/**
+ * This function displays a menu and prompts the user to select an option, then executes the
+ * corresponding action based on the user's input.
+ */
+	public void menuInform(){
+		int temporal=0;
+		while (temporal==0){
+			System.out.println("Por favor, ingrese que quiere hacer\n1:Informe total tipo de capsulas\n2:Informe lecciones por etapa\n3:Informe proyecto con mas capsulas\n4:Informe de busqueda de colaborador\n5:Informar al usuario de capsulas con #");
+			temporal=input.nextInt();
+			switch(temporal){
+				case 1:
+				
+				break;
+
+				case 2:
+				
+				break;
+				case 3:
+				break;
+
+				case 4:
+				break;
+
+				case 5:
+				break;
+
+				default:
+				System.out.println("Por favor ingrese una opcion valida");
+				temporal=0;
+				break;
+			}
+		}
+	}
 //||||||||||||||||||||||||||||||PROYECT||||||||||||||||||||||||||||||||||||||||
 
 /**
@@ -412,6 +449,10 @@ public class Executable {
         }
 	}
 
+/**
+ * This function allows a user to select a project and a knowledge unit to publish, and then publishes
+ * the selected knowledge unit if it has been approved.
+ */
 	public void publishKnowledgeUnit(){
 		System.out.println("Por favor, escoja en cual de los siguientes proyectos desea publicar");
 		System.out.println(controller.projectList());
@@ -436,6 +477,9 @@ public class Executable {
 		System.out.println(controller.getAllKnowledgeUnits());
 	}
 
+/**
+ * This Java function prints a list of all published knowledge units using a controller.
+ */
 	public void showAllPublishedKnowledgeUnits() {
 		System.out.println(controller.showPublishedKnowlegdeUnitList());
 	}

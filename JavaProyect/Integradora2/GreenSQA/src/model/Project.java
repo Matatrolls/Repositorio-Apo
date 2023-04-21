@@ -133,6 +133,13 @@ public class Project{
 		return msg;
 	}
 
+/**
+ * This function returns a string message containing the approved knowledge unit list for a given
+ * project choice.
+ * 
+ * @param projtChoice an integer representing the project choice selected by the user.
+ * @return A String message containing the approved knowledge unit list for a specific project choice.
+ */
 	public String showApprovedKnowlegdeUnitList(int projtChoice){
 		String msg="";
 			if(units[projtChoice]==null){
@@ -144,6 +151,11 @@ public class Project{
 		return msg;
 	}
 
+/**
+ * This function returns a string containing the published knowledge units in an array of units.
+ * 
+ * @return The method is returning a String that contains the list of published knowledge units.
+ */
 	public String showPublishedKnowlegdeUnitList(){
 		String msg="";
 		for(int i=0;i<units.length;i++){
@@ -266,6 +278,21 @@ public class Project{
 		return indicator;
 	}
 
+/**
+ * This function sets the duration of each stage in an array based on input parameters and returns a
+ * boolean value.
+ * 
+ * @param durationStage1 The duration (in some unit of time) for the first stage of a process.
+ * @param durationStage2 The duration (in some unit of time) for the second stage of a process or
+ * project.
+ * @param durationStage3 The duration (in some unit of time) for the third stage of a process.
+ * @param durationStage4 The duration (in some unit of time) for the fourth stage of a process or
+ * project.
+ * @param durationStage5 The duration (in some unit of time) for the fifth stage of a process.
+ * @param durationStage6 The duration (in some unit of time) for the sixth stage of a process.
+ * @return A boolean value, but its value is always false because the variable "indicador" is never set
+ * to true.
+ */
 	public boolean duration(int durationStage1,int durationStage2,int durationStage3,int durationStage4,int durationStage5,int durationStage6){
 		boolean indicador=false;
 		int duration=0;

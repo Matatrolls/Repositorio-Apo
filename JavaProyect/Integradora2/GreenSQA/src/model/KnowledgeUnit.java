@@ -57,6 +57,15 @@ public String toStringUnaproved(int i){
 	return msg;
 }
 
+
+/**
+ * This Java function returns a string representation of an approved item's ID and description.
+ * 
+ * @param i The parameter "i" is an integer used as an index to keep track of the position of the
+ * object in a list or array. It is used to display the object's information in a formatted way.
+ * @return The method is returning a string message that includes the ID and description of an approved
+ * item, as well as the index of the item in a list (i+1).
+ */
 public String toStringApproved(int i){
 	String msg ="";
 	if(status==Status.APROBADA){ 
@@ -65,6 +74,16 @@ public String toStringApproved(int i){
 	return msg;
 }
 
+/**
+ * This Java function returns a string representation of a published item's ID and description.
+ * 
+ * @param i The parameter "i" is an integer used as an index to keep track of the position of the
+ * published message in a list or array. It is incremented by 1 to display the message number in the
+ * output.
+ * @return The method is returning a string message that includes the ID and description of an object
+ * only if its status is "PUBLICADA". The message also includes a number (i+1) to indicate the position
+ * of the object in a list.
+ */
 public String toStringPublished(int i){
 	String msg ="";
 	if(status==Status.PUBLICADA){ 

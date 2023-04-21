@@ -203,6 +203,15 @@ public String getAllKnowledgeUnits() {
 	return msg;
 }
 
+/**
+ * This Java function returns a message containing a list of approved knowledge units for a given
+ * project choice.
+ * 
+ * @param projtChoice an integer representing the user's choice of project (1 to the total number of
+ * projects available)
+ * @return A String message containing either an error message if the project does not exist or a list
+ * of approved knowledge units for the specified project.
+ */
 public String showApprovedKnowlegdeUnitList(int projtChoice) {
 	String msg="";
 	
@@ -215,6 +224,12 @@ public String showApprovedKnowlegdeUnitList(int projtChoice) {
 	return msg;
 }
 
+/**
+ * This function returns a string containing the list of published knowledge units for all projects.
+ * 
+ * @return The method is returning a String that contains the list of published knowledge units for all
+ * projects in the "projects" array.
+ */
 public String showPublishedKnowlegdeUnitList() {
 	String msg="";
 	for(int i=0;i<projects.length;i++){
@@ -241,6 +256,20 @@ public boolean approveKnowledgeUnit(int choiceProject,int choice){
 	return indicador;
 }
 
+/**
+ * This function publishes a knowledge unit for a chosen project and returns a boolean indicating
+ * whether the operation was successful or not.
+ * 
+ * @param choiceProject An integer representing the user's choice of project (presumably from a list of
+ * available projects).
+ * @param choice The parameter "choice" is not defined in the given method. It is likely a parameter
+ * that is passed to the "publishKnowledgeUnit" method within the "projects" array. Without more
+ * context or information about the code, it is difficult to determine the exact purpose of this
+ * parameter.
+ * @return The method is returning a boolean value, which indicates whether the knowledge unit was
+ * successfully published or not. If the knowledge unit was published successfully, the method returns
+ * true, otherwise it returns false.
+ */
 public boolean publishKnowledgeUnit(int choiceProject,int choice){
 	boolean indicador=false;
 	if(projects[choiceProject-1].publishKnowledgeUnit(choice)){
