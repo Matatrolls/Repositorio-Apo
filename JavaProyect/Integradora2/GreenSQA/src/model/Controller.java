@@ -383,9 +383,30 @@ public String consultProjectsByCollaborator(String choice){
 	return msg;
 }
 
-public String consultByHashtag(){
+/**
+ * This Java function searches for projects by a given hashtag and returns a message with the results
+ * or a "not found" message.
+ * 
+ * @param choice a String representing the hashtag that the user wants to search for in the projects
+ * array. The method loops through the projects array and calls the consultByHashtag method on each
+ * project object, passing in the choice parameter. It then concatenates the returned message from each
+ * project and returns the final message. If
+ * @return A String message that contains the result of the consultation by hashtag on all the
+ * projects. If there are no capsules published with the given hashtag, the message will indicate that.
+ */
+public String consultByHashtag(String choice){
 	String msg="";
 
+	for(int i=0;i<projects.length;i++){
+		if(projects[i]==null){
+		}
+		else{
+			msg+=projects[i].consultByHashtag(choice);
+		}
+	}
+	if(msg.equalsIgnoreCase("")){
+		msg+="No existen capsulas publicadas con esa busqueda";
+	}
 	return msg;
 }
 }

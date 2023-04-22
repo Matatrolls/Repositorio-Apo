@@ -486,9 +486,37 @@ public String consultProjectsByCollaborator(String choice){
 	return msg;
 }
 
-public String consultByHashtag(){
+/**
+ * This Java function searches for units that have a specific hashtag and returns a message with the
+ * matching units.
+ * 
+ * @param choice The hashtag that the user wants to search for in the units.
+ * @return A String containing information about the units that have a specific hashtag in their
+ * learned lessons, formatted as a list.
+ */
+public String consultByHashtag(String choice){
 	String msg="";
-
+	String temString="";
+	String comparator="";
+	String[] getter;
+	String splitter="";
+	int counter=1;
+	for(int i=0;i<units.length;i++){
+		if(units[i]==null){
+		}
+		else{
+			if(units[i].getStatus()==Status.PUBLICADA || units[i].getStatus()==Status.APROBADA ){
+				comparator+=units[i].getLearnedLessons();
+				getter=comparator.split("#");
+				splitter+=getter[1];
+				if(choice.equalsIgnoreCase(splitter)){
+					temString=units[i].toStringSearch();
+					msg+="\n"+counter+temString;
+					counter++;
+				}
+			}
+		}
+	}
 	return msg;
 }
 //||||||||||||||||||||||||GETTERS Y SETTERS||||||||||||||||||||||||||||||||||||||

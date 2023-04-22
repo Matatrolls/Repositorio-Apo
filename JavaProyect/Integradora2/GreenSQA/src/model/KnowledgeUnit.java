@@ -40,7 +40,7 @@ public class KnowledgeUnit {
  */
 public String toString(){
 	String msg ="";
-	msg = "\n\nNombre del proyecto: "+nameProject+"\nEtapa: "+stageProject+"\nID: " + id +"\nDescripcion: "+ description+"\nNombre del colaborador: "+collaboratorName+"\nTipo: "+type+"\nLeccion Aprendida: "+learnedLessons+"\nAprovada: "+status;
+	msg = "\n\nNombre del proyecto: "+nameProject+"\nEtapa: "+stageProject+"\nID: " + id +"\nDescripcion: "+ description+"\nNombre del colaborador: "+collaboratorName+"\nTipo: "+type+"\nLeccion Aprendida: "+learnedLessons+"\nEstado: "+status;
 	return msg;
 }
 
@@ -56,7 +56,6 @@ public String toStringUnaproved(int i){
 	}
 	return msg;
 }
-
 
 /**
  * This Java function returns a string representation of an approved item's ID and description.
@@ -89,6 +88,18 @@ public String toStringPublished(int i){
 	if(status==Status.PUBLICADA){ 
 		msg = "\n\n"+(i+1)+":ID: " + id +"\nDescripcion: "+ description;
 	}
+	return msg;
+}
+
+/**
+ * This function returns a string representation of an object with its ID, description, learned
+ * lessons, and status.
+ * 
+ * @return A string message containing the ID, description, learned lessons, and status of an object.
+ */
+public String toStringSearch(){
+	String msg ="";
+	msg = "\n\nID: " + id +"\nDescripcion: "+ description+"\nLeccion Aprendida: "+learnedLessons+"\nEstado: "+status;
 	return msg;
 }
 

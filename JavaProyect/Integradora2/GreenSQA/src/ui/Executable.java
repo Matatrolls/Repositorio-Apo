@@ -527,7 +527,15 @@ public class Executable {
 		System.out.println("Las capsulas escritas por el colaborador son:\n"+controller.consultProjectsByCollaborator(choice));
 	}
 
+/**
+ * This Java function prompts the user to input a hashtag and then displays a list of capsules
+ * associated with that hashtag.
+ */
 	public void consultByHashtag(){
-
+		//limpieza buffer
+		input.nextLine();
+		System.out.println("Por favor escriba el ## el cual desea buscar sus capsulas creadas");
+		String choice=input.nextLine();
+		System.out.println("Las capsulas con la busqueda son:\n"+controller.consultByHashtag(choice));
 	}
 }
