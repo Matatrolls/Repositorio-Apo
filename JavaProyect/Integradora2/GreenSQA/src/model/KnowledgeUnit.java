@@ -94,6 +94,14 @@ public String toStringPublished(int i){
 
 //||||||||||||||||||GETTERS Y SETTERS|||||||||||||||||||||
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getNameProject() {
 		return nameProject;
 	}
