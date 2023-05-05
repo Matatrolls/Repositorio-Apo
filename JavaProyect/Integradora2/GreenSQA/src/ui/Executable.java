@@ -195,8 +195,8 @@ public class Executable {
 	}
 
 /**
- * This function displays a menu and prompts the user to select an option, then executes the
- * corresponding action based on the user's input.
+ * This function displays a menu and allows the user to select different options to generate various
+ * types of reports.
  */
 	public void menuInform(){
 		int temporal=0;
@@ -205,19 +205,23 @@ public class Executable {
 			temporal=input.nextInt();
 			switch(temporal){
 				case 1:
-				
+					consultKnowledgeUnitType();
 				break;
 
 				case 2:
-				
+					consultLearnedLeccionByStage();
 				break;
+
 				case 3:
+					consultMostRegisteredKnowledgeUnitsByProject();
 				break;
 
 				case 4:
+					consultProjectsByCollaborator();
 				break;
 
 				case 5:
+					consultByHashtag();
 				break;
 
 				default:
@@ -482,5 +486,56 @@ public class Executable {
  */
 	public void showAllPublishedKnowledgeUnits() {
 		System.out.println(controller.showPublishedKnowlegdeUnitList());
+	}
+
+//||||||||||||||||||||||||||||||INFORMS||||||||||||||||||||||||||||
+
+/**
+ * This function prints the result of consulting the knowledge unit type from a controller.
+ */
+	public void consultKnowledgeUnitType(){
+		System.out.println(controller.consultKnowledgeUnitType());
+	}
+
+/**
+ * This function prompts the user to choose a project stage and returns the learned lessons for that
+ * stage.
+ */
+	public void consultLearnedLeccionByStage(){
+		System.out.println("Por favor escoga de que etapa quiere saber sus lecciones aprendidas\n1:INICIO\n2:ANALISIS\n3:DISENO\n4:EJECUCION\n5:CIERRE\n6:SEGUIMIENTO Y CONTROL");
+		int choice=input.nextInt();
+		System.out.println(controller.consultLearnedLeccionByStage(choice));
+	}
+
+/**
+ * This function prints out the result of a query to the controller for the most registered knowledge
+ * units by project.
+ */
+	public void consultMostRegisteredKnowledgeUnitsByProject(){
+		System.out.println(controller.consultMostRegisteredKnowledgeUnitsByProject());
+	}
+
+/**
+ * This Java function prompts the user to input a collaborator's name and then displays a list of
+ * projects created by that collaborator.
+ */
+	public void consultProjectsByCollaborator(){
+		//limpieza buffer
+		input.nextLine();
+		System.out.println("Por favor escriba el nombre del Colaborador del cual desea buscar sus capsulas creadas");
+		String choice=input.nextLine();
+		System.out.println("Las capsulas escritas por el colaborador son:\n"+controller.consultProjectsByCollaborator(choice));
+	}
+
+/**
+ * This Java function prompts the user to input a hashtag and then displays a list of capsules
+ * associated with that hashtag.
+ */
+	public void consultByHashtag(){
+		//limpieza buffer
+		input.nextLine();
+		System.out.println("Por favor escriba el ## el cual desea buscar sus capsulas creadas");
+		String choice=input.nextLine();
+		System.out.println("Las capsulas con la busqueda son:\n"+controller.consultByHashtag(choice));
 	}
 }

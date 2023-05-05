@@ -328,6 +328,197 @@ public class Project{
 		return indicador;
 	}
 
+//||||||||||||||||||||||||||||||||INFORMS|||||||||||||||||||||||||||||||||||||||
+
+/**
+ * This function counts the number of knowledge units in a specific stage based on a given integer
+ * parameter.
+ * 
+ * @param temp an integer representing the stage of a knowledge unit (1 for "INICIO", 2 for "ANALISIS",
+ * 3 for "DISENO", 4 for "EJECUCION", 5 for "CIERRE", and 6 for "SEGUIMIENT
+ * @return The method is returning an integer value, which represents the number of knowledge units
+ * that belong to a specific stage, based on the input parameter "temp".
+ */
+public int consultKnowledgeUnitType(int temp){
+	String temporal="";
+	int counter=0;
+	for(int i=0;i<units.length;i++){
+		if(units[i]==null){
+		}
+		else{
+			temporal=units[i].getStage();
+			switch(temp){
+				case 1:
+					if(temporal.equalsIgnoreCase("INICIO")){
+						counter++;
+					}
+				break;
+
+				case 2:
+					if(temporal.equalsIgnoreCase("ANALISIS")){
+						counter++;
+					}
+				break;
+
+				case 3:
+					if(temporal.equalsIgnoreCase("DISENO")){
+						counter++;
+					}
+				break;
+
+				case 4:
+					if(temporal.equalsIgnoreCase("EJECUCION")){
+						counter++;
+					}
+				break;
+
+				case 5:
+					if(temporal.equalsIgnoreCase("CIERRE")){
+						counter++;
+					}
+				break;
+
+				case 6:
+				if(temporal.equalsIgnoreCase("SEGUIMIENTO_Y_CONTROL")){
+					counter++;
+				}
+				break;
+			}
+		}
+	}
+	return counter;
+}
+
+/**
+ * This function returns a string containing the learned lessons for a given stage in a project.
+ * 
+ * @param choice An integer representing the stage of a project management process. The possible values
+ * are 1, 2, 3, 4, 5, or 6, which correspond to the stages of "Inicio", "Analisis", "Diseno",
+ * "Ejecucion", "Cierre", "Seguimiento y control"
+ * @return The method is returning a String that contains the learned lessons for a specific stage of a
+ * project. The stage is determined by the integer parameter "choice", which corresponds to a specific
+ * stage in the switch statement. The method iterates through an array of "units" and checks if the
+ * stage of each unit matches the chosen stage. If it does, the method adds the learned lessons of that
+ * unit to the
+ */
+public String consultLearnedLeccionByStage(int choice){
+	String msg="";
+	String temporal="";
+	String temString="";
+	switch(choice){
+		case 1:
+			temporal="INICIO";
+		break;
+
+		case 2:
+			temporal="ANALISIS";
+		break;
+
+		case 3:
+			temporal="DISENO";
+		break;
+
+		case 4:
+			temporal="EJECUCION";
+		break;
+
+		case 5:
+			temporal="CIERRE";
+		break;
+
+		case 6:
+			temporal="SEGUIMIENTO_Y_CONTROL";
+		break;
+	}
+	for(int i=0;i<units.length;i++){
+		if(units[i]==null){
+		}
+		else{
+			if(temporal.equalsIgnoreCase(units[i].getStage())){
+				temString=units[i].getLearnedLessons();
+				msg+="\n"+temString;
+			}
+		}
+	}
+
+	return msg;
+}
+
+/**
+ * This function returns the number of registered knowledge units in a project.
+ * 
+ * @return The method is returning an integer value, which represents the number of registered
+ * knowledge units in all projects.
+ */
+public int consultMostRegisteredKnowledgeUnitsByProject(){
+	int msg=0;
+	for(int i=0;i<units.length;i++){
+		if(units[i]==null){
+		}
+		else{
+			msg++;
+		}
+	}
+	return msg;
+}
+
+/**
+ * This Java function returns a string message containing the IDs of projects that have a specific
+ * collaborator.
+ * 
+ * @param choice The name of the collaborator whose projects are being consulted.
+ * @return The method is returning a String that contains the IDs of all the projects that have a
+ * collaborator with the name specified in the parameter "choice".
+ */
+public String consultProjectsByCollaborator(String choice){
+	String msg="";
+	String temString="";
+	for(int i=0;i<units.length;i++){
+		if(units[i]==null){
+		}
+		else{
+			if(choice.equalsIgnoreCase(units[i].getCollaboratorName())){
+				temString=units[i].getId();
+				msg+="\n"+temString;
+			}
+		}
+	}
+	return msg;
+}
+
+/**
+ * This Java function searches for units that have a specific hashtag and returns a message with the
+ * matching units.
+ * 
+ * @param choice The hashtag that the user wants to search for in the units.
+ * @return A String containing information about the units that have a specific hashtag in their
+ * learned lessons, formatted as a list.
+ */
+public String consultByHashtag(String choice){
+	String msg="";
+	String temString="";
+	String comparator="";
+	String[] getter;
+	String splitter="";
+	int counter=1;
+	for(int i=0;i<units.length;i++){
+		if(units[i]==null){
+		}
+		else{
+			if(units[i].getStatus()==Status.PUBLICADA || units[i].getStatus()==Status.APROBADA ){
+				comparator+=units[i].getLearnedLessons();
+				getter=comparator.split("#");
+				splitter+=getter[1];
+				if(choice.equalsIgnoreCase(splitter)){
+					temString=units[i].toStringSearch();
+					msg+="\n"+counter+temString;
+					counter++;
+				}
+			}
+		}
+	}
+	return msg;
+}
 //||||||||||||||||||||||||GETTERS Y SETTERS||||||||||||||||||||||||||||||||||||||
 
 	public String getName(){

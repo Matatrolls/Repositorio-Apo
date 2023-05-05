@@ -277,4 +277,136 @@ public boolean publishKnowledgeUnit(int choiceProject,int choice){
 	}
 	return indicador;
 }
+
+//|||||||||||||||||||||||||||||||||||INFORMS|||||||||||||||||||||||||||||||||||||
+
+/**
+ * This function calculates the number of knowledge units of different types in a set of projects and
+ * returns a message with the results.
+ * 
+ * @return A String message containing the number of knowledge units (capsulas) for each stage of a
+ * project.
+ */
+public String consultKnowledgeUnitType(){
+	String msg="";
+	int ini=0;
+	int ana=0;
+	int dis=0;
+	int eje=0;
+	int cie=0;
+	int seg=0;
+	for(int i=0;i<projects.length;i++){
+		if(projects[i]==null){
+		}
+		else{
+			ini+=projects[i].consultKnowledgeUnitType(1);
+			ana+=projects[i].consultKnowledgeUnitType(2);
+			dis+=projects[i].consultKnowledgeUnitType(3);
+			eje+=projects[i].consultKnowledgeUnitType(4);
+			cie+=projects[i].consultKnowledgeUnitType(5);
+			seg+=projects[i].consultKnowledgeUnitType(6);
+		}
+	}
+	msg="\nNumero de capsulas por etapa: \nInicio: "+ini+"\nAnalisis: "+ana+"\nDiseno: "+dis+"\nEjecucion: "+eje+"\nCierre: "+cie+"\nSeguimiento y control: "+seg;
+	return msg;
+}
+
+/**
+ * This function returns a message containing the learned lessons for a given stage in all projects.
+ * 
+ * @param choice The parameter "choice" is an integer that represents the stage of a project. The
+ * method "consultLearnedLeccionByStage" is called on each project in an array of projects, and it
+ * returns a message containing the learned lessons for the specified stage of each project. The
+ * messages are concatenated
+ * @return The method is returning a String message that contains the learned lessons for a specific
+ * stage in all the projects stored in an array.
+ */
+public String consultLearnedLeccionByStage(int choice){
+	String msg="";
+
+	for(int i=0;i<projects.length;i++){
+		if(projects[i]==null){
+		}
+		else{
+			msg+=projects[i].consultLearnedLeccionByStage(choice);
+		}
+	}
+	return msg;
+}
+
+/**
+ * This function returns a message indicating the project with the most registered knowledge units.
+ * 
+ * @return A message indicating the project with the most registered knowledge units.
+ */
+public String consultMostRegisteredKnowledgeUnitsByProject(){
+	String msg="";
+	String temporal="";
+	int compare=0;
+	for(int i=0;i<projects.length;i++){
+		if(projects[i]==null){
+		}
+		else{
+			if(compare<projects[i].consultMostRegisteredKnowledgeUnitsByProject()){
+				compare=projects[i].consultMostRegisteredKnowledgeUnitsByProject();
+				temporal=projects[i].getName();
+				msg="\n El proyecto con mas capsulas registradas es: "+ temporal;
+			}
+		}
+	}
+	return msg;
+}
+
+/**
+ * This function returns a message containing information about projects that a collaborator is
+ * involved in.
+ * 
+ * @param choice The parameter "choice" is a String that represents the name of a collaborator. This
+ * method is used to consult all the projects in which the collaborator has participated.
+ * @return The method is returning a String message that contains the projects that a collaborator is
+ * involved in. If there are no projects registered for the collaborator, the message will indicate
+ * that there are no capsules registered for them.
+ */
+public String consultProjectsByCollaborator(String choice){
+	String msg="";
+
+	for(int i=0;i<projects.length;i++){
+		if(projects[i]==null){
+		}
+		else{
+			msg+=projects[i].consultProjectsByCollaborator(choice);
+		}
+	}
+	if(msg.equalsIgnoreCase("")){
+		msg+="No existen capsulas registradas por el Colaborador";
+	}
+	return msg;
+}
+
+/**
+ * This Java function searches for projects by a given hashtag and returns a message with the results
+ * or a "not found" message.
+ * 
+ * @param choice a String representing the hashtag that the user wants to search for in the projects
+ * array. The method loops through the projects array and calls the consultByHashtag method on each
+ * project object, passing in the choice parameter. It then concatenates the returned message from each
+ * project and returns the final message. If
+ * @return A String message that contains the result of the consultation by hashtag on all the
+ * projects. If there are no capsules published with the given hashtag, the message will indicate that.
+ */
+public String consultByHashtag(String choice){
+	String msg="";
+
+	for(int i=0;i<projects.length;i++){
+		if(projects[i]==null){
+		}
+		else{
+			msg+=projects[i].consultByHashtag(choice);
+		}
+	}
+	if(msg.equalsIgnoreCase("")){
+		msg+="No existen capsulas publicadas con esa busqueda";
+	}
+	return msg;
+}
 }
