@@ -83,8 +83,31 @@ public class Executable {
 
 		System.out.println("Digite el nickname");
 		String nickname = reader.nextLine();
+		int tipeUserChoice=0;
+		int categoryChoice=0;
 
-		if (rXSystem.registerUser(id, name, nickname)) {
+		while(tipeUserChoice==0){
+			System.out.println("Digite el tipo de usuario:\n1:Regular \n2:Premium ");
+			tipeUserChoice = reader.nextInt();
+			switch(tipeUserChoice){
+				case 1:
+				break;
+				
+				case 2:
+					System.out.println("Digite el rango de premium:\n1:Plata \n2:Oro \n3:Diamante");
+					categoryChoice = reader.nextInt();
+				break;
+
+				default:
+				tipeUserChoice=0;
+				System.out.println("Esa no es una opcion valida!");
+				break;
+			}
+		}
+	
+		
+		
+		if (rXSystem.registerUser(id, name, nickname,tipeUserChoice,categoryChoice)) {
 
 			System.out.println("Usuario registrado exitosamente");
 
