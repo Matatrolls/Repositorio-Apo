@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Calendar;
 
 public abstract class User {
 
@@ -14,6 +13,7 @@ public abstract class User {
 		this.name = name;
 		this.nickname = nickname;
 	}
+
 
 	public String getId() {
 		return id;
@@ -38,5 +38,6 @@ public abstract class User {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+
 
 }

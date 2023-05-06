@@ -9,7 +9,7 @@ public class PremiumUser extends User {
 	}
     @Override
     public String toString() {
-        String msg="\nID: "+this.getId()+"\nNombre: "+getName()+"\nNickname: "+getNickname()+Premiumcategory;
+        String msg="\nID: "+this.getId()+"\nNombre: "+getName()+"\nNickname: "+getNickname()+"\nCategoria: "+Premiumcategory;
         return msg;
     }
     public void setPremiumcategory(PremiumCategory premiumcategory) {

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Controller {
 
@@ -38,10 +36,9 @@ public class Controller {
 
 	public boolean registerUser(String id, String name, String nickname,int tipeUserChoice,int categoryChoice) {
 		boolean indicator=false;
-		Calendar dateCalendar= Calendar.getInstance();
 
 		for(int i=0; i<users.length;i++){
-            if(users== null){
+            if(users[i]== null && !indicator){
 				switch(tipeUserChoice){
 					case 1:
 						users[i] = new StandarUser(id, name, nickname);
@@ -70,9 +67,62 @@ public class Controller {
 		return indicator;
 	}
 
-	public boolean editUser(int userPosition) {
+	public boolean editUser(int userPosition,int categoryChange, int categoryChoice,String stringchange) {
 		boolean indicator=false;
+		switch(categoryChange){
+			case 1:
+			users[userPosition].setName(stringchange);
+			indicator =true;
+			break;
 
+			case 2:
+			users[userPosition].setNickname(stringchange);
+			indicator=true;
+			break;
+
+			case 3:
+			PremiumCategory temporal= PremiumCategory.PLATA;
+			switch(categoryChoice){
+				case 0:
+				if(users[userPosition] instanceof PremiumUser){
+					for(int i =0;i<users.length;i++){
+						if(users[i]==null){
+							StandarUser temporalUser = new StandarUser(users[userPosition].getId(),users[userPosition].getName() , users[userPosition].getNickname());
+							users[userPosition]=temporalUser;
+							return true;
+						}
+					}
+				}
+				else{
+					return false;
+				}
+				case 1:
+				temporal=PremiumCategory.PLATA;
+				break;
+
+				case 2:
+				temporal=PremiumCategory.ORO;
+				break;
+
+				case 3:
+				temporal=PremiumCategory.DIAMANTE;
+				break;
+			}
+
+			if(users[userPosition] instanceof PremiumUser){
+				((PremiumUser)users[userPosition]).setPremiumcategory(temporal);
+				return true;
+			}
+			if(users[userPosition] instanceof StandarUser){
+				for(int i =0;i<users.length;i++){
+					if(users[i]==null){
+						PremiumUser temporalUser = new PremiumUser(users[userPosition].getId(),users[userPosition].getName() , users[userPosition].getNickname(), temporal);
+						users[userPosition]=temporalUser;
+						return true;
+					}
+				}
+			}
+		}
 		return indicator;
 	}
 
@@ -85,14 +135,22 @@ public class Controller {
 	public String getUserInfo(int option) {
 
 		String msg = "";
-		users[option].toString();
+		msg =users[option].toString();
 		return msg;
 	}
 
 	public String getAllUserInfo() {
 
-		String msg = "";
+		String msg ="";
 
+		for(int i=0;i<users.length;i++){
+			if(users[i] == null){
+				
+			}
+			else{
+				msg+=users[i].toString();
+			}
+		}
 		return msg;
 	}
 

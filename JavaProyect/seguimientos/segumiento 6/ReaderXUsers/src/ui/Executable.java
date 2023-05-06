@@ -91,6 +91,7 @@ public class Executable {
 			tipeUserChoice = reader.nextInt();
 			switch(tipeUserChoice){
 				case 1:
+				
 				break;
 				
 				case 2:
@@ -134,7 +135,23 @@ public class Executable {
 
 			int option = reader.nextInt();
 
-			if (rXSystem.editUser(option - 1)) {
+			int categoryChoice=0;
+			String stringChange="";
+
+			System.out.println("\nSeleccione a que categoria desea cambiar\n1:Nombre\n2:Nickname\n3:Categoria");
+			int categoryChange = reader.nextInt();
+			if(categoryChange==3){
+				System.out.println("\nSeleccione el rango al que desea cambiarlo \n0:Estandar\n1:Plata\n2:Oro\n3:Diamante");
+				categoryChoice = reader.nextInt();
+			}
+			else{
+			System.out.println("\nEscriba su nueva eleccion");
+			//limpieza buffer
+			reader.nextLine();
+			stringChange = reader.nextLine();
+			}
+
+			if (rXSystem.editUser(option - 1,categoryChange,categoryChoice,stringChange)) {
 
 				System.out.println("\nUsuario editado exitosamente");
 
@@ -194,12 +211,12 @@ public class Executable {
 
 			int option = reader.nextInt();
 
-			String query2 = rXSystem.getUserInfo(option);
+			String query2 = rXSystem.getUserInfo(option-1);
 
 			if (query2.equals("")) {
 				System.out.println("La operación no pudo realizarse");
 			} else {
-				System.out.println(query);
+				System.out.println(query2);
 			}
 
 		}
