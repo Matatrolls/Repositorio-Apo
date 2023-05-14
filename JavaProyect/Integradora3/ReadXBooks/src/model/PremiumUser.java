@@ -1,6 +1,6 @@
 package model;
 
-public class PremiumUser extends User {
+public class PremiumUser extends User{
     private PremiumCategory Premiumcategory;
 
     public PremiumUser(String id, String name, String nickname, PremiumCategory Premiumcategory) {

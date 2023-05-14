@@ -1,18 +1,15 @@
 package model;
 
-import java.util.Calendar;
 import java.util.ArrayList;
 
 public class Controller {
 
-	private ArrayList<Book> books;
-	private ArrayList<Transaction> transactions;
+	private ArrayList<Product> products;
 	private ArrayList<User> users;
 
 	public Controller() {
 
-		this.books = new ArrayList<Book>();
-		this.transactions = new ArrayList<Transaction>();
+		this.products = new ArrayList<Product>();
 		this.users = new ArrayList<User>();
 		testCases();
 
@@ -21,50 +18,67 @@ public class Controller {
 
 	public void testCases() {
 
-		books.add(new Book("A1F", "A Game of Thrones", Genre.FANTASIA,20));
-		books.add( new Book("A1A", "Dune", Genre.CIENCIA_FICCION, 10));
+		products.add(new Book("4AF", "A Game of Thrones",694,"Join adventurers across the seven kingdoms","01/08/1996", Genre.FANTASIA,"AGOT.png",19.99,212018485,4888789521362L));
+		products.add( new Magazine("Z1T","Vogue",40,Category.VARIEDADES,"01/06/2021","Mensual","LMV2021.jpg",4.99,122867,7533456212L));
 		
 		users.add( new StandarUser("1234", "John Smith", "Smithy"));
 		users.add(new PremiumUser("5678", "Pocahontas", "Pocah",PremiumCategory.DIAMANTE));
 
 	}
-
-	public boolean registerBook(String id, String name, int genre, double price) {
+//|||||||||||||||||||||||||||||PRODUCTS||||||||||||||||||||||||||||||||||||||||||||||
+	public boolean registerBook(String id, String name,int pagesNumber, String review,String publicationDate,int genre,String url ,double price,double unitsSold,long readedPages) {
 		boolean indicator= false;
 		Genre realGenre;
 		switch(genre){
 			case 1:
-			realGenre= Genre.CIENCIA_FICCION;
+				realGenre= Genre.CIENCIA_FICCION;
 			break;
 			case 2:
-			realGenre= Genre.FANTASIA;
+				realGenre= Genre.FANTASIA;
 			break;
 			case 3:
-			realGenre= Genre.NOVELA_HISTORICA;
+				realGenre= Genre.NOVELA_HISTORICA;
 			break;
 			default:
-			realGenre= Genre.CIENCIA_FICCION;
+				realGenre= Genre.CIENCIA_FICCION;
 			break;
+		}
+		products.add(new Book(id,name,pagesNumber,review,publicationDate,realGenre,url,price,unitsSold,readedPages));
+		indicator=true;
 
-		}
-		
-		for(int i=0;i<books.size();i++){
-			if(books.get(i)==null && !indicator){
-				books.add(new Book(id, name, realGenre, price));
-				indicator=true;
-			}
-		}
 		return indicator;
 	}
 
-	public String getBookList() {
+	public boolean registerMagazine(String id, String name,int pagesNumber,int category,String publicationDate,String publicationPeriodicity, String url,double suscriptionPrice,double activeSuscriptions,long readedPages) {
+		boolean indicator= false;
+		Category realCategory;
+		switch(category){
+			case 1:
+				realCategory= Category.VARIEDADES;
+			break;
+			case 2:
+				realCategory= Category.DISENIO;
+			break;
+			case 3:
+				realCategory= Category.CIENTIFICA;
+			break;
+			default:
+				realCategory=  Category.VARIEDADES;
+			break;
+		}
+		products.add(new Magazine(id, name, pagesNumber, realCategory, publicationDate, publicationPeriodicity, url, suscriptionPrice, activeSuscriptions, readedPages));
+		indicator=true;
+		return indicator;
+	}
+
+	public String getProductList() {
 
 		String msg = "";
 
-		for (int i = 0; i < books.size(); i++) {
+		for (int i = 0; i < products.size(); i++) {
 
-			if (books.get(i) != null) {
-				msg += "\n" + (i + 1) + ". " + books.get(i).getName() + " - " + books.get(i).getPrice();
+			if (products.get(i) != null) {
+				msg += "\n" + (i + 1) + ". " + products.get(i).getName();
 			}
 
 		}
@@ -73,34 +87,48 @@ public class Controller {
 
 	}
 
-	public boolean sellBook(int i) {
+	public boolean sellProduct(int productOption,int userOption) {
 		boolean indicator= false;
-		int preSold=books.get(i).getUnitsSold();
-		int postSold=preSold+1;
-		if(books.get(i).setUnitsSold(postSold)){
-			indicator=true;
-			transactions.add( new Transaction(Calendar.getInstance(),books.get(i).getPrice()));
-		}
 
+		if(products.get(productOption) instanceof Book){
+			((users.get(userOption)).getProducts()).add(new Book(((Book)products.get(productOption)).getId(),((Book)products.get(productOption)).getName(),((Book)products.get(productOption)).getPagesNumber(),((Book)products.get(productOption)).getReview(),((Book)products.get(productOption)).getPublicationDate(),((Book)products.get(productOption)).getGenre(),((Book)products.get(productOption)).getUrl(),((Book)products.get(productOption)).getPrice(),((Book)products.get(productOption)).getUnitsSold(),((Book)products.get(productOption)).getReadedPages()));
+			double preSold=((Book)products.get(productOption)).getUnitsSold();
+			double postSold=preSold+1;
+			if(((Book)products.get(productOption)).setUnitsSold(postSold)){
+				indicator=true;
+			}
+		}
+		if(products.get(productOption) instanceof Magazine){
+			((users.get(userOption)).getProducts()).add(new Magazine(((Magazine)products.get(productOption)).getId(),((Magazine)products.get(productOption)).getName(),((Magazine)products.get(productOption)).getPagesNumber(),((Magazine)products.get(productOption)).getCategory(),((Magazine)products.get(productOption)).getPublicationDate(),((Magazine)products.get(productOption)).getPublicationPeriodicity(),((Magazine)products.get(productOption)).getUrl(), ((Magazine)products.get(productOption)).getSuscriptionPrice(),((Magazine)products.get(productOption)).getActiveSuscriptions(),((Magazine)products.get(productOption)).getReadedPages()));
+			double preSold=((Magazine)products.get(productOption)).getActiveSuscriptions();
+			double postSold=preSold+1;
+			if(((Magazine)products.get(productOption)).setActiveSuscriptions(postSold)){
+				indicator=true;
+			}
+		}
+	
 		return indicator;
+
+		
 	}
 
-	public String getAllKBookInfo() {
+	public String getAllKProductInfo() {
 
 		String msg = "";
 		double totalSells;
 
-		for (int i = 0; i < books.size(); i++) {
+		for (int i = 0; i < products.size(); i++) {
 
-			if (books.get(i) != null) {
-				totalSells=books.get(i).getUnitsSold()+books.get(i).getPrice();
-				msg += "\n" + (i + 1) + ". " + books.get(i).getId()+ ". " + books.get(i).getName()+ ". " + books.get(i).getGenre()+ ". \nPrecio: " + books.get(i).getPrice()+ ". \nUnidades Vendidas: " + books.get(i).getUnitsSold()+ ". \nVentas Totales:" + totalSells;
+			if (products.get(i) != null) {
+				msg+=products.get(i).toString();
 			}
 
 		}
 
 		return msg;
 	}
+
+//||||||||||||||||||||||||||||||||||||||USERS||||||||||||||||||||||||||||||||||||||||
 
 	public String getUserList() {
 

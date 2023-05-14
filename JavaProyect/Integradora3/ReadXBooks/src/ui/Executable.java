@@ -23,29 +23,26 @@ public class Executable {
 //|||||||||||||||||||||||||||||||||||MENUS||||||||||||||||||||||||||||||
 
 	private void menu() {
-		
-	}
-
-	public void menuLibros() {
-		System.out.println("\nEscoja que desea hacer");
-		System.out.println("1. Registrar libro");
-		System.out.println("2. Vender libro");
-		System.out.println("3. Consultar informacion registrada en el sistema");
+		System.out.println("\nBienvenido a ReadXbook");
+		System.out.println("Escoja que desea hacer:");
+		System.out.println("1. Menu usuarios");
+		System.out.println("2. Menu productos");
+		System.out.println("3. Menu Usos");
 	
 		int option = input.nextInt();
 
 		switch (option) {
 
 			case 1:
-				registerBook();
+				menuUsers();
 			break;
 
 			case 2:
-				sellBook();
+				menuProduct();
 			break;
 
 			case 3:
-				showAllBookInfo();
+				menuUses();
 			break;
 
 			default:
@@ -54,7 +51,48 @@ public class Executable {
 		}
 	}
 
-	private void menuUsuarios() {
+	private void menuUses() {
+		System.out.println("\nEscoja que desea hacer");
+		System.out.println("1. Vender Producto");
+		int option = input.nextInt();
+		switch (option) {
+
+			case 1:
+				sellProduct();;
+			break;
+
+
+			default:
+				System.out.println("Esa no es una opcion!");
+			break;
+		}
+	}
+
+	public void menuProduct() {
+		System.out.println("\nEscoja que desea hacer");
+		System.out.println("1. Registrar libro");
+		
+		System.out.println("2. Consultar informacion registrada en el sistema");
+	
+		int option = input.nextInt();
+
+		switch (option) {
+
+			case 1:
+				registerProduct();
+			break;
+
+			case 2:
+				showAllProductInfo();
+			break;
+
+			default:
+				System.out.println("Esa no es una opcion!");
+			break;
+		}
+	}
+
+	private void menuUsers() {
 		System.out.println("\nEscoja que desea hacer");
 		System.out.println("1. Registrar usuario");
 		System.out.println("2. Modificar usuario");
@@ -260,13 +298,17 @@ public class Executable {
 
 	}
 
-//||||||||||||||||||||||||||||||||BOOKS||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||PRODUCTS||||||||||||||||||||||||||||||||||||
 
-	public void registerBook() {
+	public void registerProduct() {
 
-		System.out.println("Digite a continuacion la informacion de un nuevo libro");
+		System.out.println("Digite a continuacion la informacion de un nuevo producto");
 
 		// Limpieza de buffer
+		
+		System.out.println("Digite el tipo de producto:\n1:Libro\n2:Revista");
+		int choice = input.nextInt();
+
 		input.nextLine();
 		
 		System.out.println("Digite el identificador. Ej.: A1F");
@@ -275,40 +317,100 @@ public class Executable {
 		System.out.println("Digite el nombre");
 		String name = input.nextLine();
 
-		System.out.println("Digite el tipo de genero. \n1. Ciencia Ficcion \n2. Fantasia \n3. Novela historica");
-		int genre = input.nextInt();
+		System.out.println("Digite el numero de paginas");
+		int pagesNumber = input.nextInt();
+		
+		System.out.println("Digite la fecha de publicacion.Ej:01/01/2000");
+		String publicationDate = input.nextLine();
 
-		System.out.println("Digite el valor de venta");
-		double price = input.nextDouble();
+		input.nextLine();
+		System.out.println("Digite la url. Ej: Ejemplo.png");
+		String url = input.nextLine();
 
-		if (rXSystem.registerBook(id, name, genre, price)) {
+		System.out.println("Digite la cantidad de paginas leidas. Ej: 1234567897654321L , ponga la L si el valor es muy alto");
+		long readedPages = input.nextLong();
 
-			System.out.println("Libro registrado exitosamente");
+		switch(choice){
 
-		} else {
+			case 1:
 
-			System.out.println("Memoria llena, no se pudo registrar el libro");
+				input.nextLine();
+				System.out.println("Digite la resenia");
+				String review = input.nextLine();
+
+				System.out.println("Digite el tipo de genero. \n1. Ciencia Ficcion \n2. Fantasia \n3. Novela historica");
+				int genre = input.nextInt();
+				System.out.println("Digite el valor de venta");
+				double price = input.nextDouble();
+				System.out.println("Digite las unidades vendidas. Ej:123456753241D, ponga la D si el valor es muy grande");
+				double unitsSold = input.nextDouble();
+
+				if (rXSystem.registerBook(id, name,pagesNumber, review,publicationDate,genre,url, price,unitsSold,readedPages)) {
+
+					System.out.println("Libro registrado exitosamente");
+		
+				} else {
+		
+					System.out.println("Memoria llena, no se pudo registrar el libro");
+				}
+			break;
+
+			case 2:
+			input.nextLine();
+			System.out.println("Digite el tipo de categoria. \n1.Variedades \n2. Disenio \n3. Cientifica");
+			int category = input.nextInt();
+			System.out.println("Digite la periodicidad de publicacion.Ej: Mensual");
+			String publicationPeriodicity = input.nextLine();
+			System.out.println("Digite el valor de suscripcion");
+			double suscriptionPrice = input.nextDouble();
+			System.out.println("Digite las suscripciones activas. Ej:123456753241D, ponga la D si el valor es muy grande");
+			double activeSuscriptions = input.nextDouble();
+
+			if (rXSystem.registerMagazine(id, name, pagesNumber, category, publicationDate, publicationPeriodicity, url, suscriptionPrice, activeSuscriptions, readedPages)) {
+
+				System.out.println("Revista registrada exitosamente");
+	
+			} else {
+	
+				System.out.println("Memoria llena, no se pudo registrar la revista");
+			}
+			break;
 		}
+
 	}
 
-	private void sellBook() {
+	private void sellProduct() {
 
-		String query = rXSystem.getBookList();
+		String productQuery = rXSystem.getProductList();
 
-		if (query.equals("")) {
+		if (productQuery.equals("")) {
 
-			System.out.println("No hay libros registrados");
+			System.out.println("No hay productos registrados");
 		} else {
 
-			System.out.println("\nEste es el listado de libros registrados en el sistema");
+			System.out.println("\nEste es el listado de productos registrados en el sistema");
 
-			System.out.println(query);
+			System.out.println(productQuery);
 
-			System.out.println("\nSeleccione el libro a vender");
+			System.out.println("\nSeleccione el producto a vender");
 
-			int option = input.nextInt();
+			int productOption = input.nextInt();
 
-			if (rXSystem.sellBook(option - 1)) {
+			String Userquery = rXSystem.getUserList();
+			System.out.println(Userquery);
+
+			int userOption=1;
+			if (Userquery.equals("")) {
+
+				System.out.println("No hay Usuarios registrados");
+			} else {
+
+				System.out.println("\nSeleccione el usuario a vender");
+
+				userOption = input.nextInt();
+
+			}
+			if (rXSystem.sellProduct(productOption - 1,userOption-1)) {
 
 				System.out.println("\nTransaccion realizada exitosamente");
 
@@ -321,11 +423,11 @@ public class Executable {
 
 	}
 
-	public void showAllBookInfo() {
+	public void showAllProductInfo() {
 
 		System.out.println("Esta es la informacion registrada en el sistema");
 
-		String query = rXSystem.getAllKBookInfo();
+		String query = rXSystem.getAllKProductInfo();
 
 		if (query.equals("")) {
 
@@ -335,5 +437,6 @@ public class Executable {
 		}
 
 	}
+
 }
 
