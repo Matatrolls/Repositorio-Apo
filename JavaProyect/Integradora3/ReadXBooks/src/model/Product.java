@@ -1,22 +1,22 @@
 package model;
 
-public class Product {
+public abstract class Product {
     private String id;
 	private String name;
     private int pagesNumber;
     private String publicationDate;
     private String url;
-    private long readedPages;
+    private double readedPages;
 
 
-    Product(String id, String name,int pagesNumber,String publicationDate,String url,long readedPages){
+    Product(String id, String name,int pagesNumber,String publicationDate,String url){
         super();
         this.id=id;
         this.name=name;
         this.pagesNumber=pagesNumber;
         this.publicationDate=publicationDate;
         this.url=url;
-        this.readedPages=readedPages;
+        this.readedPages=0;
     }
 
     public String getId() {
@@ -59,11 +59,11 @@ public class Product {
         this.url = url;
     }
 
-    public long getReadedPages() {
+    public double getReadedPages() {
         return readedPages;
     }
 
-    public void setReadedPages(long readedPages) {
+    public void setReadedPages(double readedPages) {
         this.readedPages = readedPages;
     }
 

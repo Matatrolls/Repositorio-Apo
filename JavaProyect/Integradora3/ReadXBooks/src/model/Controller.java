@@ -18,15 +18,15 @@ public class Controller {
 
 	public void testCases() {
 
-		products.add(new Book("4AF", "A Game of Thrones",694,"Join adventurers across the seven kingdoms","01/08/1996", Genre.FANTASIA,"AGOT.png",19.99,212018485,4888789521362L));
-		products.add( new Magazine("Z1T","Vogue",40,Category.VARIEDADES,"01/06/2021","Mensual","LMV2021.jpg",4.99,122867,7533456212L));
+		products.add(new Book("4AF", "A Game of Thrones",694,"Join adventurers across the seven kingdoms","01/08/1996", Genre.FANTASIA,"AGOT.png",19.99));
+		products.add( new Magazine("Z1T","Vogue",40,Category.VARIEDADES,"01/06/2021","Mensual","LMV2021.jpg",4.99));
 		
 		users.add( new StandarUser("1234", "John Smith", "Smithy"));
 		users.add(new PremiumUser("5678", "Pocahontas", "Pocah",PremiumCategory.DIAMANTE));
 
 	}
 //|||||||||||||||||||||||||||||PRODUCTS||||||||||||||||||||||||||||||||||||||||||||||
-	public boolean registerBook(String id, String name,int pagesNumber, String review,String publicationDate,int genre,String url ,double price,double unitsSold,long readedPages) {
+	public boolean registerBook(String id, String name,int pagesNumber, String review,String publicationDate,int genre,String url ,double price) {
 		boolean indicator= false;
 		Genre realGenre;
 		switch(genre){
@@ -43,13 +43,13 @@ public class Controller {
 				realGenre= Genre.CIENCIA_FICCION;
 			break;
 		}
-		products.add(new Book(id,name,pagesNumber,review,publicationDate,realGenre,url,price,unitsSold,readedPages));
+		products.add(new Book(id,name,pagesNumber,review,publicationDate,realGenre,url,price));
 		indicator=true;
 
 		return indicator;
 	}
 
-	public boolean registerMagazine(String id, String name,int pagesNumber,int category,String publicationDate,String publicationPeriodicity, String url,double suscriptionPrice,double activeSuscriptions,long readedPages) {
+	public boolean registerMagazine(String id, String name,int pagesNumber,int category,String publicationDate,String publicationPeriodicity, String url,double suscriptionPrice) {
 		boolean indicator= false;
 		Category realCategory;
 		switch(category){
@@ -66,7 +66,7 @@ public class Controller {
 				realCategory=  Category.VARIEDADES;
 			break;
 		}
-		products.add(new Magazine(id, name, pagesNumber, realCategory, publicationDate, publicationPeriodicity, url, suscriptionPrice, activeSuscriptions, readedPages));
+		products.add(new Magazine(id, name, pagesNumber, realCategory, publicationDate, publicationPeriodicity, url, suscriptionPrice));
 		indicator=true;
 		return indicator;
 	}
@@ -91,7 +91,7 @@ public class Controller {
 		boolean indicator= false;
 
 		if(products.get(productOption) instanceof Book){
-			((users.get(userOption)).getProducts()).add(new Book(((Book)products.get(productOption)).getId(),((Book)products.get(productOption)).getName(),((Book)products.get(productOption)).getPagesNumber(),((Book)products.get(productOption)).getReview(),((Book)products.get(productOption)).getPublicationDate(),((Book)products.get(productOption)).getGenre(),((Book)products.get(productOption)).getUrl(),((Book)products.get(productOption)).getPrice(),((Book)products.get(productOption)).getUnitsSold(),((Book)products.get(productOption)).getReadedPages()));
+			((users.get(userOption)).getProducts()).add(new Book(((Book)products.get(productOption)).getId(),((Book)products.get(productOption)).getName(),((Book)products.get(productOption)).getPagesNumber(),((Book)products.get(productOption)).getReview(),((Book)products.get(productOption)).getPublicationDate(),((Book)products.get(productOption)).getGenre(),((Book)products.get(productOption)).getUrl(),((Book)products.get(productOption)).getPrice()));
 			double preSold=((Book)products.get(productOption)).getUnitsSold();
 			double postSold=preSold+1;
 			if(((Book)products.get(productOption)).setUnitsSold(postSold)){
@@ -99,7 +99,7 @@ public class Controller {
 			}
 		}
 		if(products.get(productOption) instanceof Magazine){
-			((users.get(userOption)).getProducts()).add(new Magazine(((Magazine)products.get(productOption)).getId(),((Magazine)products.get(productOption)).getName(),((Magazine)products.get(productOption)).getPagesNumber(),((Magazine)products.get(productOption)).getCategory(),((Magazine)products.get(productOption)).getPublicationDate(),((Magazine)products.get(productOption)).getPublicationPeriodicity(),((Magazine)products.get(productOption)).getUrl(), ((Magazine)products.get(productOption)).getSuscriptionPrice(),((Magazine)products.get(productOption)).getActiveSuscriptions(),((Magazine)products.get(productOption)).getReadedPages()));
+			((users.get(userOption)).getProducts()).add(new Magazine(((Magazine)products.get(productOption)).getId(),((Magazine)products.get(productOption)).getName(),((Magazine)products.get(productOption)).getPagesNumber(),((Magazine)products.get(productOption)).getCategory(),((Magazine)products.get(productOption)).getPublicationDate(),((Magazine)products.get(productOption)).getPublicationPeriodicity(),((Magazine)products.get(productOption)).getUrl(), ((Magazine)products.get(productOption)).getSuscriptionPrice()));
 			double preSold=((Magazine)products.get(productOption)).getActiveSuscriptions();
 			double postSold=preSold+1;
 			if(((Magazine)products.get(productOption)).setActiveSuscriptions(postSold)){
@@ -252,6 +252,11 @@ public class Controller {
 			
 		}
 		return msg;
+	}
+
+
+	public boolean editProduct(int i, int categoryChange, int categoryChoice, String stringChange) {
+		return false;
 	}
 
 }

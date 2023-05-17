@@ -14,12 +14,13 @@ public class Magazine extends Product{
 
     public Magazine(String id, String name,int pagesNumber,Category category,String publicationDate,
         String publicationPeriodicity, String url,
-		double suscriptionPrice,double activeSuscriptions,long readedPages) {
-		super(id,name,pagesNumber,publicationDate,url,readedPages);
+		double suscriptionPrice) {
+		super(id,name,pagesNumber,publicationDate,url);
 		this.category=category;
         this.publicationPeriodicity=publicationPeriodicity;
         this.suscriptionPrice=suscriptionPrice;
-        this.activeSuscriptions=activeSuscriptions;
+        this.activeSuscriptions=0;
+        this.setReadedPages(0);
 
 	}
 

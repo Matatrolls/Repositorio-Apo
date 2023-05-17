@@ -16,12 +16,13 @@ public class  Book extends Product{
 
 	public Book(String id, String name,int pagesNumber,String review,String publicationDate, 
 		Genre genre, String url,
-		double price,double unitsSold,long readedPages) {
-		super(id,name,pagesNumber,publicationDate,url,readedPages);
+		double price) {
+		super(id,name,pagesNumber,publicationDate,url);
 		this.review=review;
 		this.genre = genre;
 		this.price = price;
-		this.unitsSold=unitsSold;
+		this.unitsSold=0;
+		this.setReadedPages(0);
 	}
 
 

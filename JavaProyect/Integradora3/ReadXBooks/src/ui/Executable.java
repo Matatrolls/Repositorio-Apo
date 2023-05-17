@@ -71,8 +71,8 @@ public class Executable {
 	public void menuProduct() {
 		System.out.println("\nEscoja que desea hacer");
 		System.out.println("1. Registrar libro");
-		
 		System.out.println("2. Consultar informacion registrada en el sistema");
+		System.out.println("3. Modificar producto registrado en el sistema");
 	
 		int option = input.nextInt();
 
@@ -84,6 +84,10 @@ public class Executable {
 
 			case 2:
 				showAllProductInfo();
+			break;
+
+			case 3:
+				modifyProduct();
 			break;
 
 			default:
@@ -327,8 +331,6 @@ public class Executable {
 		System.out.println("Digite la url. Ej: Ejemplo.png");
 		String url = input.nextLine();
 
-		System.out.println("Digite la cantidad de paginas leidas. Ej: 1234567897654321L , ponga la L si el valor es muy alto");
-		long readedPages = input.nextLong();
 
 		switch(choice){
 
@@ -342,10 +344,8 @@ public class Executable {
 				int genre = input.nextInt();
 				System.out.println("Digite el valor de venta");
 				double price = input.nextDouble();
-				System.out.println("Digite las unidades vendidas. Ej:123456753241D, ponga la D si el valor es muy grande");
-				double unitsSold = input.nextDouble();
 
-				if (rXSystem.registerBook(id, name,pagesNumber, review,publicationDate,genre,url, price,unitsSold,readedPages)) {
+				if (rXSystem.registerBook(id, name,pagesNumber, review,publicationDate,genre,url, price)) {
 
 					System.out.println("Libro registrado exitosamente");
 		
@@ -363,10 +363,9 @@ public class Executable {
 			String publicationPeriodicity = input.nextLine();
 			System.out.println("Digite el valor de suscripcion");
 			double suscriptionPrice = input.nextDouble();
-			System.out.println("Digite las suscripciones activas. Ej:123456753241D, ponga la D si el valor es muy grande");
-			double activeSuscriptions = input.nextDouble();
 
-			if (rXSystem.registerMagazine(id, name, pagesNumber, category, publicationDate, publicationPeriodicity, url, suscriptionPrice, activeSuscriptions, readedPages)) {
+
+			if (rXSystem.registerMagazine(id, name, pagesNumber, category, publicationDate, publicationPeriodicity, url, suscriptionPrice)) {
 
 				System.out.println("Revista registrada exitosamente");
 	
@@ -378,6 +377,53 @@ public class Executable {
 		}
 
 	}
+
+	private void modifyProduct() {
+
+		String query = rXSystem.getProductList();
+
+		if (query.equals("")) {
+
+			System.out.println("No hay productos registrados");
+		} else {
+
+			System.out.println("\nEste es el listado de productos registrados en el sistema");
+
+			System.out.println(query);
+
+			System.out.println("\nSeleccione el producto a editar");
+
+			int option = input.nextInt();
+
+			int categoryChoice=0;
+			String stringChange="";
+
+			System.out.println("\nSeleccione a que categoria desea cambiar\n1:Nombre\n2:Nickname\n3:Categoria");
+			int categoryChange = input.nextInt();
+			if(categoryChange==3){
+				System.out.println("\nSeleccione el rango al que desea cambiarlo \n0:Estandar\n1:Plata\n2:Oro\n3:Diamante");
+				categoryChoice = input.nextInt();
+			}
+			else{
+			System.out.println("\nEscriba su nueva eleccion");
+			//limpieza buffer
+			input.nextLine();
+			stringChange = input.nextLine();
+			}
+
+			if (rXSystem.editProduct(option - 1,categoryChange,categoryChoice,stringChange)) {
+
+				System.out.println("\nUsuario editado exitosamente");
+
+			} else {
+
+				System.out.println("\nError, el usuario no pudo ser editado");
+			}
+
+		}
+
+	}
+
 
 	private void sellProduct() {
 
