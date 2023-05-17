@@ -1,5 +1,5 @@
 package model;
 
 public enum Category {
-    VARIEDADES,DISENIO,CIENTIFICA
+    VARIEDADES,DISENIO,CIENTIFICA,sadrfgawed
 }
