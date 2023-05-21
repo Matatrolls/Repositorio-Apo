@@ -10,7 +10,7 @@ public class  Book extends Product{
 	//String url
 	private double price;
 	private double unitsSold;
-	//long readedPages
+	//double readedPages
 
 
 
@@ -23,6 +23,13 @@ public class  Book extends Product{
 		this.price = price;
 		this.unitsSold=0;
 		this.setReadedPages(0);
+	}
+
+
+	@Override
+	public String toString() {
+		return "Book [id=" + this.getId() + ", name=" + this.getName() + ", pagesNumber=" + this.getPagesNumber() + ", publicationDate="
+        + this.getPublicationDate() + ", url=" + this.getUrl() + ", readedPages=" + this.getReadedPages() + " review=" + review + ", genre=" + genre + ", price=" + price + ", unitsSold=" + unitsSold + "]";
 	}
 
 

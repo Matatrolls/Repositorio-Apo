@@ -23,31 +23,40 @@ public class Executable {
 //|||||||||||||||||||||||||||||||||||MENUS||||||||||||||||||||||||||||||
 
 	private void menu() {
-		System.out.println("\nBienvenido a ReadXbook");
-		System.out.println("Escoja que desea hacer:");
-		System.out.println("1. Menu usuarios");
-		System.out.println("2. Menu productos");
-		System.out.println("3. Menu Usos");
+		boolean indicator=false;
 	
-		int option = input.nextInt();
+		while(!indicator){
+			System.out.println("\nBienvenido a ReadXbook");
+			System.out.println("Escoja que desea hacer:");
+			System.out.println("1. Menu usuarios");
+			System.out.println("2. Menu productos");
+			System.out.println("3. Menu Usos");
+			System.out.println("0. Salir");
+			int option = input.nextInt();
 
-		switch (option) {
+			switch (option) {
 
-			case 1:
-				menuUsers();
-			break;
+				case 1:
+					menuUsers();
+				break;
 
-			case 2:
-				menuProduct();
-			break;
+				case 2:
+					menuProduct();
+				break;
 
-			case 3:
-				menuUses();
-			break;
+				case 3:
+					menuUses();
+				break;
 
-			default:
-				System.out.println("Esa no es una opcion!");
-			break;
+				case 0:
+					indicator=true;
+				break;
+
+
+				default:
+					System.out.println("Esa no es una opcion!");
+				break;
+			}
 		}
 	}
 
@@ -58,7 +67,7 @@ public class Executable {
 		switch (option) {
 
 			case 1:
-				sellProduct();;
+				sellProduct();
 			break;
 
 
@@ -103,7 +112,6 @@ public class Executable {
 		System.out.println("3. Borrar usuario");
 		System.out.println("4. Consultar informacion de un usuario");
 		System.out.println("5. Consultar informacion de todos los usuarios registrados");
-		System.out.println("6. Salir");
 		int option = input.nextInt();
 
 		switch (option) {
@@ -398,10 +406,10 @@ public class Executable {
 			int categoryChoice=0;
 			String stringChange="";
 
-			System.out.println("\nSeleccione a que categoria desea cambiar\n1:Nombre\n2:Nickname\n3:Categoria");
+			System.out.println("\nSeleccione a que categoria desea cambiar\n1:Nombre\n2:Numero de paginas\n3:Fecha de publicacion\n=========Especificos de tipo=========\n4:Categoria/Genero\n5:Periodicidad de publicacion/Review\n6:Precio de suscripcion/Precio\n7:Suscripciones activas/Unidades vendidas");
 			int categoryChange = input.nextInt();
-			if(categoryChange==3){
-				System.out.println("\nSeleccione el rango al que desea cambiarlo \n0:Estandar\n1:Plata\n2:Oro\n3:Diamante");
+			if(categoryChange==4){
+				System.out.println("\nSeleccione la/el categoria/genero al que desea cambiarlo \n1:Cientifica/Ciencia ficcion\n2:Disenio/Fantasia\n3:Variedades/novela historica");
 				categoryChoice = input.nextInt();
 			}
 			else{
@@ -413,17 +421,16 @@ public class Executable {
 
 			if (rXSystem.editProduct(option - 1,categoryChange,categoryChoice,stringChange)) {
 
-				System.out.println("\nUsuario editado exitosamente");
+				System.out.println("\nProducto editado exitosamente");
 
 			} else {
 
-				System.out.println("\nError, el usuario no pudo ser editado");
+				System.out.println("\nError, el producto no pudo ser editado");
 			}
 
 		}
 
 	}
-
 
 	private void sellProduct() {
 

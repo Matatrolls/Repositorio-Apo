@@ -10,7 +10,7 @@ public class Magazine extends Product{
 	//String url
 	private double suscriptionPrice;
 	private double activeSuscriptions;
-	//long readedPages
+	//double readedPages
 
     public Magazine(String id, String name,int pagesNumber,Category category,String publicationDate,
         String publicationPeriodicity, String url,
@@ -25,7 +25,15 @@ public class Magazine extends Product{
 	}
 
     
-	public Category getCategory() {
+	@Override
+    public String toString() {
+        return "\nMagazine [id=" + this.getId() + ", name=" + this.getName() + ", pagesNumber=" + this.getPagesNumber() + ", publicationDate="
+        + this.getPublicationDate() + ", url=" + this.getUrl() + ", readedPages=" + this.getReadedPages() + " category=" + category + ", publicationPeriodicity=" + publicationPeriodicity
+                + ", suscriptionPrice=" + suscriptionPrice + ", activeSuscriptions=" + activeSuscriptions + "]";
+    }
+
+
+    public Category getCategory() {
         return category;
     }
 
