@@ -115,7 +115,6 @@ public class Controller {
 	public String getAllKProductInfo() {
 
 		String msg = "";
-		double totalSells;
 
 		for (int i = 0; i < products.size(); i++) {
 
@@ -126,6 +125,147 @@ public class Controller {
 		}
 
 		return msg;
+	}
+
+	public boolean editProduct(int productOption, int categoryChange, int categoryChoice, String stringChange) {
+		boolean indicator=false;
+		int temporalInt;
+		double temporalDouble;
+		switch(categoryChange){
+			case 1:
+				products.get(productOption).setName(stringChange);
+				indicator =true;
+			break;
+
+			case 2:
+				temporalInt = Integer.parseInt(stringChange);
+				products.get(productOption).setPagesNumber(temporalInt);
+				indicator =true;
+			break;
+
+			case 3:
+				products.get(productOption).setPublicationDate(stringChange);
+				indicator =true;
+			break;
+			
+			case 4:
+				Category temporalCategory= Category.CIENTIFICA;
+				Genre temporalGenre= Genre.CIENCIA_FICCION;
+				switch(categoryChoice){
+					case 1:
+					temporalCategory= Category.CIENTIFICA;
+				 	temporalGenre= Genre.CIENCIA_FICCION;
+					if(products.get(productOption) instanceof Magazine){
+						((Magazine)products.get(productOption)).setCategory(temporalCategory);
+						return true;
+					}
+					if(products.get(productOption) instanceof Book){
+						((Book)products.get(productOption)).setGenre(temporalGenre);;
+						return true;
+					}
+					
+					else{
+						return false;
+					}
+
+					case 2:
+					temporalCategory= Category.DISENIO;
+				 	temporalGenre= Genre.FANTASIA;
+					if(products.get(productOption) instanceof Magazine){
+						((Magazine)products.get(productOption)).setCategory(temporalCategory);
+						return true;
+					
+					}
+					if(products.get(productOption) instanceof Book){
+						((Book)products.get(productOption)).setGenre(temporalGenre);;
+						return true;
+					}
+					
+					else{
+						return false;
+					}
+				
+
+					case 3:
+					temporalCategory= Category.VARIEDADES;
+				 	temporalGenre= Genre.NOVELA_HISTORICA;
+					if(products.get(productOption) instanceof Magazine){
+						((Magazine)products.get(productOption)).setCategory(temporalCategory);
+						return true;
+						
+					}
+					if(products.get(productOption) instanceof Book){
+						((Book)products.get(productOption)).setGenre(temporalGenre);;
+						return true;
+					}
+					
+					else{
+						return false;
+					}
+					
+				}
+
+			break;
+
+		case 5:
+		
+			if(products.get(productOption) instanceof Magazine){
+				((Magazine)products.get(productOption)).setPublicationPeriodicity(stringChange);
+				return true;
+				
+			}
+			if(products.get(productOption) instanceof Book){
+				((Book)products.get(productOption)).setReview(stringChange);
+				return true;
+				}
+					
+			else{
+				return false;
+			}
+			
+			
+			
+		
+
+		case 6:
+			temporalDouble = Double.parseDouble(stringChange);
+			if(products.get(productOption) instanceof Magazine){
+				((Magazine)products.get(productOption)).setSuscriptionPrice(temporalDouble);
+				return true;
+					
+			}
+			if(products.get(productOption) instanceof Book){
+				((Book)products.get(productOption)).setPrice(temporalDouble);
+				return true;
+			}
+					
+			else{
+				return false;
+			}
+		
+
+		case 7:
+			temporalDouble = Double.parseDouble(stringChange);
+			if(products.get(productOption) instanceof Magazine){
+				((Magazine)products.get(productOption)).setActiveSuscriptions(temporalDouble);
+				return true;
+					
+			}
+			if(products.get(productOption) instanceof Book){
+				((Book)products.get(productOption)).setUnitsSold(temporalDouble);
+				return true;
+			}
+					
+			else{
+				return false;
+			}
+		
+
+		default:
+		return false;
+		
+	}
+	return indicator;
 	}
 
 //||||||||||||||||||||||||||||||||||||||USERS||||||||||||||||||||||||||||||||||||||||
@@ -253,11 +393,5 @@ public class Controller {
 		}
 		return msg;
 	}
-
-
-	public boolean editProduct(int i, int categoryChange, int categoryChoice, String stringChange) {
-		return false;
-	}
-
 }
 

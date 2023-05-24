@@ -19,6 +19,12 @@ public abstract class Product {
         this.readedPages=0;
     }
 
+    @Override
+    public String toString() {
+        return "/nProduct [id=" + id + ", name=" + name + ", pagesNumber=" + pagesNumber + ", publicationDate="
+                + publicationDate + ", url=" + url + ", readedPages=" + readedPages + "]";
+    }
+
     public String getId() {
         return id;
     }
