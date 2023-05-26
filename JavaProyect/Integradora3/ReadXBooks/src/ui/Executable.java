@@ -63,11 +63,16 @@ public class Executable {
 	private void menuUses() {
 		System.out.println("\nEscoja que desea hacer");
 		System.out.println("1. Vender Producto");
+		System.out.println("2. Leer Producto");
 		int option = input.nextInt();
 		switch (option) {
 
 			case 1:
 				sellProduct();
+			break;
+
+			case 2:
+				readProduct();
 			break;
 
 
@@ -76,6 +81,7 @@ public class Executable {
 			break;
 		}
 	}
+
 
 	public void menuProduct() {
 		System.out.println("\nEscoja que desea hacer");
@@ -490,6 +496,50 @@ public class Executable {
 		}
 
 	}
+
+//||||||||||||||||||||||||||||USES|||||||||||||||||||||||
+
+private void readProduct() {
+		String Userquery = rXSystem.getUserList();
+			System.out.println(Userquery);
+
+			int userOption=1;
+			if (Userquery.equals("")) {
+
+				System.out.println("No hay Usuarios registrados");
+			} else {
+
+				System.out.println("\nSeleccione el usuario a vender");
+
+				userOption = input.nextInt();
+
+			}
+		String productQuery = rXSystem.getProductLibrary(userOption);
+
+		if (productQuery.equals("")) {
+			System.out.println("No hay productos registrados");
+		} else {
+
+			System.out.println("\nEste es el listado de productos registrados en el sistema");
+
+			System.out.println(productQuery);
+
+			System.out.println("\nSeleccione el producto a vender");
+
+			int productOption = input.nextInt();
+
+			
+			if (rXSystem.sellProduct(productOption - 1,userOption-1)) {
+
+				System.out.println("\nTransaccion realizada exitosamente");
+
+			} else {
+
+				System.out.println("\nError en la transaccion");
+			}
+
+		}
+}
 
 }
 

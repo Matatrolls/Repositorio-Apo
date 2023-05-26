@@ -1,18 +1,44 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Calendar;;
 
 public class Controller {
 
 	private ArrayList<Product> products;
 	private ArrayList<User> users;
+	private ArrayList<Transaction> transactions;
 
 	public Controller() {
 
 		this.products = new ArrayList<Product>();
 		this.users = new ArrayList<User>();
+		this.transactions = new ArrayList<Transaction>();
 		testCases();
 
+	}
+
+	public String ads(){
+		String msg="";
+		int number = (int)(Math.random()*3+1);
+
+		switch(number){
+
+			case 1:
+			msg="Nike - Just Do It.";
+			break;
+
+			case 2:
+			msg="Coca-Cola - Open Happiness.";
+			break;
+
+			case 3:
+			msg="M&Ms - Melts in Your Mouth, Not in Your Hands.";
+			break;
+
+		}
+
+		return msg;
 	}
 
 
@@ -89,21 +115,29 @@ public class Controller {
 
 	public boolean sellProduct(int productOption,int userOption) {
 		boolean indicator= false;
+		double preSold;
+		double postSold;
 
 		if(products.get(productOption) instanceof Book){
+			preSold=((Book)products.get(productOption)).getUnitsSold();
+		 	postSold=preSold+1;
 			((users.get(userOption)).getProducts()).add(new Book(((Book)products.get(productOption)).getId(),((Book)products.get(productOption)).getName(),((Book)products.get(productOption)).getPagesNumber(),((Book)products.get(productOption)).getReview(),((Book)products.get(productOption)).getPublicationDate(),((Book)products.get(productOption)).getGenre(),((Book)products.get(productOption)).getUrl(),((Book)products.get(productOption)).getPrice()));
-			double preSold=((Book)products.get(productOption)).getUnitsSold();
-			double postSold=preSold+1;
+			 preSold=((Book)products.get(productOption)).getUnitsSold();
+			 postSold=preSold+1;
 			if(((Book)products.get(productOption)).setUnitsSold(postSold)){
 				indicator=true;
+				transactions.add(new Transaction(Calendar.getInstance(),((Book)products.get(productOption)).getPrice()));
 			}
 		}
 		if(products.get(productOption) instanceof Magazine){
+			preSold=((Magazine)products.get(productOption)).getActiveSuscriptions();
+		 	postSold=preSold+1;
 			((users.get(userOption)).getProducts()).add(new Magazine(((Magazine)products.get(productOption)).getId(),((Magazine)products.get(productOption)).getName(),((Magazine)products.get(productOption)).getPagesNumber(),((Magazine)products.get(productOption)).getCategory(),((Magazine)products.get(productOption)).getPublicationDate(),((Magazine)products.get(productOption)).getPublicationPeriodicity(),((Magazine)products.get(productOption)).getUrl(), ((Magazine)products.get(productOption)).getSuscriptionPrice()));
-			double preSold=((Magazine)products.get(productOption)).getActiveSuscriptions();
-			double postSold=preSold+1;
+			 preSold=((Magazine)products.get(productOption)).getActiveSuscriptions();
+			 postSold=preSold+1;
 			if(((Magazine)products.get(productOption)).setActiveSuscriptions(postSold)){
 				indicator=true;
+				transactions.add(new Transaction(Calendar.getInstance(),((Magazine)products.get(productOption)).getSuscriptionPrice()));
 			}
 		}
 	
@@ -393,5 +427,14 @@ public class Controller {
 		}
 		return msg;
 	}
+
+//|||||||||||||||||||||||||||||||||USES|||||||||||||||||||||||||||||||||||||||||||||||||||\
+    public String getProductLibrary(int userOption) {
+
+		String msg = "";
+		msg =users.get(userOption).toString();
+		return msg;
+
+    }
 }
 
