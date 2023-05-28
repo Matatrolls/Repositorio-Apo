@@ -1,5 +1,6 @@
 package model;
 
+
 public class Magazine extends Product{
     //String id
 	//String name
@@ -28,7 +29,7 @@ public class Magazine extends Product{
 	@Override
     public String toString() {
         return "\nMagazine [id=" + this.getId() + ", name=" + this.getName() + ", pagesNumber=" + this.getPagesNumber() + ", publicationDate="
-        + this.getPublicationDate() + ", url=" + this.getUrl() + ", readedPages=" + this.getReadedPages() + " category=" + category + ", publicationPeriodicity=" + publicationPeriodicity
+        + this.getFormatedPublicationDate() + ", url=" + this.getUrl() + ", readedPages=" + this.getReadedPages() + " category=" + category + ", publicationPeriodicity=" + publicationPeriodicity
                 + ", suscriptionPrice=" + suscriptionPrice + ", activeSuscriptions=" + activeSuscriptions + "]";
     }
 

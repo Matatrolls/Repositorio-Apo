@@ -18,6 +18,7 @@ public class  Book extends Product{
 		Genre genre, String url,
 		double price) {
 		super(id,name,pagesNumber,publicationDate,url);
+		
 		this.review=review;
 		this.genre = genre;
 		this.price = price;
@@ -29,7 +30,7 @@ public class  Book extends Product{
 	@Override
 	public String toString() {
 		return "Book [id=" + this.getId() + ", name=" + this.getName() + ", pagesNumber=" + this.getPagesNumber() + ", publicationDate="
-        + this.getPublicationDate() + ", url=" + this.getUrl() + ", readedPages=" + this.getReadedPages() + " review=" + review + ", genre=" + genre + ", price=" + price + ", unitsSold=" + unitsSold + "]";
+        + this.getFormatedPublicationDate() + ", url=" + this.getUrl() + ", readedPages=" + this.getReadedPages() + " review=" + review + ", genre=" + genre + ", price=" + price + ", unitsSold=" + unitsSold + "]";
 	}
 
 

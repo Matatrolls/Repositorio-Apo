@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.Scanner;
+
 import model.Controller;
 
 public class Executable {
@@ -14,6 +15,9 @@ public class Executable {
 		rXSystem = new Controller();
 	}
 
+	/**
+	 * The main function creates an instance of the Executable class and calls its menu method.
+	 */
 	public static void main(String[] args) {
 
 		Executable ejecutable = new Executable();
@@ -22,7 +26,11 @@ public class Executable {
 	}
 //|||||||||||||||||||||||||||||||||||MENUS||||||||||||||||||||||||||||||
 
-	private void menu() {
+	/**
+	 * This function displays a menu with options for managing users, products, and uses, and allows the
+	 * user to select an option or exit the menu.
+	 */
+	public void menu() {
 		boolean indicator=false;
 	
 		while(!indicator){
@@ -60,10 +68,15 @@ public class Executable {
 		}
 	}
 
-	private void menuUses() {
+	/**
+	 * This function displays a menu with options to sell a product, read a product, or view reports and
+	 * executes the corresponding function based on the user's choice.
+	 */
+	public void menuUses() {
 		System.out.println("\nEscoja que desea hacer");
 		System.out.println("1. Vender Producto");
 		System.out.println("2. Leer Producto");
+		System.out.println("3. Reportes");
 		int option = input.nextInt();
 		switch (option) {
 
@@ -75,6 +88,9 @@ public class Executable {
 				readProduct();
 			break;
 
+			case 3:
+				menuReports();
+			break;
 
 			default:
 				System.out.println("Esa no es una opcion!");
@@ -82,7 +98,46 @@ public class Executable {
 		}
 	}
 
+	/**
+	 * This function displays a menu of options for generating reports on the total pages read, most read
+	 * genre and category, book sales, and subscription sales.
+	 */
+	public void menuReports() {
+		System.out.println("\nEscoja que desea hacer");
+		System.out.println("1. Acumulado total de páginas leídas en toda la plataforma");
+		System.out.println("2. Informar el género de libro y categoría de revista más leídas en la plataforma");
+		System.out.println("3.  Numero de libros vendidos y el valor total de ventas");
+		System.out.println("4.  Numero de suscripciones activas y el valor total pagado por suscripciones");
+		int option = input.nextInt();
+		switch (option) {
 
+			case 1:
+				totalReadPages();
+			break;
+
+			case 2:
+				mostReadGenreAndCategory();
+			break;
+
+
+			case 3:
+				sellingsByGenre();
+			break;
+
+			case 4:
+				sellingsByCategory();
+			break;
+
+			default:
+				System.out.println("Esa no es una opcion!");
+			break;
+		}
+	}
+
+	/**
+	 * This function displays a menu with options to register a product, show all product information, or
+	 * modify a product.
+	 */
 	public void menuProduct() {
 		System.out.println("\nEscoja que desea hacer");
 		System.out.println("1. Registrar libro");
@@ -111,7 +166,11 @@ public class Executable {
 		}
 	}
 
-	private void menuUsers() {
+	/**
+	 * This function displays a menu for managing user information and performs the selected action based
+	 * on user input.
+	 */
+	public void menuUsers() {
 		System.out.println("\nEscoja que desea hacer");
 		System.out.println("1. Registrar usuario");
 		System.out.println("2. Modificar usuario");
@@ -145,8 +204,11 @@ public class Executable {
 	}
 
 //|||||||||||||||||||||||||||||||||USERS||||||||||||||||||||||||||||||||||
-
-	private void registerUser() {
+/**
+ * This Java function registers a new user by prompting the user to input their personal information
+ * and type of user, and then calls a method to register the user in a system.
+ */
+	public void registerUser() {
 
 		System.out.println("Digite a continuacion la informacion de un nuevo usuario");
 
@@ -196,7 +258,10 @@ public class Executable {
 		}
 	}
 
-	private void modifyUser() {
+	/**
+	 * This function allows the user to modify an existing user's name, nickname, or category in a system.
+	 */
+	public void modifyUser() {
 
 		String query = rXSystem.getUserList();
 
@@ -242,7 +307,10 @@ public class Executable {
 
 	}
 
-	private void deleteUser() {
+	/**
+	 * This function allows the user to delete a registered user from the system.
+	 */
+	public void deleteUser() {
 
 		String query = rXSystem.getUserList();
 
@@ -272,7 +340,11 @@ public class Executable {
 
 	}
 
-	private void showUserInfo() {
+	/**
+	 * This function displays a list of registered users in the system and allows the user to select a
+	 * user to view their information.
+	 */
+	public void showUserInfo() {
 
 		String query = rXSystem.getUserList();
 
@@ -301,7 +373,10 @@ public class Executable {
 
 	}
 
-	private void showAllUserInfo() {
+	/**
+	 * This function displays all the user information registered in the system.
+	 */
+	public void showAllUserInfo() {
 
 		System.out.println("Esta es la informacion registrada en el sistema");
 
@@ -318,6 +393,10 @@ public class Executable {
 
 //||||||||||||||||||||||||||||||||PRODUCTS||||||||||||||||||||||||||||||||||||
 
+	/**
+	 * This function registers a new product (either a book or a magazine) by prompting the user for
+	 * information and calling the appropriate method in the rXSystem object.
+	 */
 	public void registerProduct() {
 
 		System.out.println("Digite a continuacion la informacion de un nuevo producto");
@@ -392,7 +471,11 @@ public class Executable {
 
 	}
 
-	private void modifyProduct() {
+	/**
+	 * This function allows the user to modify a product in the system by selecting the product and
+	 * choosing which category to change and what to change it to.
+	 */
+	public void modifyProduct() {
 
 		String query = rXSystem.getProductList();
 
@@ -438,7 +521,11 @@ public class Executable {
 
 	}
 
-	private void sellProduct() {
+	/**
+ * This function allows the user to sell a product by selecting it from a list and choosing a user to
+ * sell it to.
+ */
+	public void sellProduct() {
 
 		String productQuery = rXSystem.getProductList();
 
@@ -475,13 +562,16 @@ public class Executable {
 
 			} else {
 
-				System.out.println("\nError en la transaccion");
+				System.out.println("\nError en la transaccion, su usuario ya tiene la cantidad maxima");
 			}
 
 		}
 
 	}
 
+	/**
+	 * This Java function displays all the product information registered in the system.
+	 */
 	public void showAllProductInfo() {
 
 		System.out.println("Esta es la informacion registrada en el sistema");
@@ -499,47 +589,130 @@ public class Executable {
 
 //||||||||||||||||||||||||||||USES|||||||||||||||||||||||
 
-private void readProduct() {
+	/**
+	 * This function reads a product from a product library based on user input.
+	 */
+	public void readProduct() {
 		String Userquery = rXSystem.getUserList();
-			System.out.println(Userquery);
+		System.out.println(Userquery);
 
-			int userOption=1;
-			if (Userquery.equals("")) {
+		int userOption=1;
+		if (Userquery.equals("")) {
 
-				System.out.println("No hay Usuarios registrados");
-			} else {
-
-				System.out.println("\nSeleccione el usuario a vender");
-
-				userOption = input.nextInt();
-
-			}
-		String productQuery = rXSystem.getProductLibrary(userOption);
-
-		if (productQuery.equals("")) {
-			System.out.println("No hay productos registrados");
+			System.out.println("No hay Usuarios registrados");
 		} else {
 
-			System.out.println("\nEste es el listado de productos registrados en el sistema");
+			System.out.println("\nSeleccione el usuario con el que leera");
 
-			System.out.println(productQuery);
-
-			System.out.println("\nSeleccione el producto a vender");
-
-			int productOption = input.nextInt();
-
-			
-			if (rXSystem.sellProduct(productOption - 1,userOption-1)) {
-
-				System.out.println("\nTransaccion realizada exitosamente");
-
-			} else {
-
-				System.out.println("\nError en la transaccion");
-			}
+			userOption = input.nextInt();
 
 		}
+
+
+		String productQuery = rXSystem.getProductLibrary(userOption-1);
+		System.out.println("\n==================BIBLIOTECA====================");
+		System.out.println(productQuery);
+		System.out.println("\nSeleccione el producto a leer");
+		String choiceID;
+		
+		input.nextLine();
+		int x = input.nextInt();
+		int y = input.nextInt();
+		choiceID =rXSystem.getProductFromMatrix(userOption-1, x-1, y-1);
+		readingProduct(userOption-1, choiceID);	
+	}
+
+	/**
+	 * This function allows the user to read a product, navigate through its pages, and return to the
+	 * library or main menu.
+	 * 
+	 * @param userOption The user's selected option for reading a product, such as reading a book or a
+	 * magazine. It could be an integer value representing the option chosen from a menu.
+	 * @param choiceID The ID of the product that the user wants to read.
+	 */
+	public void readingProduct(int userOption,String choiceID) {
+		String choice="";
+		boolean indicator=false;
+		int counter = 1;
+		System.out.println(rXSystem.readProduct(choiceID, userOption, counter));
+		System.out.println("Ingrese A para la pagina Anterior");
+		System.out.println("Ingrese S para la pagina Siguiente");
+		System.out.println("Ingrese B para la biblioteca");
+		System.out.println("Ingrese E para salir");
+		input.nextLine();
+		while(!indicator){
+			
+			choice = input.nextLine();
+			choice=choice.toUpperCase();
+			switch(choice){
+
+				case "A":
+				counter--;
+				
+				System.out.println(rXSystem.readProduct(choiceID, userOption, counter));
+				break;
+
+				case "S":
+				counter++;
+				System.out.println(rXSystem.AddReadedPagesProduct(choiceID, userOption));
+				System.out.println(rXSystem.readProduct(choiceID, userOption, counter));
+				break;
+
+				case "B":
+				indicator=true;
+				readProduct();
+				break;
+
+				case "E":
+				indicator=true;
+				menu();
+				break;
+				
+				default:
+				break;
+			}
+			System.out.println("Ingrese A para la pagina Anterior");
+			System.out.println("Ingrese S para la pagina Siguiente");
+			System.out.println("Ingrese B para la biblioteca");
+			System.out.println("Ingrese E para salir");
+
+		}
+		
+	}
+
+
+//||||||||||||||||||||||||||||REPORTS||||||||||||||||||||||||||||||||
+
+/**
+ * This function prints out the sales by category in a retail system.
+ */
+public void sellingsByCategory() {
+	System.out.println(rXSystem.sellingsByCategory());
 }
 
+/**
+ * This function prints the sales data by genre in a Java program.
+ */
+public void sellingsByGenre() {
+	System.out.println(rXSystem.sellingsByGenre());
+	
+}
+
+
+/**
+ * This function prints the most read genre and category in a system.
+ */
+public void mostReadGenreAndCategory() {
+	System.out.println(rXSystem.mostReadGenreAndCategory());
+	
+}
+
+/**
+ * This Java function prints the total number of read pages using the rXSystem object.
+ */
+public void totalReadPages() {
+	System.out.println(rXSystem.totalReadPages());
+	
+}
 }
 
