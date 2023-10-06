@@ -1,5 +1,7 @@
 import sorts.*;
 import java.util.Scanner;
+import java.util.Comparator;
+import java.util.Arrays;
 import model.Controller;
 
 public class Executable {
@@ -32,20 +34,17 @@ public class Executable {
 		while(!indicator){
 			System.out.println("1.bubble sort");
 			System.out.println("2.selection sort");
-			System.out.println("");
-			System.out.println("");
-			System.out.println("");
-			System.out.println("");
+
 			int option = input.nextInt();
 
 			switch (option) {
 
 				case 1:
-					
+					bubbleSort();
 				break;
 
 				case 2:
-					
+					selectionSort();
 				break;
 
 				case 3:
@@ -62,5 +61,32 @@ public class Executable {
 				break;
 			}
 		}
+	}
+ 
+	public void selectionSort() {
+		// ej int
+		Integer[] numbers = {4, 2, 9, 1, 5, 6};
+		SelectionSort<Integer> sort1 = new SelectionSort<>();
+		sort1.selectionSort(numbers);
+		System.out.println(Arrays.toString(numbers));
+
+		// ej string
+		String[] strings = {"a", "z", "j", "d", "e"};
+		SelectionSort<String> sort2 = new SelectionSort<>();
+		sort2.selectionSort(strings);
+		System.out.println(Arrays.toString(strings));
+		
+	}
+
+	public void bubbleSort() {
+		Integer[] numbers = {5, 2, 9, 1, 5, 6};
+		BubbleSort<Integer> sort = new BubbleSort<>();
+		sort.bubbleSort(numbers, numbers.length);
+
+		System.out.println("Arreglo ordenado:");
+		for (Integer number : numbers) {
+			System.out.print(number + " ");
+		}
+		System.out.print("\n");
 	}
   }
