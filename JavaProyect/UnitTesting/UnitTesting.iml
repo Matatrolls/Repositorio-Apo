@@ -8,23 +8,18 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.2/junit-3.8.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.2/junit-3.8.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="module" module-name="a" />
+    <orderEntry type="module" module-name="EvaluacionPractica3" />
+    <orderEntry type="module" module-name="Base" />
+    <orderEntry type="module" module-name="ReadXCollectionSorter" />
+    <orderEntry type="module" module-name="b1" />
+    <orderEntry type="module" module-name="Integradora2" />
+    <orderEntry type="module" module-name="ReadXBooks" />
+    <orderEntry type="module" module-name="EvaluacionPractica4" />
+    <orderEntry type="module" module-name="Integradora3" />
+    <orderEntry type="module" module-name="Sorts1" />
+    <orderEntry type="module" module-name="KnowledgeUnit" />
+    <orderEntry type="module" module-name="segumiento 6" />
   </component>
 </module>
