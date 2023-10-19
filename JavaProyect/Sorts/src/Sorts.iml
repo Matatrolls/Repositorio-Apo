@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/model" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ui" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="EvaluacionPractica3" />
+    <orderEntry type="module" module-name="Base" />
+    <orderEntry type="module" module-name="Integradora2" />
+    <orderEntry type="module" module-name="EvaluacionPractica4" />
+    <orderEntry type="module" module-name="KnowledgeUnit" />
+    <orderEntry type="module" module-name="segumiento 6" />
+    <orderEntry type="module" module-name="a" />
+    <orderEntry type="module" module-name="ReadXCollectionSorter" />
+    <orderEntry type="module" module-name="b1" />
+    <orderEntry type="module" module-name="ReadXBooks" />
+    <orderEntry type="module" module-name="Integradora3" />
+    <orderEntry type="module" module-name="Sorts1" />
+    <orderEntry type="module" module-name="UnitTesting" />
+  </component>
+</module>

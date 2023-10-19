@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Base/Base.iml" filepath="$PROJECT_DIR$/Base/Base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvaluacionPractica3/EvaluacionPractica3.iml" filepath="$PROJECT_DIR$/EvaluacionPractica3/EvaluacionPractica3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvaluacionPractica4/EvaluacionPractica4.iml" filepath="$PROJECT_DIR$/EvaluacionPractica4/EvaluacionPractica4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Integradora1/Integradora1.iml" filepath="$PROJECT_DIR$/Integradora1/Integradora1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Integradora2/Integradora2.iml" filepath="$PROJECT_DIR$/Integradora2/Integradora2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Integradora3/Integradora3.iml" filepath="$PROJECT_DIR$/Integradora3/Integradora3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/JavaProyect.iml" filepath="$PROJECT_DIR$/.idea/JavaProyect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ComplementosIntegradora3/KnowledgeUnit/KnowledgeUnit.iml" filepath="$PROJECT_DIR$/ComplementosIntegradora3/KnowledgeUnit/KnowledgeUnit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ComplementosIntegradora3/ReadXBooks/ReadXBooks.iml" filepath="$PROJECT_DIR$/ComplementosIntegradora3/ReadXBooks/ReadXBooks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ComplementosIntegradora3/ReadXCollectionSorter/ReadXCollectionSorter.iml" filepath="$PROJECT_DIR$/ComplementosIntegradora3/ReadXCollectionSorter/ReadXCollectionSorter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sorts/src/Sorts.iml" filepath="$PROJECT_DIR$/Sorts/src/Sorts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sorts/Sorts1.iml" filepath="$PROJECT_DIR$/Sorts/Sorts1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UnitTesting/UnitTesting.iml" filepath="$PROJECT_DIR$/UnitTesting/UnitTesting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Competitiva/a/a.iml" filepath="$PROJECT_DIR$/Competitiva/a/a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Competitiva/a/src/a1.iml" filepath="$PROJECT_DIR$/Competitiva/a/src/a1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Competitiva/b/src/b.iml" filepath="$PROJECT_DIR$/Competitiva/b/src/b.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Competitiva/b/b1.iml" filepath="$PROJECT_DIR$/Competitiva/b/b1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/seguimientos/seguimientos.iml" filepath="$PROJECT_DIR$/seguimientos/seguimientos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/seguimientos/segumiento 6/segumiento 6.iml" filepath="$PROJECT_DIR$/seguimientos/segumiento 6/segumiento 6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/untitled/untitled.iml" filepath="$PROJECT_DIR$/untitled/untitled.iml" />
+    </modules>
+  </component>
+</project>
