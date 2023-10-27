@@ -10,3 +10,8 @@ https://mvnrepository.com/artifact/junit/junit/3.8.2
             <SOURCES />
           </library>
         </orderEntry>
+
+
+git config --global user.name "Matatrolls"
+git config --global user.email "pro.nhk90@gmail.com"
+git config --global credential.helper store
