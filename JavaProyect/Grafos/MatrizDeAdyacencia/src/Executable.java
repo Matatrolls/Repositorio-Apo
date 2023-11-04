@@ -18,8 +18,7 @@ public class Executable {
 	
 	public void menu() {
 		boolean indicator=false;
-
-        System.out.println("\n escoja el tamaño de su grafo: ");
+		System.out.println("\n escoja el tamaño de su grafo: ");
         int size = input.nextInt();
         graph = new graphsMatrixAdyacency<>(size);
         
@@ -31,6 +30,7 @@ public class Executable {
             System.out.println("3. Mostrar matriz de Adyacencia");
 			System.out.println("4. Hacer recorrido BFS desde un vertice");
             System.out.println("5. Mirar si se es fuertemente conexo");
+			System.out.println("10. Testing");
             
 			System.out.println("0. Salir");
 			int option = input.nextInt();
@@ -46,12 +46,13 @@ public class Executable {
 
 				case 2:
 					int origin,destiny;
-                    // Añadir metodo para to string en model
+					System.out.println(graph.toString());
+                    graph.toString();
                     System.out.println("Introduzca el vertice de origen");
-                    origin = input.nextInt();
+                    origin = input.nextInt()-1;
 
 					System.out.println("Introduzca el vertice de destino");
-                    destiny = input.nextInt();
+                    destiny = input.nextInt()-1;
 
                     graph.addEdge(origin, destiny);
 
@@ -63,14 +64,18 @@ public class Executable {
 
 				case 4:
 					int choice;
-					// Añadir metodo para to string en model
+					System.out.println(graph.toString());
 					System.out.println("Introduzca el vertice desde el que quiere hacer BFS");
-					choice = input.nextInt();
+					choice = input.nextInt()-1;
 					graph.bfs(choice);
 				break;
 
 				case 5:
-					// Añadir metodo para revisar qu tan conexo es(hacer bfs en todos lo vertex y revisar si desde todos se puede acceder a todos)
+					graph.seeConex();
+				break;
+
+				case 10:
+					testing();
 				break;
 
 				case 0:
@@ -83,6 +88,22 @@ public class Executable {
 				break;
 			}
 		}
+	}
+
+	private void testing() {
+
+		graph = new graphsMatrixAdyacency<>(5);
+		graph.addVertex("A");
+		graph.addVertex("B");
+		graph.addVertex("C");
+		graph.addVertex("D");
+		graph.addVertex("E");
+
+		graph.addEdge(0, 1);
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 3);
+		graph.addEdge(3, 4);
+		graph.addEdge(4, 1);
 	}
 }
  

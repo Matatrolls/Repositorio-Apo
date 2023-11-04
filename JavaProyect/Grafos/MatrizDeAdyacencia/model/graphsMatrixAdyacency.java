@@ -42,22 +42,35 @@ public class graphsMatrixAdyacency<T> {
 
     public String toString(){
         String msg="";
+        
+        for (int i=0;i< vertex.size();i++) {
+            msg+=(i+1)+": "+vertex.get(i)+"\n";
+        }
 
         return msg;
     }
 
-    public void bfs(int start) {
+    public String seeConex(int start, int destiny){
+        String msg="";
+        msg=bfs(start);
+        if();
+
+        return msg;
+    }
+
+    public String bfs(int start) {
+        String msg="";
         if (start < 0 || start >= numedges) {
-            System.out.println("Índice de inicio no válido.");
-            return;
+            msg+="Índice de inicio no válido.";
+            return msg;
         }
 
         boolean[] visited = new boolean[numedges];
         Queue<Integer> tail = new LinkedList<>();
 
         visited[start] = true;
-        System.out.println("Recorrido BFS desde el vértice " + vertex.get(start) + ":");
-        System.out.print(vertex.get(start) + " ");
+        msg+="Recorrido BFS desde el vértice " + vertex.get(start) + ":";
+        msg+=vertex.get(start) + " ";
 
         tail.add(start);
 
@@ -67,11 +80,11 @@ public class graphsMatrixAdyacency<T> {
             for (int i = 0; i < numedges; i++) {
                 if (matrizAdyacency[actualVertex][i] && !visited[i]) {
                     visited[i] = true;
-                    System.out.print(vertex.get(i) + " ");
+                    msg+=vertex.get(i) + " ";
                     tail.add(i);
                 }
             }
         }
-
+        return msg;
     }
 }
