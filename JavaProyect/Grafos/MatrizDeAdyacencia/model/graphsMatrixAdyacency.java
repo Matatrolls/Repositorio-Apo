@@ -1,14 +1,15 @@
 package MatrizDeAdyacencia.model;
 
+import MatrizDeAdyacencia.model.Color;
 import java.util.*;
 
-public class graphsMatrixAdyacency<T> {
+public class GraphsMatrixAdyacency<T> {
     private int numedges;
     private boolean[][] matrizAdyacency;
     private ArrayList<T> vertex;
     
 
-    public graphsMatrixAdyacency(int numedges) {
+    public GraphsMatrixAdyacency(int numedges) {
         this.numedges = numedges;
         this.matrizAdyacency = new boolean[numedges][numedges];
         this.vertex = new ArrayList<>();
@@ -31,13 +32,16 @@ public class graphsMatrixAdyacency<T> {
         }
     }
 
-    public void showMatriz() {
+    public String showMatriz(){
+        String msg="";
         for (int i = 0; i < numedges; i++) {
             for (int j = 0; j < numedges; j++) {
-                System.out.print(matrizAdyacency[i][j] ? "1 " : "0 ");
+                msg+=(matrizAdyacency[i][j] ? "1 " : "0 ");
             }
-            System.out.println();
+            msg+="\n";
         }
+
+        return msg;
     }
 
     public String toString(){
@@ -50,20 +54,47 @@ public class graphsMatrixAdyacency<T> {
         return msg;
     }
 
-    public String seeConex(int start, int destiny){
-        String msg="";
-        msg=bfs(start);
-        if();
-
-        return msg;
+    public boolean seeConex(int start, int destiny){
+        boolean[] visited = new boolean[numedges];
+        dfs(start, visited);
+        return visited[destiny];
     }
 
-    public String bfs(int start) {
+    public boolean hardlyConnect(){
+        for (int i = 0; i < vertex.size(); i++) {
+            T tempStart =vertex.get(i);
+            for (int j = 0; j < vertex.size(); j++) {
+                T tempDestiny =vertex.get(i);
+                if(i==j){
+                }
+                else{
+                    if (!seeConex(i, j)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    private void dfs(int vertex, boolean[] visited) {
+        visited[vertex] = true;
+        
+        for (int i = 0; i < numedges; i++) {
+            if (matrizAdyacency[vertex][i] && !visited[i]) {
+                dfs(i, visited);
+            }
+        }
+    }
+
+    
+    public String recorridoBFS(int start) {
         String msg="";
         if (start < 0 || start >= numedges) {
             msg+="Índice de inicio no válido.";
             return msg;
         }
+
 
         boolean[] visited = new boolean[numedges];
         Queue<Integer> tail = new LinkedList<>();
@@ -85,6 +116,8 @@ public class graphsMatrixAdyacency<T> {
                 }
             }
         }
+
         return msg;
     }
+
 }
